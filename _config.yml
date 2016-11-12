@@ -1,0 +1,18 @@
+# Site settings
+title: Computational Methods in Atmospheric and Oceanic Sciences
+email: aos573@lists
+description: "AOS573"
+baseurl: ""
+url: "https://aos573.github.io"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+collections:
+  lectures:
+    output: true
+    permalink: /lectures/:path.html
+  assignments:
+    output: true
+    permalink: /assignments/:path.html
