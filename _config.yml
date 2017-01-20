@@ -1,5 +1,6 @@
 # Site settings
 title: Computational Methods in Atmospheric and Oceanic Sciences
+short_title: Computational Methods in AOS
 email: aos573@lists
 description: "AOS573"
 baseurl: ""
