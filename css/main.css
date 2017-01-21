@@ -141,12 +141,34 @@ a:visited { color: #047984; }
 .page-content {
   padding: 30px 0;
   background-color: #fff;
-  min-height: 400px;
+  min-height: -webkit-calc(100vh - 259px);
+  min-height: -moz-calc(100vh - 259px);
+  min-height: -o-calc(100vh - 259px);
+  min-height: calc(100vh - 259px);
 }
 
 
 /* Home styles */
 /* ----------------------------------------------------------*/
+
+.home-head {
+  display:block;
+  padding: 200px 0;
+  position: relative;
+  background: url('/static/images/eniac.jpg') repeat-x center !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+}
+
+.home-head p {
+  bottom: 2px;
+  color: #ffffff;
+  font-size: 10px;
+  position: absolute;
+  right: 2px;
+}
 
 .home h1 { margin-bottom: 25px; }
 
@@ -355,15 +377,15 @@ a:visited { color: #047984; }
 
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 835px) {
 
   .wrap { padding: 0 12px; }
 
   .site-nav {
     position: fixed;
     z-index: 10;
-    top: 14px; right: 8px;
-    background-color: white;
+    top: 10px; right: 8px;
+    background-color: #9b0000;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -373,7 +395,7 @@ a:visited { color: #047984; }
   .site-nav .menu-icon {
     display: block;
     font-size: 24px;
-    color: #505050;
+    color: #ffffff;
     float: right;
     width: 36px;
     text-align: center;
