@@ -10,6 +10,12 @@ url: "https://aos573.github.io"
 markdown: kramdown
 permalink: pretty
 
+kramdown:
+  use_coderay: true
+
+  coderay:
+    coderay_line_numbers: ''
+
 collections:
   lectures:
     output: true
