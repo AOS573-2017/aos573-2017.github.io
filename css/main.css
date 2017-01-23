@@ -266,7 +266,6 @@ a:visited { color: #047984; }
   -moz-border-radius: 3px;
   border-radius: 3px;
   font-size: 15px;
-  overflow:scroll;
 }
 
 .post code { padding: 1px 5px; }
