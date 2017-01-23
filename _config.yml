@@ -9,12 +9,10 @@ url: "https://aos573.github.io"
 # Build settings
 markdown: kramdown
 permalink: pretty
+syntax_highligher: coderay
 
-kramdown:
-  use_coderay: true
-
-  coderay:
-    coderay_line_numbers: ''
+syntax_highlighter_opts:
+  line_numbers: ''
 
 collections:
   lectures:
