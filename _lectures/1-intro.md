@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: false
+published: true
 title: Introduction to Programming, Logic, Shell, and Git
 ---
 
@@ -10,19 +10,25 @@ This course is designed to give you an introduction to multiple programming lang
 
 Most class sessions will be taught in an interactive lecture format for the first half, with in-class coding demonstrations as we walk through the lesson. The second half of class will usually entail assigned lab exercises to further explore and reinforce the concepts from the interactive lecture. There will also be two projects assigned over the course of the semester that will tie together many of the concepts we learn in class while solving a typical research problem.
 
+The expectation in this class is not that you will be an expert in all three of these languages by the end. Rather, you will have experience programming in all three of these languages and start to understand how similar programming languages are as you start to abstract away the syntax and focus on the actual computations you are performing.
+
+## Languages
+
+A programming language is one that communicates instructions to a computer or other device. In Atmospheric and Oceanic Sciences, we use programming languages for a wide spectrum of tasks: from data collection and logging, to data exploration and analysis, to modeling and forecasting. In these situations and others, programming allows us to perform some computation or task electronically.
+
+Why Fortran, Matlab, and Python for this class? These are three notable languages in our field.
+
+Fortran is used by many models today because of its exceptional handling of matrix operations and *parallelization*. Matlab is a powerful interactive language that provides a useful interactive development environment and is common in many fields, including climate science and engineering. Python is the newest of the three languages and, while it is a more general purpose programming language, with the use of some libraries has very similar functionality to Matlab--and it's free!
+
 # Introduction to Programming
 
-What is the importance of programming? Why should we learn it? Are good software development practices important for a scientist? 
+What is the importance of programming? Why should we learn programming? Are good software development practices important for a scientist? 
 
 One of the first benefits of computer programming that comes to mind is automation. Lewis Fry Richardson, an English scientist and early pioneer of numerical weather prediction (NWP), wrote a text book on the process of NWP in 1922. Through the course of the book, he laid out the methodology for integrating or computing by hand his weather forecast. Based on the time it took him to solve the equations manually and assuming someone could increase their solving speed with enough practice, he estimated that it would take approximately 64,000 human "computers" to issue a weather forecast based on a 200 km grid resolution (so the whole state of Kentucky would receive a single data point). You can read more about Richardson's hypothetical "forecast factory" [here](https://archive.org/stream/weatherpredictio00richrich#page/219/mode/1up/).
 
 Another benefit of computer programming is speed. When we automate, for example, one of Richardson's computations, it takes a trivial amount of time for the computer to perform. So we gain the ability to perform many calculations in a very short amount of time, allowing us to solve calculations that might otherwise be unsolvable. Modern personal computers can reach speeds of 10<sup>10</sup> operations per second.
 
-Following good software development practices is important even for scientists because bugs or mistakes are inevitable in computer programming. When we draw conclusions based upon some result that was at one point computed or manipulated with code, we should ensure that we have minimized the possibility for a false result due to some computation error.
-
-## Languages
-
-A programming language is one that communicates instructions to a computer or other device. In Atmospheric and Oceanic Sciences, we use programming languages for a wide spectrum of tasks: from data collection and logging, to data exploration and analysis, to modeling and forecasting. In these situations and others, programming allows us to perform some computation or task electronically.
+Following good software development practices is important even for scientists because bugs or mistakes are inevitable in computer programming. When we draw conclusions based upon some result that was at one point computed or manipulated with code, we should ensure that we have minimized the possibility for a false result due to some computation error. [Here](http://retractionwatch.com/2015/04/09/stats-error-has-chilling-effect-on-global-warming-paper/) [are](http://retractionwatch.com/2012/10/18/updates-journal-of-climate-adds-info-about-withdrawn-hot-temps-paper-chemistry-journal-corrects-retraction-notice/) [some](http://retractionwatch.com/2015/07/22/second-correction-for-controversial-paper-on-economic-gains-of-climate-change/) examples of cases where computing error has resulted in a paper correction or retraction.
 
 ## Variable Types
 
@@ -36,7 +42,7 @@ When using a programming language, variables and expressions are given a *type*,
 
 Languages handle types differently. Some, like Python and Matlab, make an assumption of the type based on how you define a variable (*dynamic typing*). Others, including Fortran, follow *static typing*--meaning you must explicitly define what a variable type is.
 
-> Given the abovementioned types, what type would define the following as?
+> Given the abovementioned types, what type would you define each of the following as?
 >
 > 1. 5
 > 2. 'The quick brown fox jumped over the lazy dog.'
@@ -46,13 +52,9 @@ Languages handle types differently. Some, like Python and Matlab, make an assump
 
 In this example, we can see that there can be a bit of ambiguity present when a number type is assumed. The good news is that, generally, for our purposes it is okay if a language has to fall back on defining a number that could be either an integer or real as a real. Times when you need to be particularly cognizant of typing are operators like integer division that could cause unexpected results.
 
-## Programming Structure
+## Interpreted versus Compiled
 
-There are a few different ways that you can approach how you structure your code. Older languages like Fortran follow *structured programming*, where code is evaluated 
-
-# Shell
-
-The `$` at the start
+Languages like Python and Matlab are generally *interpreted* languages, meaning the comamands we write can be performed directly. On the other hand, Fortran must be compiled: after your code is written, you run it through a Fortran compiler which converts it into a lower-level language that can be read by the processor. While we won't be diving into the guts of the compilation process, it is an important distinction in the workflow for Fortran compared to the other two languages--there is no interactivity in the Fortran process.
 
 # Brief Git Introduction
 
