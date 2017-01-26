@@ -9,7 +9,7 @@ url: "https://aos573.github.io"
 # Build settings
 markdown: kramdown
 permalink: pretty
-syntax_highligher: coderay
+syntax_highligher: ultraviolet
 
 syntax_highlighter_opts:
   line_numbers: ''
