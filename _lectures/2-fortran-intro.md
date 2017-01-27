@@ -8,7 +8,7 @@ title: Introduction to Fortran
 
 Fortran is a compiled generic programming language, with a strong penchant towards numerical--and especially matrix--computations. Over time, Fortran standards have evolved since its creation in the mid-20th century to add more modern features like *object-oriented programming* (which we will not be touching on until Python). One of the recent standards, Fortran 95, is what we will be focusing on for this course because this was the version that provided an easy interface to *parallelization*--meaning splitting up a large set of computations across multiple computer processors. But do note that most--if not all--of the features present in older versions (e.g. FORTRAN 77) are *backwards compatible*, meaning they can still be used in Fortran 95.
 
-One legacy of Fortran is, as you just saw in the previous paragraph with the stylized '77 name, the use of ALL UPPER CASE LETTERS. As the language has evolved, the use of caps has relaxed from a requisite to an option. But keeping the backwards compatibility means that Fortran is case insensitive: you can define a variable named `data` and access it with `data`, `dATA`, `DATA`, or any other combination therein. For readability purposes, we will be using upper case for any language statements and lower case when referencing variables. One other intricacy of Fortran to keep in mind is that lines cannot be longer than 132 characters.
+One legacy of Fortran is, as you just saw in the previous paragraph with the stylized '77 name, the use of ALL UPPER CASE LETTERS. As the language has evolved, the use of caps has relaxed from a requisite to an option. But keeping the backwards compatibility means that Fortran is case insensitive: you can define a variable named `data` and access it with `data`, `dATA`, `DATA`, or any other combination therein. For readability purposes, we will be using upper case for any language statements and lower case when referencing variables. One other intricacy of Fortran to keep in mind is that lines cannot be longer than 132 characters; if you need to spill over one statement onto another line, use the ampersand (`&`) to terminate the first line and continue on the following.
 
 Let's start our first piece of Fortran code! Open up your terminal and edit a new file called `calculator.f95`. This program is going to calculate a variety of meteorological quantities based on a few observations we have.
 
@@ -40,8 +40,8 @@ Comments in Fortran are indicated by an exclamation mark `!`. Comments do not ha
 
 ~~~ f90
 ! This section computes the square of the variable.
-!   y = x * x, where y is the square of x.
-y = x * x   ! See, this is where it is computed.
+!   y = x ** 2, where y is the square of x.
+y = x ** 2   ! See, this is where it is computed.
 ~~~
 
 The only code that will actually be computed is the third line, `y = x * x`, because the operation on the second line occurred _after_ the exclamation mark.
@@ -196,7 +196,7 @@ END PROGRAM calculator
 
 We now have all the pieces necessary to calculate our wind decomposition. Here is a diagram (neither to scale or at the correct angle) showing our situation:
 
-![Decomposition of wind vector into zonal and meridional components.]({{ "/static/images/fortran/wind_decomp.png" | prepend: site.baseurl }}){: height="400px" width="400px"}
+![Decomposition of wind vector into zonal and meridional components.](/static/images/fortran/wind_decomp.png){: height="400px" width="400px"}
 
 We see the zonal (meridional) component is opposite (adjacent) our defined toward wind vector.
 
@@ -308,6 +308,117 @@ $ ./calculator
 ~~~
 
 Wow! It runs and, more importantly, we are getting some output now. Notice how there are lots of spaces surrounding the numbers, though? Since we used the `*` in our print statements, Fortran is printing the default spacing for all the characters. We can modify our print statement to format the numbers to look a little neater.
+
+
+|Type               |Symbol |First Digit     |Second Digit   |
+|-------------------|-------|----------------|---------------|
+|Integer            |I*w.m* |Width           |Leading zeros  |
+|Logical            |L*w*   |Leading spaces  |               |
+|Character          |A*w*   |Width           |               |
+|Real               |Fw.d   |Width           |Decimal places |
+|Real (exponential) |Ew.d   |Width           |Decimal places |
+|Tab character      |Tn     |Tab-to position |               |
+|Space character    |X      |Spaces to add   |               |
+|Array or many      |r...   |Times repeated  |               |
+(In this table, note that _optional_ parts of the formatting string are italicized.)
+
+Formatting strings are constructed using the above table dependending on the variable type or types. And it is literally a formatting string, meaning we must define it with quotes and within the quotes a set of enclosing parentheses. If you specify a format string, each variable to be printed _must_ have a formatting string associated with it; this is either accomplished by adding individual format strings for each variable separated by commas or alternatively by using one formatting string and placing the number of times to repeat that format immediately before it. Let's now modify our old print statements as well as adding one more to demonstrate the repetition.
+
+~~~ f90
+PROGRAM calculator
+! by Bucky Badger
+! This program calculates meteorological variables.
+IMPLICIT NONE
+
+! These are our original variables
+REAL :: spd, dir
+
+! These are our computed variables
+REAL :: u, v
+
+! This is our constant
+REAL, PARAMETER :: pi=3.14159
+
+PRINT *, "Program is now starting."
+
+spd = 11.0               ! this is kts
+spd = spd * 1.151        ! this is mph
+
+dir = 200.0 - 180.0      ! direction wind is going in degrees
+dir = dir * (pi / 180.0) ! direction wind is going in radians
+
+PRINT *, "Outputs are now being calculated."
+
+u = spd * COS(dir)
+v = spd * SIN(dir)
+
+PRINT *, "The zonal speed is ", u, " mph."
+PRINT "(A,F4.2,A4)", "But, the meridional speed is ", v, " mph."
+PRINT "(2(F5.3),5X,2(F6.3))", u, v, u, v
+PRINT "(T20,A)", "Program has finished."
+
+END PROGRAM calculator
+~~~
+
+We've made modifications to the last two lines as well as added a line between those two. Let's recompile this puppy and see what each of these do.
+
+~~~ bash
+$ gfortran calculator.f95 -o calculator
+$ ./calculator
+ Program is now starting.
+ Outputs are now being calculated.
+ The zonal speed is    11.897449      mph.
+But, the meridional speed is 4.33 mph
+*****4.330     11.897 4.330
+                   Program has finished.
+~~~
+
+A few things have changed now. The first line we manually specified the formatting specifier that starts with "But,..." is now touching the left side of the terminal when printing. This is another legacy component from the age of dot matrix printers that remains in the language. Moving on to the actual text printed, the first specifier we added was a lone `A`, which means print the whole character variable. The second specifier asked for a float that takes up four total characters with two of those as decimal places. We indeed count four characters (the decimal point counts as one!) with no spaces padded beyond those we manually added to the characters. Finally, we specified `A4`, meaning we wanted a width of four characters. If you look at the actual string we want to print, it has _five_ characters (see the space right after the left quote?), so the fifth character--the period--was not printed.
+
+The second line is the newly inserted line where we wanted to print u and v twice. We first requested a float of width five with at least three decimal places--and because that is surrounded by parentheses with a preceding 2, this specification is used twice. But look at our first variable: it is all stars! When Fortran cannot display the number as requested (usually because you have been too skimpy on the width), it will instead print asterisks in that place. Since we asked for a width of five, we received five asterisks. Our second number, however, was able to fit since it is less than 10 and can fit within five characters. Our next formatting string part requested five spaces, which were added. Finally, we rehashed the repeated string formatter but this time requested two floats with width of _six_ instead of five. Luckily enough, both of our variables met that criteria. 
+
+The final line is spaced over quite far! That's because our first specifier for this line requested we tab over to the 20th character. Once there, our character formatter then requested we print the whole character variable. Alternatively, we could have written `TR20`, which would have tabbed from the right hand side of the terminal characters and began printing.
+
+Let's clean up our print statements a bit before we move on. Specifically, we are going to delete the three lines that print various iterations of u and v and add one new line.
+
+~~~ f90
+PROGRAM calculator
+! by Bucky Badger
+! This program calculates meteorological variables.
+IMPLICIT NONE
+
+! These are our original variables
+REAL :: spd, dir
+
+! These are our computed variables
+REAL :: u, v
+
+! This is our constant
+REAL, PARAMETER :: pi=3.14159
+
+PRINT *, "Program is now starting."
+
+spd = 11.0               ! this is kts
+spd = spd * 1.151        ! this is mph
+
+dir = 200.0 - 180.0      ! direction wind is going in degrees
+dir = dir * (pi / 180.0) ! direction wind is going in radians
+
+PRINT *, "Outputs are now being calculated."
+
+u = spd * COS(dir)
+v = spd * SIN(dir)
+
+PRINT *, spd, dir, u, v
+
+PRINT "(T20,A)", "Program has finished."
+
+END PROGRAM calculator
+~~~
+
+## Reading and Writing
+
+Fortran has the ability natively to read in and write out text files and Fortran-specific binary files.
 
 
 
