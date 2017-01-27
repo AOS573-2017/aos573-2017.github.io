@@ -310,16 +310,16 @@ $ ./calculator
 Wow! It runs and, more importantly, we are getting some output now. Notice how there are lots of spaces surrounding the numbers, though? Since we used the `*` in our print statements, Fortran is printing the default spacing for all the characters. We can modify our print statement to format the numbers to look a little neater.
 
 
-|Type               |Symbol |First Digit     |Second Digit   |
-|-------------------|-------|----------------|---------------|
-|Integer            |I*w.m* |Width           |Leading zeros  |
-|Logical            |L*w*   |Leading spaces  |               |
-|Character          |A*w*   |Width           |               |
-|Real               |Fw.d   |Width           |Decimal places |
-|Real (exponential) |Ew.d   |Width           |Decimal places |
-|Tab character      |Tn     |Tab-to position |               |
-|Space character    |X      |Spaces to add   |               |
-|Array or many      |r...   |Times repeated  |               |
+|Type               |Symbol |First Parameter  |Second Parameter |
+|-------------------|-------|-----------------|-----------------|
+|Integer            |I*w.m* |*Width*          |*Leading zeros*  |
+|Logical            |L*w*   |*Leading spaces* |                 |
+|Character          |A*w*   |*Width*          |                 |
+|Real               |Fw.d   |Width            |Decimal places   |
+|Real (exponential) |Ew.d   |Width            |Decimal places   |
+|Tab character      |Tn     |Tab-to position  |                 |
+|Space character    |X      |Spaces to add    |                 |
+|Array or many      |r...   |Times repeated   |                 |
 (In this table, note that _optional_ parts of the formatting string are italicized.)
 
 Formatting strings are constructed using the above table dependending on the variable type or types. And it is literally a formatting string, meaning we must define it with quotes and within the quotes a set of enclosing parentheses. If you specify a format string, each variable to be printed _must_ have a formatting string associated with it; this is either accomplished by adding individual format strings for each variable separated by commas or alternatively by using one formatting string and placing the number of times to repeat that format immediately before it. Let's now modify our old print statements as well as adding one more to demonstrate the repetition.
