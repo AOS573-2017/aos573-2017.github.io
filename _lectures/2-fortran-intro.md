@@ -4,6 +4,20 @@ published: false
 title: Introduction to Fortran
 ---
 
+# Prelude
+
+Prior to starting today's lab, we need the same datasets so we can examine data together. Go ahead and get today's lesson by `git clone` and then navigate into it:
+
+~~~ bash
+$ git clone https://github.com/aos573/fortran-week-one
+Cloning into 'fortran-week-one'...
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+$ cd fortran-week-one
+~~~
+
 # Fortran Overview
 
 Fortran is a compiled generic programming language, with a strong penchant towards numerical--and especially matrix--computations. Over time, Fortran standards have evolved since its creation in the mid-20th century to add more modern features like *object-oriented programming* (which we will not be touching on until Python). One of the recent standards, Fortran 95, is what we will be focusing on for this course because this was the version that provided an easy interface to *parallelization*--meaning splitting up a large set of computations across multiple computer processors. But do note that most--if not all--of the features present in older versions (e.g. FORTRAN 77) are *backwards compatible*, meaning they can still be used in Fortran 95.
@@ -373,11 +387,11 @@ But, the meridional speed is 4.33 mph
                    Program has finished.
 ~~~
 
-A few things have changed now. The first line we manually specified the formatting specifier that starts with "But,..." is now touching the left side of the terminal when printing. This is another legacy component from the age of dot matrix printers that remains in the language. Moving on to the actual text printed, the first specifier we added was a lone `A`, which means print the whole character variable. The second specifier asked for a float that takes up four total characters with two of those as decimal places. We indeed count four characters (the decimal point counts as one!) with no spaces padded beyond those we manually added to the characters. Finally, we specified `A4`, meaning we wanted a width of four characters. If you look at the actual string we want to print, it has _five_ characters (see the space right after the left quote?), so the fifth character--the period--was not printed.
+A few things have changed now. The first line we manually specified the formatting specifier that starts with "But,..." is now touching the left side of the terminal when printing. This is another legacy component from the age of dot matrix printers that remains in the language, where printers would look for an extra command in the first character. Moving on to the actual text printed, the first specifier we added was a lone `A`, which means print the whole character variable. The second specifier asked for a float that takes up four total characters with two of those as decimal places. We indeed count four characters (the decimal point counts as one!) with no spaces padded beyond those we manually added to the characters. Finally, we specified `A4`, meaning we wanted a width of four characters. If you look at the actual string we want to print, it has _five_ characters (see the space right after the left quote?), so the fifth character--the period--was not printed.
 
 The second line is the newly inserted line where we wanted to print u and v twice. We first requested a float of width five with at least three decimal places--and because that is surrounded by parentheses with a preceding 2, this specification is used twice. But look at our first variable: it is all stars! When Fortran cannot display the number as requested (usually because you have been too skimpy on the width), it will instead print asterisks in that place. Since we asked for a width of five, we received five asterisks. Our second number, however, was able to fit since it is less than 10 and can fit within five characters. Our next formatting string part requested five spaces, which were added. Finally, we rehashed the repeated string formatter but this time requested two floats with width of _six_ instead of five. Luckily enough, both of our variables met that criteria. 
 
-The final line is spaced over quite far! That's because our first specifier for this line requested we tab over to the 20th character. Once there, our character formatter then requested we print the whole character variable. Alternatively, we could have written `TR20`, which would have tabbed from the right hand side of the terminal characters and began printing.
+The final line is spaced over quite far! That's because our first specifier for this line requested we tab over to the 20th character. Once there, our character formatter then requested we print the whole character variable. Alternatively, we could have written `TR20`, which would have tabbed from the _right hand side_ of the terminal characters and continued printing.
 
 Let's clean up our print statements a bit before we move on. Specifically, we are going to delete the three lines that print various iterations of u and v and add one new line.
 
@@ -416,11 +430,122 @@ PRINT "(T20,A)", "Program has finished."
 END PROGRAM calculator
 ~~~
 
+## `Do` Loops
+
+`Do` loops provide a quick way to perform or iterate an operation many times. In Fortran, we must define an iterator variable which is used to not only indicate to Fortran how many times to loop but also for us to keep track of what loop iteration we are on. Loops are defined of the form:
+
+~~~ f90
+DO var = nstart, nend, ninc
+   something done here
+END DO
+~~~
+
+where `var` is your iterator integer variable, `nstart` is some integer starting number, `nend` is some integer ending number that is included, and `ninc` is an optional integer increment number (which is assumed to be 1 if you do not specify otherwise). So if you specify `1,5`, the loop will iterate from 1 to 5 by 1 each time: `1 2 3 4 5`. If you specify `1,5,1`, it will still iterate `1 2 3 4 5`. But if you specify `1,5,2`, it will iterate `1 3 5`.
+
+Loops can also be *nested* within each other:
+
+~~~ f90
+DO var1 = nstart1 , nend1
+  something possibly done here for every outer loop
+  DO var2 = nstart2 , nend2
+    something done here for every outer and inner loop
+  END DO
+END DO
+~~~
+
+Nested loops are often used when you need to loop over a two dimensional variable, but we will get to those in next class.
+
+Note in these examples, the statements within the loop are indented by two additional spaces. Here is a good time to bring up the practice of making code readable. You will often run into a problem with your code that requires you to find the problem, a process called *debugging*, and that requires literally reading your code. While spacing is not mandatory in Fortran, doing so makes the debugging process easier so you can keep track of what code is part of which loop--this is especially a problem when you have many lines of code within a loop.
+
+The amount of spaces (or the use of a tab instead) varies by language, profession, social circle, and a variety of other conventions. Some workplaces or projects have a set convention that must be followed. For your own work in Fortran, it comes down to personal preference. Two and four spaces are fairly common spacing distances used. Tabs, while used some times, can cause some issues because of the way different operating systems define what a tab actually is. Spacing in examples will follow two per level for the notes to save space.
+
+Now, the end goal is to be able to loop over observations from a file and perform our conversion on each one. For now, we will add a do loop in our program that performs our conversion for eight times. Note we first need to define a new integer variable to serve as our operator.
+
+~~~ f90
+PROGRAM calculator
+! by Bucky Badger
+! This program calculates meteorological variables.
+IMPLICIT NONE
+
+! These are our original variables
+REAL :: spd, dir
+
+! These are our computed variables
+REAL :: u, v
+
+! This is our constant
+REAL, PARAMETER :: pi=3.14159
+
+! This is our loop variable
+INTEGER :: i
+
+PRINT *, "Program is now starting."
+
+DO i = 1, 8
+  spd = 11.0               ! this is kts
+  spd = spd * 1.151        ! this is mph
+
+  dir = 200.0 - 180.0      ! direction wind is going in degrees
+  dir = dir * (pi / 180.0) ! direction wind is going in radians
+
+  PRINT *, "Outputs are now being calculated."
+
+  u = spd * COS(dir)
+  v = spd * SIN(dir)
+
+  PRINT *, i, spd, dir, u, v
+END DO
+
+PRINT "(T20,A)", "Program has finished."
+
+END PROGRAM calculator
+~~~
+
+Let's compile and run our program now and see what happens.
+
+~~~ bash
+$ gfortran calculator.f90 -o calculator
+$ ./calculator
+ Program is now starting.
+ Outputs are now being calculated.
+           1   12.661000      0.34906560       11.897449       4.3303142    
+ Outputs are now being calculated.
+           2   12.661000      0.34906560       11.897449       4.3303142    
+ Outputs are now being calculated.
+           3   12.661000      0.34906560       11.897449       4.3303142    
+ Outputs are now being calculated.
+           4   12.661000      0.34906560       11.897449       4.3303142    
+ Outputs are now being calculated.
+           5   12.661000      0.34906560       11.897449       4.3303142    
+ Outputs are now being calculated.
+           6   12.661000      0.34906560       11.897449       4.3303142    
+ Outputs are now being calculated.
+           7   12.661000      0.34906560       11.897449       4.3303142    
+ Outputs are now being calculated.
+           8   12.661000      0.34906560       11.897449       4.3303142    
+                   Program has finished.
+~~~
+
+We can see now our calculation was performed eight times--the number of times we specified in our loop--and that is confirmed by the `i` we added to our print statement.
+
 ## Reading and Writing
 
-Fortran has the ability natively to read in and write out text files and Fortran-specific binary files.
+Fortran has the ability natively to read in and write out text files and Fortran-specific binary files. We are going to focus on text files in this class, given their human-readable formatting. Luckily, we already downloaded some sample data when we cloned our weekly repository. Check out our sample file using `cat` or `less`:
 
+~~~ bash
+$ cat data/obs_crop.txt
+MM/DD/YY        HH:MM   DIR-DEG WIND-KTS
+01/01/16        00:52   250     12
+01/01/16        06:52   240     12
+01/01/16        12:52   270     8
+01/01/16        18:52   260     10
+01/02/16        00:52   240     12
+01/02/16        06:52   300     9
+01/02/16        12:52   240     6
+01/02/16        18:52   230     10
+~~~
 
+We have a text file with columns spaced equidistant by spaces. The first line of the file contains the column headers; the four columns are date, time, wind direction, and wind speed. If you count the characters and spaces, the first column starts at position 1, the second column starts at position 16, the third column starts at position 25, and the fourth column starts at position 34. 
 
 # Lab Assignment
 
