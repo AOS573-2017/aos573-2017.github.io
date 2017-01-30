@@ -745,8 +745,8 @@ END DO
 
 CLOSE(UNIT=10)
 
-OPEN(UNIT=20, FILE='data/obs_crop_conv.txt', ACTION='write', STATUS='new')
-WRITE(20, '(A)')  'DATE            TIME     U-COMP   V-COMP    '
+OPEN(UNIT=20, FILE='data/obs_crop_conv.txt', ACTION='write')
+WRITE(20, '(A)')  'DATE            TIME     U-COMP  V-COMP'
 
 DO i = 1, 8
   WRITE(20, '(A,T17,A,T25,F8.4,T33,F8.4)') date(i), time(i), u(i), v(i)
@@ -759,7 +759,196 @@ PRINT "(T20,A)", "Program has finished."
 END PROGRAM calculator
 ~~~
 
+We defined the file identifier for the second file to be different than the first. Assuming they are not both open at the same time, you could use the same number; but it never hurts to keep them separate regardless.
+
+Now we should compile our program and see how it performs!
+
+~~~ bash
+$ gfortran calculator.f90 -o calculator
+$ ./calculator
+ Program is now starting.
+ Outputs are now being calculated.
+           1   13.812000       1.2217295       4.7239947       12.979031
+ Outputs are now being calculated.
+           2   13.812000       1.0471967       6.9060102       11.961537
+ Outputs are now being calculated.
+           3   9.2080002       1.5707952      1.05742974E-05   9.2080002
+ Outputs are now being calculated.
+           4   11.510000       1.3962624       1.9987019       11.335135
+ Outputs are now being calculated.
+           5   13.812000       1.0471967       6.9060102       11.961537
+ Outputs are now being calculated.
+           6   10.359000       2.0943935      -5.1794858       8.9711657
+ Outputs are now being calculated.
+           7   6.9060001       1.0471967       3.4530051       5.9807687
+ Outputs are now being calculated.
+           8   11.510000      0.87266397       7.3984914       8.8171673
+                   Program has finished.
+$ cat data/obs_crop_conv.txt
+DATE            TIME     U-COMP  V-COMP
+01/01/16        00:52     4.7240 12.9790
+01/01/16        06:52     6.9060 11.9615
+01/01/16        12:52     0.0000  9.2080
+01/01/16        18:52     1.9987 11.3351
+01/02/16        00:52     6.9060 11.9615
+01/02/16        06:52    -5.1795  8.9712
+01/02/16        12:52     3.4530  5.9808
+01/02/16        18:52     7.3985  8.8172
+~~~
+
 One final note about reading and writing before we move on. If you need to either read into your Fortran program from the command line or write out from your Fortran program to the command line, you can use the read and write commands as before with an asterisk for the file identifier. In the case of reading in, perhaps you want the user to specify how many operations to perform or alternatively which type of computation to use or what to name a file. Fortran will allow you to do this--but be cautious about the types that you give to your input. You could cause an error if you are expecting an integer and the user provides a letter. Writing out to the terminal is equivalent to using the print statement.
+
+## Functions and Subroutines
+
+The last topic we are going to cover in this lecture is the syntax of functions and subroutines. As mentioned at the outset, these are very similar subprograms--the main difference being how they handle output. Functions always return only one result, and thus can be used within another statement or on their own. Subroutines can return any number of variables by modifying some or all of the input variables, but they must be called on their own line. (As an example, you could call a function to provide the input for another function, such as `COS(SQRT(3.0))` since both `COS` and `SQRT` are functions.
+
+A code "chore" that is often performed is the process of _refactoring_. That means taking your code and changing it and cleaning it up to still do the same actions but in a neater way. Often, refactoring also comes into play with _modularizing_ code or turning parts of it into smaller and reusable subprograms. In the case of the code we have been working on so far, there are a few different actions that lend themselves to being subprograms: converting from degrees to radians, converting from knots to miles per hour, breaking down a wind magnitude and direction into the zonal and meridional components.
+
+We are going to practice writing one right now--converting a wind value in knots to a wind value in miles per hour. We can actually write our subroutine in the same file, too! That does require us to place it after our main program in the code. The structure of a subroutine is similar to a program, with the surrounding subroutine declarations, variable and type definitions, and otherwise consistent syntax.
+
+~~~ f90
+PROGRAM calculator
+! by Bucky Badger
+! This program calculates meteorological variables.
+IMPLICIT NONE
+
+! These are our original variables
+REAL :: spd(8), dir(8)
+
+! These are our computed variables
+REAL :: u(8), v(8)
+
+! This is our constant
+REAL, PARAMETER :: pi=3.14159
+
+! This is our loop variable
+INTEGER :: i
+
+! These are more original variables
+CHARACTER(16) :: date(8)
+CHARACTER(8) :: time(8)
+
+PRINT *, "Program is now starting."
+
+OPEN(UNIT=10, FILE='data/obs_crop.txt', ACTION='read', STATUS='old')
+READ(10, *)  ! Skip the first line--column headers
+
+DO i = 1, 8
+  READ(10, '(A16,A8,F8.0,F8.0)') date(i), time(i), dir(i), spd(i)
+  CALL ktstomph(spd(i))          ! this is mph
+
+  dir(i) = dir(i) - 180.0        ! direction wind is going in degrees
+  dir(i) = dir(i) * (pi / 180.0) ! direction wind is going in radians
+
+  PRINT *, "Outputs are now being calculated."
+
+  u(i) = spd(i) * COS(dir(i))
+  v(i) = spd(i) * SIN(dir(i))
+
+  PRINT *, i, spd(i), dir(i), u(i), v(i)
+END DO
+
+CLOSE(UNIT=10)
+
+OPEN(UNIT=20, FILE='data/obs_crop_conv.txt', ACTION='write')
+WRITE(20, '(A)')  'DATE            TIME     U-COMP  V-COMP'
+
+DO i = 1, 8
+  WRITE(20, '(A,T17,A,T25,F8.4,T33,F8.4)') date(i), time(i), u(i), v(i)
+END DO
+
+CLOSE(UNIT=20)
+
+PRINT "(T20,A)", "Program has finished."
+
+END PROGRAM calculator
+
+SUBROUTINE ktstomph(speed)
+! by Bucky Badger
+! This subroutine converts a speed in knots to miles per hour.
+IMPLICIT NONE
+
+! This is our input and our output variable.
+REAL :: spd
+
+spd = spd * 1.151
+
+END SUBROUTINE ktstomph
+~~~
+
+Note a few things in this subroutine. First, we are directly modifying the input variable. So when we supply the i-th value of some vector and call the subroutine, that original array is being modified based on whatever we do in the subroutine. Second, note that the variable definition in the subroutine is in the context of the subroutine--not the original variable. Because we call `ktstomph` with only _one_ element of our original speed array that has shape `(8)`, the subroutine variable must be defined with the shape of that one element, i.e. shape `(1)`. Also notice that we replaced our old conversion in the code with a call to the subroutine that includes our speed array element.
+
+You could alternatively define the subroutine with a separate variable for each of the input and the output. The subroutine would then need to be called with two variables in the parentheses: one to give the input and one to hold the output. In that case, we could either 1) have a separate variable with the speed conversion output or 2) supply only one speed variable for both variables, such as follows:
+
+~~~ f90
+PROGRAM calculator
+! by Bucky Badger
+! This program calculates meteorological variables.
+IMPLICIT NONE
+
+! These are our original variables
+REAL :: spd(8), dir(8)
+
+! These are our computed variables
+REAL :: u(8), v(8)
+
+! This is our constant
+REAL, PARAMETER :: pi=3.14159
+
+! This is our loop variable
+INTEGER :: i
+
+! These are more original variables
+CHARACTER(16) :: date(8)
+CHARACTER(8) :: time(8)
+
+PRINT *, "Program is now starting."
+
+OPEN(UNIT=10, FILE='data/obs_crop.txt', ACTION='read', STATUS='old')
+READ(10, *)  ! Skip the first line--column headers
+
+DO i = 1, 8
+  READ(10, '(A16,A8,F8.0,F8.0)') date(i), time(i), dir(i), spd(i)
+  CALL ktstomph(spd(i), spd(i))  ! this is mph
+
+  dir(i) = dir(i) - 180.0        ! direction wind is going in degrees
+  dir(i) = dir(i) * (pi / 180.0) ! direction wind is going in radians
+
+  PRINT *, "Outputs are now being calculated."
+
+  u(i) = spd(i) * COS(dir(i))
+  v(i) = spd(i) * SIN(dir(i))
+
+  PRINT *, i, spd(i), dir(i), u(i), v(i)
+END DO
+
+CLOSE(UNIT=10)
+
+OPEN(UNIT=20, FILE='data/obs_crop_conv.txt', ACTION='write')
+WRITE(20, '(A)')  'DATE            TIME     U-COMP  V-COMP'
+
+DO i = 1, 8
+  WRITE(20, '(A,T17,A,T25,F8.4,T33,F8.4)') date(i), time(i), u(i), v(i)
+END DO
+
+CLOSE(UNIT=20)
+
+PRINT "(T20,A)", "Program has finished."
+
+END PROGRAM calculator
+
+SUBROUTINE ktstomph(inspeed, outspeed)
+! by Bucky Badger
+! This subroutine converts a speed in knots to miles per hour.
+IMPLICIT NONE
+
+! This is our input and our output variable.
+REAL :: inspeed, outspeed
+
+outspeed = inspeed * 1.151
+
+END SUBROUTINE ktstomph
+~~~
 
 # Lab Assignment
 
