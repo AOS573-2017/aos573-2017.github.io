@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: false
+published: true
 title: Introduction to Fortran
 ---
 
@@ -177,7 +177,8 @@ REAL, PARAMETER :: pi=3.14159
 spd = 11.0               ! this is kts
 spd = spd * 1.151        ! this is mph
 
-dir = 200.0 - 180.0      ! direction wind is going
+dir = 200.0
+dir = dir - 180.0        ! direction wind is going
 
 END PROGRAM calculator
 ~~~
@@ -202,7 +203,8 @@ REAL, PARAMETER :: pi=3.14159
 spd = 11.0               ! this is kts
 spd = spd * 1.151        ! this is mph
 
-dir = 200.0 - 180.0      ! direction wind is going in degrees
+dir = 200.0
+dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
 END PROGRAM calculator
@@ -232,7 +234,8 @@ REAL, PARAMETER :: pi=3.14159
 spd = 11.0               ! this is kts
 spd = spd * 1.151        ! this is mph
 
-dir = 200.0 - 180.0      ! direction wind is going in degrees
+dir = 200.0
+dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
 u = spd * COS(dir)
@@ -261,7 +264,8 @@ REAL, PARAMETER :: pi=3.14159
 spd = 11.0               ! this is kts
 spd = spd * 1.151        ! this is mph
 
-dir = 200.0 - 180.0      ! direction wind is going in degrees
+dir = 200.0
+dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
 u = spd * COS(dir)
@@ -294,7 +298,8 @@ PRINT *, "Program is now starting."
 spd = 11.0               ! this is kts
 spd = spd * 1.151        ! this is mph
 
-dir = 200.0 - 180.0      ! direction wind is going in degrees
+dir = 200.0
+dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
 PRINT *, "Outputs are now being calculated."
@@ -334,6 +339,7 @@ Wow! It runs and, more importantly, we are getting some output now. Notice how t
 |Tab character      |Tn     |Tab-to position  |                 |
 |Space character    |X      |Spaces to add    |                 |
 |Array or many      |r...   |Times repeated   |                 |
+
 (In this table, note that _optional_ parts of the formatting string are italicized.)
 
 Formatting strings are constructed using the above table dependending on the variable type or types. And it is literally a formatting string, meaning we must define it with quotes and within the quotes a set of enclosing parentheses. If you specify a format string, each variable to be printed _must_ have a formatting string associated with it; this is either accomplished by adding individual format strings for each variable separated by commas or alternatively by using one formatting string and placing the number of times to repeat that format immediately before it. Let's now modify our old print statements as well as adding one more to demonstrate the repetition.
@@ -358,7 +364,8 @@ PRINT *, "Program is now starting."
 spd = 11.0               ! this is kts
 spd = spd * 1.151        ! this is mph
 
-dir = 200.0 - 180.0      ! direction wind is going in degrees
+dir = 200.0
+dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
 PRINT *, "Outputs are now being calculated."
@@ -415,7 +422,8 @@ PRINT *, "Program is now starting."
 spd = 11.0               ! this is kts
 spd = spd * 1.151        ! this is mph
 
-dir = 200.0 - 180.0      ! direction wind is going in degrees
+dir = 200.0
+dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
 PRINT *, "Outputs are now being calculated."
@@ -485,7 +493,8 @@ DO i = 1, 8
   spd = 11.0               ! this is kts
   spd = spd * 1.151        ! this is mph
 
-  dir = 200.0 - 180.0      ! direction wind is going in degrees
+  dir = 200.0
+  dir = dir - 180.0        ! direction wind is going in degrees
   dir = dir * (pi / 180.0) ! direction wind is going in radians
 
   PRINT *, "Outputs are now being calculated."
@@ -528,9 +537,50 @@ $ ./calculator
 
 We can see now our calculation was performed eight times--the number of times we specified in our loop--and that is confirmed by the `i` we added to our print statement.
 
+## Revisiting Types: Arrays and Character Strings
+
+Now that we have touched on loops, there is one final piece to the puzzle we need to learn before we can start reading in and analyzing a large magnitude of data. Specifically, we need to know how Fortran defines arrays, vectors, matrices, or whatever else you want to call them. This requires revisiting how types are defined.
+
+When a type definition is made, it is assumed to be of a default size--both in terms of shape of the variable and the memory size given to it. Shape is something easier to tackle first because you can think back to vectors or matrices in math. By default, all variables are given a shape of (1). That means your real number, integer number, or character will have only one element. The shape is defined immediately after the variable name in your type declaration, e.g.:
+
+~~~ f90
+REAL :: test(3,2)
+CHARACTER :: words(5)
+~~~
+
+In this instance, we have intialized a variable `test` that is of type real with the shape `(3,2)` and a variable `words` with shape `(5)`. Notice that I have carefully used the word ''shape''. A character array defined in this way would be 5 single character elements, such as `'a','b','c','d','e'`. Similarly, the real matrix defined here would look like:
+
+|1 |2 |6 |
+|3 |4 |9 |
+
+We reserve the word "size" to define how big a single element of an array or matrix can be. Characters are usually the most intuitive type for what this means. The character size defines how many characters can be within a single element. For numbers, the size relates to either how precise the numbers are defined as (in the case of reals) or how large of a number that can be supported (in the case of integers). You may have heard of terms such as "double precision", "single precision", "large integer", "small integer", or other terms like this. Essentially it boils down to how much memory within the computer we allow for a variable to take up. For now, we will not be playing with size or precision for numbers--only characters.
+
+The "size" of a variable is defined immediately after the type name in the type declaration, e.g.:
+
+~~~ f90
+CHARACTER(34) :: words
+~~~
+
+In _this_ instance, `words` is now a variable of shape `(1)` but that is 34 characters long. An example would be `supercalifragilisticexpialidocious`, which is 34 characters long.
+
+You may need to define an array or matrix manually in Fortran for a variety of reasons. To do so, Fortran uses the notation of parentheses and forward slashes, like `(/ 1, 3, 4, 8 /)`. 
+
+To reference a given array element, you surround the index with parenthese. For example, if `variable` has shape `(500,2)`, and we wanted to define or reference the `(130,1)`th value, we would call `variable(130,1) = 2.0` or `somethingelse = variable(130,1)`.
+
+If you do not define an index when referencing an array, Fortran will assume you mean all of the indices. That means saying `variable = 300.0` when `variable` has shape `(500,2)` will set _all_ of the values of `variable` to 300.0. Alternatively, saying `somethingelse = variable` will 1) require `somethingelse` to be the same size as `variable` and 2) set each respective value in `somethingelse` as the respective `variable` value.
+
+> Which of the following choices correctly matches the following declaration:
+>
+> `CHARACTER(5) :: lyrics(7)`?
+>
+> 1. `(/ 'A', 'N', 'D', ' ', 'I' /)`
+> 2. `(/ 'AND I K', 'NOW WHE', 'N THAT ', 'HOTLINE', ' BLING!' /)`
+> 3. `(/ 'AND I', ' KNOW', ' WHEN', ' THAT', ' HOTL', 'INE B', 'LING!' /)`
+> 4. `(/ 'A', 'N', 'D', ' ', 'I', ' ', 'K' /)`
+
 ## Reading and Writing
 
-Fortran has the ability natively to read in and write out text files and Fortran-specific binary files. We are going to focus on text files in this class, given their human-readable formatting. Luckily, we already downloaded some sample data when we cloned our weekly repository. Check out our sample file using `cat` or `less`:
+Fortran has the ability natively to read in and write out both text files and Fortran-specific binary files. We are going to focus on text files for now given their human-readable formatting. Luckily, we already downloaded some sample text data files when we cloned our weekly repository. Check out our sample file using `cat` or `less`:
 
 ~~~ bash
 $ cat data/obs_crop.txt
@@ -545,7 +595,171 @@ MM/DD/YY        HH:MM   DIR-DEG WIND-KTS
 01/02/16        18:52   230     10
 ~~~
 
-We have a text file with columns spaced equidistant by spaces. The first line of the file contains the column headers; the four columns are date, time, wind direction, and wind speed. If you count the characters and spaces, the first column starts at position 1, the second column starts at position 16, the third column starts at position 25, and the fourth column starts at position 34. 
+We have a text file with lined up columns spaced by spaces. The first line of the file contains the column headers; the four columns are date, time, wind direction, and wind speed. If you count the characters and spaces, the first column starts at position 1, the second column starts at position 17, the third column starts at position 25, and the fourth column starts at position 33.
+
+The first thing we should do is redefine our variables of wind direction and speed to accommodate all of our data in addition to defining date and time variables. Since there are eight lines, the shape of our variables should be `(8)`. Then, let's add references to the specific array elements inside our loop:
+
+~~~ f90
+PROGRAM calculator
+! by Bucky Badger
+! This program calculates meteorological variables.
+IMPLICIT NONE
+
+! These are our original variables
+REAL :: spd(8), dir(8)
+
+! These are our computed variables
+REAL :: u(8), v(8)
+
+! This is our constant
+REAL, PARAMETER :: pi=3.14159
+
+! This is our loop variable
+INTEGER :: i
+
+! These are more original variables
+CHARACTER(16) :: date(8)
+CHARACTER(8) :: time(8)
+
+PRINT *, "Program is now starting."
+
+DO i = 1, 8
+  spd(i) = spd(i) * 1.151        ! this is mph
+
+  dir(i) = dir(i) - 180.0        ! direction wind is going in degrees
+  dir(i) = dir(i) * (pi / 180.0) ! direction wind is going in radians
+
+  PRINT *, "Outputs are now being calculated."
+
+  u(i) = spd(i) * COS(dir(i))
+  v(i) = spd(i) * SIN(dir(i))
+
+  PRINT *, i, spd(i), dir(i), u(i), v(i)
+END DO
+
+PRINT "(T20,A)", "Program has finished."
+
+END PROGRAM calculator
+~~~
+
+Now, let's get to the reading. We must open the file, assign it an identifier, and provide some information about it (which we will see in just a minute). Once a file has been opened, each read command you provide will read in a single line of the file; that means you will need a loop set up that reads for every line. The read command requires that you specify the file identifier to read from, and for formatted files (i.e. non-binary, human-readable text files) the formatting of the line to be read in. Finally, after the loop, we should close the file. Let's walk through all of this for our file from above. 
+
+~~~ f90
+PROGRAM calculator
+! by Bucky Badger
+! This program calculates meteorological variables.
+IMPLICIT NONE
+
+! These are our original variables
+REAL :: spd(8), dir(8)
+
+! These are our computed variables
+REAL :: u(8), v(8)
+
+! This is our constant
+REAL, PARAMETER :: pi=3.14159
+
+! This is our loop variable
+INTEGER :: i
+
+! These are more original variables
+CHARACTER(16) :: date(8)
+CHARACTER(8) :: time(8)
+
+PRINT *, "Program is now starting."
+
+OPEN(UNIT=10, FILE='data/obs_crop.txt', ACTION='read', STATUS='old')
+READ(10, *)  ! Skip the first line--column headers
+
+DO i = 1, 8
+  READ(10, '(A16,A8,F8.0,F8.0)') date(i), time(i), dir(i), spd(i)
+  spd(i) = spd(i) * 1.151        ! this is mph
+
+  dir(i) = dir(i) - 180.0        ! direction wind is going in degrees
+  dir(i) = dir(i) * (pi / 180.0) ! direction wind is going in radians
+
+  PRINT *, "Outputs are now being calculated."
+
+  u(i) = spd(i) * COS(dir(i))
+  v(i) = spd(i) * SIN(dir(i))
+
+  PRINT *, i, spd(i), dir(i), u(i), v(i)
+END DO
+
+CLOSE(UNIT=10)
+
+PRINT "(T20,A)", "Program has finished."
+
+END PROGRAM calculator
+~~~ 
+
+The file identifier/unit number we chose is mostly arbitrary, but it _must_ be used consistently to reference our file when reading or closing. The action verb defines whether the file is read to be read from or written into. If you do not select one, both can occur (though that could cause some chaos). Finally, the status verb tells Fortran whether to expect the file to exist or not. It may be the case, at some point, Fortran should expect a file to exist. In this case, you would define the status as old. It may be the case that the file should _not_ exist, in which case you want the status to be new (this helps with accidential overwrites). Or, you do not have to define any status and it will work as always.
+
+We also added an extra read statement at the beginning; in the paragraph above, it was noted that a read statement will read and advance past a whole line. In the case of our data, our first line had headers that we did not want to read. Similar to the asterisk notation for printing, you can supply an asterisk in the read formatting, which means "assume the best". You can place as few or as many variables in the read call as you like; Fortran will fill as many of them as possible. This can also mean that if you have a two-dimensional matrix, where one of the dimensions is equal to the quantity of variables on a given line, you can supply that full dimenion of the variable and it will be filled. We will have a better example of this statement next class.
+
+Writing works in a similar way to reading, except now we want our action to be write and we want to use write instead of read. Write statements are very similar to the print statements that we worked on earlier.
+
+Let's make a file just like the original, but now write out the u and v components of the wind. We can do this one of two ways: create a new loop after our current work that will write each line to the new file, or add write statements in our current work that reference a different file identifier. We select the first choice as it will be easier on our lab assignment.
+
+~~~ f90
+PROGRAM calculator
+! by Bucky Badger
+! This program calculates meteorological variables.
+IMPLICIT NONE
+
+! These are our original variables
+REAL :: spd(8), dir(8)
+
+! These are our computed variables
+REAL :: u(8), v(8)
+
+! This is our constant
+REAL, PARAMETER :: pi=3.14159
+
+! This is our loop variable
+INTEGER :: i
+
+! These are more original variables
+CHARACTER(16) :: date(8)
+CHARACTER(8) :: time(8)
+
+PRINT *, "Program is now starting."
+
+OPEN(UNIT=10, FILE='data/obs_crop.txt', ACTION='read', STATUS='old')
+READ(10, *)  ! Skip the first line--column headers
+
+DO i = 1, 8
+  READ(10, '(A16,A8,F8.0,F8.0)') date(i), time(i), dir(i), spd(i)
+  spd(i) = spd(i) * 1.151        ! this is mph
+
+  dir(i) = dir(i) - 180.0        ! direction wind is going in degrees
+  dir(i) = dir(i) * (pi / 180.0) ! direction wind is going in radians
+
+  PRINT *, "Outputs are now being calculated."
+
+  u(i) = spd(i) * COS(dir(i))
+  v(i) = spd(i) * SIN(dir(i))
+
+  PRINT *, i, spd(i), dir(i), u(i), v(i)
+END DO
+
+CLOSE(UNIT=10)
+
+OPEN(UNIT=20, FILE='data/obs_crop_conv.txt', ACTION='write', STATUS='new')
+WRITE(20, '(A)')  'DATE            TIME     U-COMP   V-COMP    '
+
+DO i = 1, 8
+  WRITE(20, '(A,T17,A,T25,F8.4,T33,F8.4)') date(i), time(i), u(i), v(i)
+END DO
+
+CLOSE(UNIT=20)
+
+PRINT "(T20,A)", "Program has finished."
+
+END PROGRAM calculator
+~~~
+
+
 
 # Lab Assignment
 
