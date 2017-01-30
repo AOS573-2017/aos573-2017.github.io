@@ -47,8 +47,8 @@ Add a new block of code after you close your second file that does the following
 
 * Open yet another file named `data/obs_avg.txt` to write into.
 * Write out a line of text that describes which average you are printing out first (when u is easterly or westerly).
-* Write out the resulting average of relative humidity under that condition (note, you can call these functions in the write line, though you could alternatively save the reuslt to a real variable and then write that variable out).
-* Write out another line of text that describes the second average you are priting out.
+* Write out the resulting average of relative humidity under that condition (note, you can call these functions in the write line, though you could alternatively save the result to a real variable and then write that variable out).
+* Write out another line of text that describes the second average you are printing out.
 * Write out the resulting average of relative humidity under that other condition.
 * Then finally close this new file.
 

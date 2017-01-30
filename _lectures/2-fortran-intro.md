@@ -46,11 +46,11 @@ PROGRAM calculator
 END PROGRAM calcaulator
 ~~~
 
-Functions are called with the form `output = FUNCTIONNAME(input1, maybeinput2, maybeinput3)`, while subroutines--since they operate on the specified inputs--are called as `CALL SUBROUTINENAME(input1, maybeinput2, maybeput3). While all the variables specified are input variables, consider the case where an input has not previously been defined (whether it be a single zero or an array of zeros). The subroutine could calculate some value based on some of the input variables and return the output as one of the other variables.
+Functions are called with the form `output = FUNCTIONNAME(input1, maybeinput2, maybeinput3)`, while subroutines--since they operate on the specified inputs--are called as `CALL SUBROUTINENAME(inputoutput, possibleinputoutput2, possibleinputoutput)`. While all the variables specified are input variables, consider the case where an input has not previously been defined (whether it be a single zero or an array of zeros). The subroutine could calculate some value based on some of the input variables and return the output as one of the other variables.
 
 ## Commenting
 
-Comments in Fortran are indicated by an exclamation mark `!`. Comments do not have to start at the beginning of a line, and in fact can be placed on a line after a statement, but anything after a `!` is considered to be a comment. These are all examples of comments within code:
+Comments in Fortran are indicated by an exclamation mark `!`. Comments do not have to start at the beginning of a line, and in fact can be placed on a line after a statement, but anything after a `!` is considered to be a comment--except whenever the exclamation mark is within a character definition, like `'ohmy!'`. These are all examples of comments within code:
 
 ~~~ f90
 ! This section computes the square of the variable.
@@ -58,7 +58,7 @@ Comments in Fortran are indicated by an exclamation mark `!`. Comments do not ha
 y = x ** 2   ! See, this is where it is computed.
 ~~~
 
-The only code that will actually be computed is the third line, `y = x * x`, because the operation on the second line occurred _after_ the exclamation mark.
+The only code that will actually be computed is the third line, `y = x ** 2`, because the operation on the second line occurred _after_ the exclamation mark.
 
 We want to add a brief comment that describes our program. While this can go anywhere, while we're here we can add it to the top.
 
@@ -73,7 +73,7 @@ END PROGRAM calculator
 
 ## Basic Variable Types
 
-As we briefly discussed during last class, Fortran does not have the same typing flexibility as interactive languages like Python or Matlab. By default, Fortran defines a small set of variables (including i, j, and k) as integers to be assumed for counting or loop variables and everything else as real numbers. It is possible to overried this behavior using the `IMPLICIT` statement where you can specify which variables you wish for Fortran to retain this behavior for. But, given the general undesired behavior that this all creates, a legacy practice within Fortran is to define `IMPLICIT NONE` in each program--signalling to the compiler that you do not want this type assumption to be made for any variable.
+As we briefly discussed during last class, Fortran does not have the same typing flexibility as interactive languages like Python or Matlab. By default, Fortran defines a small set of variables (including i, j, and k) as integers to be assumed for counting or loop variables and everything else as real numbers. It is possible to overried this behavior using the `IMPLICIT` statement where you can specify which variables you wish for Fortran to retain this behavior for. But, given the general undesired behavior that this all creates, a legacy practice within Fortran is to define `IMPLICIT NONE` in each program--signaling to the compiler that you do not want this type assumption to be made for any variable.
 
 So we add this line to our program on the next line.
 
@@ -342,7 +342,7 @@ Wow! It runs and, more importantly, we are getting some output now. Notice how t
 
 (In this table, note that _optional_ parts of the formatting string are italicized.)
 
-Formatting strings are constructed using the above table dependending on the variable type or types. And it is literally a formatting string, meaning we must define it with quotes and within the quotes a set of enclosing parentheses. If you specify a format string, each variable to be printed _must_ have a formatting string associated with it; this is either accomplished by adding individual format strings for each variable separated by commas or alternatively by using one formatting string and placing the number of times to repeat that format immediately before it. Let's now modify our old print statements as well as adding one more to demonstrate the repetition.
+Formatting strings are constructed using the above table depending on the variable type or types. And it is literally a formatting string, meaning we must define it with quotes and within the quotes a set of enclosing parentheses. If you specify a format string, each variable to be printed _must_ have a formatting string associated with it; this is either accomplished by adding individual format strings for each variable separated by commas or alternatively by using one formatting string and placing the number of times to repeat that format immediately before it. Let's now modify our old print statements as well as adding one more to demonstrate the repetition.
 
 ~~~ f90
 PROGRAM calculator
@@ -548,7 +548,7 @@ REAL :: test(3,2)
 CHARACTER :: words(5)
 ~~~
 
-In this instance, we have intialized a variable `test` that is of type real with the shape `(3,2)` and a variable `words` with shape `(5)`. Notice that I have carefully used the word ''shape''. A character array defined in this way would be 5 single character elements, such as `'a','b','c','d','e'`. Similarly, the real matrix defined here would look like:
+In this instance, we have italicized a variable `test` that is of type real with the shape `(3,2)` and a variable `words` with shape `(5)`. Notice that I have carefully used the word ''shape''. A character array defined in this way would be 5 single character elements, such as `'a','b','c','d','e'`. Similarly, the real matrix defined here would look like:
 
 |1 |2 |6 |
 |3 |4 |9 |
@@ -565,7 +565,7 @@ In _this_ instance, `words` is now a variable of shape `(1)` but that is 34 char
 
 You may need to define an array or matrix manually in Fortran for a variety of reasons. To do so, Fortran uses the notation of parentheses and forward slashes, like `(/ 1, 3, 4, 8 /)`. 
 
-To reference a given array element, you surround the index with parenthese. For example, if `variable` has shape `(500,2)`, and we wanted to define or reference the `(130,1)`th value, we would call `variable(130,1) = 2.0` or `somethingelse = variable(130,1)`.
+To reference a given array element, you surround the index with parentheses. For example, if `variable` has shape `(500,2)`, and we wanted to define or reference the `(130,1)`th value, we would call `variable(130,1) = 2.0` or `somethingelse = variable(130,1)`.
 
 If you do not define an index when referencing an array, Fortran will assume you mean all of the indices. That means saying `variable = 300.0` when `variable` has shape `(500,2)` will set _all_ of the values of `variable` to 300.0. Alternatively, saying `somethingelse = variable` will 1) require `somethingelse` to be the same size as `variable` and 2) set each respective value in `somethingelse` as the respective `variable` value.
 
@@ -693,9 +693,9 @@ PRINT "(T20,A)", "Program has finished."
 END PROGRAM calculator
 ~~~ 
 
-The file identifier/unit number we chose is mostly arbitrary, but it _must_ be used consistently to reference our file when reading or closing. The action verb defines whether the file is read to be read from or written into. If you do not select one, both can occur (though that could cause some chaos). Finally, the status verb tells Fortran whether to expect the file to exist or not. It may be the case, at some point, Fortran should expect a file to exist. In this case, you would define the status as old. It may be the case that the file should _not_ exist, in which case you want the status to be new (this helps with accidential overwrites). Or, you do not have to define any status and it will work as always.
+The file identifier/unit number we chose is mostly arbitrary, but it _must_ be used consistently to reference our file when reading or closing. The action verb defines whether the file is read to be read from or written into. If you do not select one, both can occur (though that could cause some chaos). Finally, the status verb tells Fortran whether to expect the file to exist or not. It may be the case, at some point, Fortran should expect a file to exist. In this case, you would define the status as old. It may be the case that the file should _not_ exist, in which case you want the status to be new (this helps with accidental overwrites). Or, you do not have to define any status and it will work as always.
 
-We also added an extra read statement at the beginning; in the paragraph above, it was noted that a read statement will read and advance past a whole line. In the case of our data, our first line had headers that we did not want to read. Similar to the asterisk notation for printing, you can supply an asterisk in the read formatting, which means "assume the best". You can place as few or as many variables in the read call as you like; Fortran will fill as many of them as possible. This can also mean that if you have a two-dimensional matrix, where one of the dimensions is equal to the quantity of variables on a given line, you can supply that full dimenion of the variable and it will be filled. We will have a better example of this statement next class.
+We also added an extra read statement at the beginning; in the paragraph above, it was noted that a read statement will read and advance past a whole line. In the case of our data, our first line had headers that we did not want to read. Similar to the asterisk notation for printing, you can supply an asterisk in the read formatting, which means "assume the best". You can place as few or as many variables in the read call as you like; Fortran will fill as many of them as possible. This can also mean that if you have a two-dimensional matrix, where one of the dimensions is equal to the quantity of variables on a given line, you can supply that full dimension of the variable and it will be filled. We will have a better example of this statement next class.
 
 Writing works in a similar way to reading, except now we want our action to be write and we want to use write instead of read. Write statements are very similar to the print statements that we worked on earlier.
 
