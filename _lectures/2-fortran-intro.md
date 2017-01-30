@@ -759,7 +759,7 @@ PRINT "(T20,A)", "Program has finished."
 END PROGRAM calculator
 ~~~
 
-
+One final note about reading and writing before we move on. If you need to either read into your Fortran program from the command line or write out from your Fortran program to the command line, you can use the read and write commands as before with an asterisk for the file identifier. In the case of reading in, perhaps you want the user to specify how many operations to perform or alternatively which type of computation to use or what to name a file. Fortran will allow you to do this--but be cautious about the types that you give to your input. You could cause an error if you are expecting an integer and the user provides a letter. Writing out to the terminal is equivalent to using the print statement.
 
 # Lab Assignment
 
