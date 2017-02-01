@@ -24,10 +24,10 @@ Fortran is a compiled generic programming language, with a strong penchant towar
 
 One legacy of Fortran is, as you just saw in the previous paragraph with the stylized '77 name, the use of ALL UPPER CASE LETTERS. As the language has evolved, the use of caps has relaxed from a requisite to an option. But keeping the backwards compatibility means that Fortran is case insensitive: you can define a variable named `data` and access it with `data`, `dATA`, `DATA`, or any other combination therein. For readability purposes, we will be using upper case for any language statements and lower case when referencing variables. One other intricacy of Fortran to keep in mind is that lines cannot be longer than 132 characters; if you need to spill over one statement onto another line, use the ampersand (`&`) to terminate the first line and continue on the following.
 
-Let's start our first piece of Fortran code! Open up your terminal and edit a new file called `calculator.f95`. This program is going to calculate a variety of meteorological quantities based on a few observations we have.
+Let's start our first piece of Fortran code! Open up your terminal and edit a new file called `calculator.f90`. This program is going to calculate a variety of meteorological quantities based on a few observations we have.
 
 ~~~ bash
-$ nano calculator.f95
+$ nano calculator.f90
 ~~~
 
 While the file extension is mostly arbitrary, and only a `.f` would suffice, we include the year so that we can remember what standard we were crafting our program with and so that other programmers will also know this.
@@ -98,7 +98,7 @@ IMPLICIT NONE
 REAL :: spd, dir
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 END PROGRAM calculator
 ~~~
@@ -115,7 +115,7 @@ IMPLICIT NONE
 REAL :: spd, dir
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -169,7 +169,7 @@ IMPLICIT NONE
 REAL :: spd, dir
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -195,7 +195,7 @@ IMPLICIT NONE
 REAL :: spd, dir
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -226,7 +226,7 @@ IMPLICIT NONE
 REAL :: spd, dir
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -238,8 +238,8 @@ dir = 200.0
 dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
-u = spd * COS(dir)
-v = spd * SIN(dir)
+uwind = spd * SIN(dir)
+vwind = spd * COS(dir)
 ~~~
 
 ## Print Statements
@@ -256,7 +256,7 @@ IMPLICIT NONE
 REAL :: spd, dir
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -268,10 +268,10 @@ dir = 200.0
 dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
-u = spd * COS(dir)
-v = spd * SIN(dir)
+uwind = spd * SIN(dir)
+vwind = spd * COS(dir)
 
-PRINT *, u, v
+PRINT *, uwind, vwind
 
 END PROGRAM calculator
 ~~~
@@ -288,7 +288,7 @@ IMPLICIT NONE
 REAL :: spd, dir
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -302,14 +302,12 @@ dir = 200.0
 dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
-PRINT *, "Outputs are now being calculated."
+uwind = spd * SIN(dir)
+vwind = spd * COS(dir)
 
-u = spd * COS(dir)
-v = spd * SIN(dir)
-
-PRINT *, "The zonal speed is ", u, " mph."
-PRINT *, "But, the meridional speed is ", v, " mph."
-PRINT *, "Program has finished."
+PRINT *, uwind, vwind
+PRINT *, "The program has finished."
+PRINT *, "Go Bucky!"
 
 END PROGRAM calculator
 ~~~
@@ -317,13 +315,12 @@ END PROGRAM calculator
 Alright, we have added a lot to our program since we first tried compiling it. Let's compile it now and see what happens!
 
 ~~~ bash
-$ gfortran calculator.f95 -o calculator
+$ gfortran calculator.f90 -o calculator
 $ ./calculator
  Program is now starting.
- Outputs are now being calculated.
- The zonal speed is    11.897449      mph.
- But, the meridional speed is    4.3303142      mph.
- Program has finished.
+   4.3303142       11.897449  
+ The program has finished.
+ Go Bucky!
 ~~~
 
 Wow! It runs and, more importantly, we are getting some output now. Notice how there are lots of spaces surrounding the numbers, though? Since we used the `*` in our print statements, Fortran is printing the default spacing for all the characters. We can modify our print statement to format the numbers to look a little neater.
@@ -354,7 +351,7 @@ IMPLICIT NONE
 REAL :: spd, dir
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -368,39 +365,36 @@ dir = 200.0
 dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
-PRINT *, "Outputs are now being calculated."
+uwind = spd * SIN(dir)
+vwind = spd * COS(dir)
 
-u = spd * COS(dir)
-v = spd * SIN(dir)
-
-PRINT *, "The zonal speed is ", u, " mph."
-PRINT "(A,F4.2,A4)", "But, the meridional speed is ", v, " mph."
-PRINT "(2(F5.3),5X,2(F6.3))", u, v, u, v
-PRINT "(T20,A)", "Program has finished."
+PRINT '(F5.2,3X,F5.2)', uwind, vwind
+PRINT '(F5.3,3X,F5.3)', uwind, vwind
+PRINT '(T20,A)', "The program has finished."
+PRINT *, "Go Bucky!"
 
 END PROGRAM calculator
 ~~~
 
-We've made modifications to the last two lines as well as added a line between those two. Let's recompile this puppy and see what each of these do.
+We've made modifications to a few existing lines as well as adding another with slightly different formatting (having more decimal places). Let's recompile this puppy and see what each of these do.
 
 ~~~ bash
-$ gfortran calculator.f95 -o calculator
+$ gfortran calculator.f90 -o calculator
 $ ./calculator
  Program is now starting.
- Outputs are now being calculated.
- The zonal speed is    11.897449      mph.
-But, the meridional speed is 4.33 mph
-*****4.330     11.897 4.330
-                   Program has finished.
+ 4.33   11.90
+4.330   *****
+                   The program has finished.
+ Go Bucky!
 ~~~
 
-A few things have changed now. The first line we manually specified the formatting specifier that starts with "But,..." is now touching the left side of the terminal when printing. This is another legacy component from the age of dot matrix printers that remains in the language, where printers would look for an extra command in the first character. Moving on to the actual text printed, the first specifier we added was a lone `A`, which means print the whole character variable. The second specifier asked for a float that takes up four total characters with two of those as decimal places. We indeed count four characters (the decimal point counts as one!) with no spaces padded beyond those we manually added to the characters. Finally, we specified `A4`, meaning we wanted a width of four characters. If you look at the actual string we want to print, it has _five_ characters (see the space right after the left quote?), so the fifth character--the period--was not printed.
+A few things have changed now. With the two lines now that have the wind formatting specified, they have indeed shrunk in size. For the first line, we now see a width of 5 with 2 on the right size of the decimal place: that means up to 2 characters on the right side of the decimal place, 1 character for the decimal place, and up to 2 more for the numbers on the left side of the decimal place. In the case of 4.33, because it is less than 10, the leftmost character space is padded with a blank space. The numbers are also separated by three space characters as we specified with `3X`.
 
-The second line is the newly inserted line where we wanted to print u and v twice. We first requested a float of width five with at least three decimal places--and because that is surrounded by parentheses with a preceding 2, this specification is used twice. But look at our first variable: it is all stars! When Fortran cannot display the number as requested (usually because you have been too skimpy on the width), it will instead print asterisks in that place. Since we asked for a width of five, we received five asterisks. Our second number, however, was able to fit since it is less than 10 and can fit within five characters. Our next formatting string part requested five spaces, which were added. Finally, we rehashed the repeated string formatter but this time requested two floats with width of _six_ instead of five. Luckily enough, both of our variables met that criteria. 
+For the second line of printing, there is some strange behavior! We specified 3 characters for the decimal aspect, 1 for the decimal, and only 1 reserved for the number left of the decimal. That means the number 11.90 cannot fit into the space anymore! In this case, Fortran instead prints out asterisks of that width size to indicate the lack of fitting.
 
-The final line is spaced over quite far! That's because our first specifier for this line requested we tab over to the 20th character. Once there, our character formatter then requested we print the whole character variable. Alternatively, we could have written `TR20`, which would have tabbed from the _right hand side_ of the terminal characters and continued printing.
+The finished program line is spaced over quite far! That's because our first specifier for this line requested we tab over to the 20th character. Once there, our character formatter then requested we print the whole character variable. Alternatively, we could have written `TR20`, which would have tabbed from the _right hand side_ of the terminal characters and continued printing.
 
-Let's clean up our print statements a bit before we move on. Specifically, we are going to delete the three lines that print various iterations of u and v and add one new line.
+Let's clean up our print statements a bit before we move on since we are currently duplicating content.
 
 ~~~ f90
 PROGRAM calculator
@@ -412,7 +406,7 @@ IMPLICIT NONE
 REAL :: spd, dir
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -426,14 +420,12 @@ dir = 200.0
 dir = dir - 180.0        ! direction wind is going in degrees
 dir = dir * (pi / 180.0) ! direction wind is going in radians
 
-PRINT *, "Outputs are now being calculated."
+uwind = spd * SIN(dir)
+vwind = spd * COS(dir)
 
-u = spd * COS(dir)
-v = spd * SIN(dir)
-
-PRINT *, spd, dir, u, v
-
-PRINT "(T20,A)", "Program has finished."
+PRINT *, uwind, vwind
+PRINT '(T20,A)', "Program has finished."
+PRINT *, "Go Bucky!"
 
 END PROGRAM calculator
 ~~~
@@ -479,7 +471,7 @@ IMPLICIT NONE
 REAL :: spd, dir
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -497,15 +489,14 @@ DO i = 1, 8
   dir = dir - 180.0        ! direction wind is going in degrees
   dir = dir * (pi / 180.0) ! direction wind is going in radians
 
-  PRINT *, "Outputs are now being calculated."
+  uwind = spd * SIN(dir)
+  vwind = spd * COS(dir)
 
-  u = spd * COS(dir)
-  v = spd * SIN(dir)
-
-  PRINT *, i, spd, dir, u, v
+  PRINT *, i, uwind, vwind
 END DO
 
-PRINT "(T20,A)", "Program has finished."
+PRINT '(T20,A)', "Program has finished."
+PRINT *, "Go Bucky!"
 
 END PROGRAM calculator
 ~~~
@@ -516,28 +507,21 @@ Let's compile and run our program now and see what happens.
 $ gfortran calculator.f90 -o calculator
 $ ./calculator
  Program is now starting.
- Outputs are now being calculated.
-           1   12.661000      0.34906560       11.897449       4.3303142    
- Outputs are now being calculated.
-           2   12.661000      0.34906560       11.897449       4.3303142    
- Outputs are now being calculated.
-           3   12.661000      0.34906560       11.897449       4.3303142    
- Outputs are now being calculated.
-           4   12.661000      0.34906560       11.897449       4.3303142    
- Outputs are now being calculated.
-           5   12.661000      0.34906560       11.897449       4.3303142    
- Outputs are now being calculated.
-           6   12.661000      0.34906560       11.897449       4.3303142    
- Outputs are now being calculated.
-           7   12.661000      0.34906560       11.897449       4.3303142    
- Outputs are now being calculated.
-           8   12.661000      0.34906560       11.897449       4.3303142    
+           1   4.3303142       11.897449    
+           2   4.3303142       11.897449    
+           3   4.3303142       11.897449    
+           4   4.3303142       11.897449    
+           5   4.3303142       11.897449    
+           6   4.3303142       11.897449    
+           7   4.3303142       11.897449    
+           8   4.3303142       11.897449  
                    Program has finished.
+ Go Bucky!
 ~~~
 
 We can see now our calculation was performed eight times--the number of times we specified in our loop--and that is confirmed by the `i` we added to our print statement.
 
-## Reading and Writing
+## Reading
 
 Fortran has the ability natively to read in and write out both text files and Fortran-specific binary files. We are going to focus on text files for now given their human-readable formatting. Luckily, we already downloaded some sample text data files when we cloned our weekly repository. Check out our sample file using `cat` or `less`:
 
@@ -568,7 +552,7 @@ IMPLICIT NONE
 REAL :: spd, dir, rh
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -588,17 +572,16 @@ DO i = 1, 8
   dir = dir - 180.0        ! direction wind is going in degrees
   dir = dir * (pi / 180.0) ! direction wind is going in radians
 
-  PRINT *, "Outputs are now being calculated."
+  uwind = spd * SIN(dir)
+  vwind = spd * COS(dir)
 
-  u = spd * COS(dir)
-  v = spd * SIN(dir)
-
-  PRINT *, i, spd, dir, u, v, rh
+  PRINT *, i, uwind, vwind, rh
 END DO
 
 CLOSE(UNIT=10)
 
-PRINT "(T20,A)", "Program has finished."
+PRINT '(T20,A)', "Program has finished."
+PRINT *, "Go Bucky!"
 
 END PROGRAM calculator
 ~~~ 
@@ -606,99 +589,6 @@ END PROGRAM calculator
 The file identifier/unit number we chose is mostly arbitrary, but it _must_ be used consistently to reference our file when reading or closing. The action verb defines whether the file is read to be read from or written into. If you do not select one, both can occur (though that could cause some chaos). Finally, the status verb tells Fortran whether to expect the file to exist or not. It may be the case, at some point, Fortran should expect a file to exist. In this case, you would define the status as old. It may be the case that the file should _not_ exist, in which case you want the status to be new (this helps with accidental overwrites). Or, you do not have to define any status and it will work as always.
 
 We also added an extra read statement at the beginning; in the paragraph above, it was noted that a read statement will read and advance past a whole line. In the case of our data, our first line had headers that we did not want to read. Similar to the asterisk notation for printing, you can supply an asterisk in the read formatting, which means "assume the best". You can place as few or as many variables in the read call as you like; Fortran will fill as many of them as possible. This can also mean that if you have a two-dimensional matrix, where one of the dimensions is equal to the quantity of variables on a given line, you can supply that full dimension of the variable and it will be filled. We will have a better example of this statement next class.
-
-Writing works in a similar way to reading, except now we want our action to be write and we want to use write instead of read. Write statements are very similar to the print statements that we worked on earlier.
-
-Let's make a file just like the original, but now write out the u and v components of the wind. We can do this one of two ways: create a new loop after our current work that will write each line to the new file, or add write statements in our current work that reference a different file identifier. We select the latter for ease right now.
-
-~~~ f90
-PROGRAM calculator
-! by Bucky Badger
-! This program calculates meteorological variables.
-IMPLICIT NONE
-
-! These are our original variables
-REAL :: spd, dir, rh
-
-! These are our computed variables
-REAL :: u, v
-
-! This is our constant
-REAL, PARAMETER :: pi=3.14159
-
-! This is our loop variable
-INTEGER :: i
-
-PRINT *, "Program is now starting."
-
-OPEN(UNIT=10, FILE='data/obs_crop.txt', ACTION='read', STATUS='old')
-READ(10, *)  ! Skip the first line--column headers
-
-OPEN(UNIT=20, FILE='data/obs_crop_conv.txt', ACTION='write')
-WRITE(20, '(A)') 'U-COMP   V-COMP    RH'
-
-DO i = 1, 8
-  READ(10, '(24X,F8.2,F8.0,F8.0)') rh, dir, spd
-  spd = spd * 1.151        ! this is mph
-
-  dir = dir - 180.0        ! direction wind is going in degrees
-  dir = dir * (pi / 180.0) ! direction wind is going in radians
-
-  PRINT *, "Outputs are now being calculated."
-
-  u = spd * COS(dir)
-  v = spd * SIN(dir)
-
-  PRINT *, i, spd, dir, u, v, rh
-  WRITE(20, '(F8.4,F8.4,F8.2)') u, v, rh
-END DO
-
-CLOSE(UNIT=10)
-CLOSE(UNIT=20)
-
-PRINT "(T20,A)", "Program has finished."
-
-END PROGRAM calculator
-~~~
-
-We defined the file identifier for the second file to be different than the first. Assuming they are not both open at the same time, you could use the same number; but it never hurts to keep them separate regardless.
-
-Now we should compile our program and see how it performs!
-
-~~~ bash
-$ gfortran calculator.f90 -o calculator
-$ ./calculator
- Program is now starting.
- Outputs are now being calculated.
-           1   13.812000       1.2217295       4.7239947       12.979031
- Outputs are now being calculated.
-           2   13.812000       1.0471967       6.9060102       11.961537
- Outputs are now being calculated.
-           3   9.2080002       1.5707952      1.05742974E-05   9.2080002
- Outputs are now being calculated.
-           4   11.510000       1.3962624       1.9987019       11.335135
- Outputs are now being calculated.
-           5   13.812000       1.0471967       6.9060102       11.961537
- Outputs are now being calculated.
-           6   10.359000       2.0943935      -5.1794858       8.9711657
- Outputs are now being calculated.
-           7   6.9060001       1.0471967       3.4530051       5.9807687
- Outputs are now being calculated.
-           8   11.510000      0.87266397       7.3984914       8.8171673
-                   Program has finished.
-$ cat data/obs_crop_conv.txt
-U-COMP   V-COMP    RH
-  4.7240 12.9790   62.28
-  6.9060 11.9615   70.46
-  0.0000  9.2080   73.77
-  1.9987 11.3351   68.33
-  6.9060 11.9615   71.69
- -5.1795  8.9712   65.84
-  3.4530  5.9808   80.55
-  7.3985  8.8172   63.24
-~~~
-
-One final note about reading and writing before we move on. If you need to either read into your Fortran program from the command line or write out from your Fortran program to the command line, you can use the read and write commands as before with an asterisk for the file identifier. In the case of reading in, perhaps you want the user to specify how many operations to perform or alternatively which type of computation to use or what to name a file. Fortran will allow you to do this--but be cautious about the types that you give to your input. You could cause an error if you are expecting an integer and the user provides a letter. Writing out to the terminal is equivalent to using the print statement.
 
 ## Functions and Subroutines
 
@@ -718,7 +608,7 @@ IMPLICIT NONE
 REAL :: spd, dir, rh
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -731,29 +621,24 @@ PRINT *, "Program is now starting."
 OPEN(UNIT=10, FILE='data/obs_crop.txt', ACTION='read', STATUS='old')
 READ(10, *)  ! Skip the first line--column headers
 
-OPEN(UNIT=20, FILE='data/obs_crop_conv.txt', ACTION='write')
-WRITE(20, '(A)') 'U-COMP   V-COMP    RH'
-
 DO i = 1, 8
   READ(10, '(24X,F8.2,F8.0,F8.0)') rh, dir, spd
-  CALL ktstomph(spd)        ! this is mph
+!  spd = spd * 1.151        ! this is mph
+  CALL ktstomph(spd)       ! this is mph
 
   dir = dir - 180.0        ! direction wind is going in degrees
   dir = dir * (pi / 180.0) ! direction wind is going in radians
 
-  PRINT *, "Outputs are now being calculated."
+  uwind = spd * SIN(dir)
+  vwind = spd * COS(dir)
 
-  u = spd * COS(dir)
-  v = spd * SIN(dir)
-
-  PRINT *, i, spd, dir, u, v, rh
-  WRITE(20, '(F8.4,F8.4,F8.2)') u, v, rh
+  PRINT *, i, uwind, vwind, rh
 END DO
 
 CLOSE(UNIT=10)
-CLOSE(UNIT=20)
 
-PRINT "(T20,A)", "Program has finished."
+PRINT '(T20,A)', "Program has finished."
+PRINT *, "Go Bucky!"
 
 END PROGRAM calculator
 
@@ -772,7 +657,7 @@ END SUBROUTINE ktstomph
 
 Note a few things in this subroutine. First, we are directly modifying the input variable. So when we supply a variable and call the subroutine, that original variable is being modified based on whatever we do in the subroutine. Second, note that the variable definition in the subroutine is in the context of the subroutine--not the original variable. If we were to supply a single value from an array, the subroutine definition should only be for a single value. Also notice that we replaced our old conversion in the code with a call to the subroutine that includes our speed variable.
 
-You could alternatively define the subroutine with a separate variable for each of the input and the output. The subroutine would then need to be called with two variables in the parentheses: one to give the input and one to hold the output. In that case, we could either 1) have a separate variable with the speed conversion output or 2) supply only one speed variable for both variables, such as follows:
+You could alternatively define the subroutine with a separate variable for each of the input and the output. The subroutine would then need to be called with two variables in the parentheses: one to give the input and one to hold the output. In that case, we could either 1) have a separate variable with the speed conversion output or 2) supply only one speed variable for both variables as follows:
 
 ~~~ f90
 PROGRAM calculator
@@ -784,7 +669,7 @@ IMPLICIT NONE
 REAL :: spd, dir, rh
 
 ! These are our computed variables
-REAL :: u, v
+REAL :: uwind, vwind
 
 ! This is our constant
 REAL, PARAMETER :: pi=3.14159
@@ -797,29 +682,24 @@ PRINT *, "Program is now starting."
 OPEN(UNIT=10, FILE='data/obs_crop.txt', ACTION='read', STATUS='old')
 READ(10, *)  ! Skip the first line--column headers
 
-OPEN(UNIT=20, FILE='data/obs_crop_conv.txt', ACTION='write')
-WRITE(20, '(A)') 'U-COMP   V-COMP    RH'
-
 DO i = 1, 8
   READ(10, '(24X,F8.2,F8.0,F8.0)') rh, dir, spd
-  CALL ktstomph(spd, spd)        ! this is mph
+!  spd = spd * 1.151        ! this is mph
+  CALL ktstomph(spd, spd)       ! this is mph
 
   dir = dir - 180.0        ! direction wind is going in degrees
   dir = dir * (pi / 180.0) ! direction wind is going in radians
 
-  PRINT *, "Outputs are now being calculated."
+  uwind = spd * SIN(dir)
+  vwind = spd * COS(dir)
 
-  u = spd * COS(dir)
-  v = spd * SIN(dir)
-
-  PRINT *, i, spd, dir, u, v
-  WRITE(20, '(F8.4,F8.4,F8.2)') u, v, rh
+  PRINT *, i, uwind, vwind, rh
 END DO
 
 CLOSE(UNIT=10)
-CLOSE(UNIT=20)
 
-PRINT "(T20,A)", "Program has finished."
+PRINT '(T20,A)', "Program has finished."
+PRINT *, "Go Bucky!"
 
 END PROGRAM calculator
 
