@@ -1,19 +1,20 @@
 ---
 layout: assignment
 title: Multi-dimensional Fortran and More I/O
-published: false
+published: true
 ---
 
 Today we will continue to use our code from last week and retrofit it for this week. Make sure to copy the script into this week's folder and rename it to ensure we do not get confused.
 
-(Assuming you are still in `fortran-week-two` folder)
+(Assuming you are still in `fortran-week-two` folder):
+
 ~~~ bash
 $ cp ../fortran-week-one/calculator.f90 ./new_calc.f90
 ~~~
 
 First, we need to write out our converted data so that it can be used by someone else in our group later on for another project. 
 
-* Retrofit `calculator.f90` to write out relative humidity, the zonal wind, and the meridonal wind to the file `data/obs_conv.txt`. Make sure you include column headers for all of the data.
+* Retrofit `calculator.f90` to write out relative humidity, the zonal wind, and the meridional wind to the file `data/obs_conv.txt`. Make sure you include column headers for all of the data.
 
 Now, we want to add some code that calculates averages under a few conditions:
 

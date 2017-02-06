@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: false
+published: true
 title: Multi-dimensional Fortran and More I/O
 ---
 
@@ -54,10 +54,9 @@ END PROGRAM
 
 In this instance, we have italicized a variable `test` that is of type real with the shape `(3,2)` and a variable `words` with shape `(5)`. Notice that I have carefully used the word ''shape''. A character array defined in this way would be 5 single character elements, such as `'a','b','c','d','e'`. Similarly, the real matrix defined here would look like:
 
-| |  |  |  |
-|-|--|--|--|
-| |1 |2 |6 |
-| |3 |4 |9 |
+|1 |2 |6 |
+|--|--|--|
+|3 |4 |9 |
 
 We reserve the word "size" to define how big a single element of an array or matrix can be. Characters are usually the most intuitive type for what this means. The character size defines how many characters can be within a single element. For numbers, the size relates to either how precise the numbers are defined as (in the case of reals) or how large of a number that can be supported (in the case of integers). You may have heard of terms such as "double precision", "single precision", "large integer", "small integer", or others. Essentially it boils down to how much memory within the computer we allow for a variable to take up. For now, we will not be playing with size or precision for numbers--only characters.
 
@@ -78,7 +77,7 @@ END PROGRAM
 
 In _this_ instance, `newwords` is a variable of shape `(1)` but that is 34 characters long. An example is `supercalifragilisticexpialidocious`, which is indeed 34 characters long. If a string does not fill the full size of a character variable, the string will be padded with spaces at the end.
 
-Elements are referenced using a similar way as their shape is designed: the location surrounded in parenthese immediately following the variable name. Additionally, Fortran is an index-one language, or in other words indexes start at 1 instead of 0 (as in some other languages). To reference the 5th element in the variable `words` from before with shape `(5)`, you would type `words(5)`; the 1st column, 2nd row of the variable `test` with shape `(3,2)` would be called like `test(1,2)`. To reference a full dimension of a variable, the colon is used, e.g. `test(1,:)`. Keep in mind that when specifying indices, you _must_ specify a quantity of indices equal to the number of dimensions a variable has. Thus, you could not say `test(2)` because `test` has _two_ dimensions.1
+Elements are referenced using a similar way as their shape is designed: the location surrounded in parentheses immediately following the variable name. Additionally, Fortran is an index-one language, or in other words indexes start at 1 instead of 0 (as in some other languages). To reference the 5th element in the variable `words` from before with shape `(5)`, you would type `words(5)`; the 1st column, 2nd row of the variable `test` with shape `(3,2)` would be called like `test(1,2)`. To reference a full dimension of a variable, the colon is used, e.g. `test(1,:)`. Keep in mind that when specifying indices, you _must_ specify a quantity of indices equal to the number of dimensions a variable has. Thus, you could not say `test(2)` because `test` has _two_ dimensions.1
 
 To reference a subset of a dimension (or more than one dimension), the lower index and the upper index are specified straddling a colon; keep in mind that the upper index is included in the elements returned. So if you want the 2nd through the 4th elements of `words`, you would type `words(2:4)`.
 
@@ -153,6 +152,64 @@ You may need to define specific values of an array or matrix manually in Fortran
 > 3. `(/ 'AND I', ' KNOW', ' WHEN', ' THAT', ' HOTL', 'INE B', 'LING!' /)`
 > 4. `(/ 'A', 'N', 'D', ' ', 'I', ' ', 'K' /)`
 
+### Allocatable Variables
+
+So far we have been _hard-coding_ the shapes of variables, which means we manually specify the lengths of each dimension prior to run time. It may be the case, however, that we will not know the length of each dimension needed until run time. This behavior could occur when we are reading in files with different sized variables. Or we could be filling a variable only with variables that meet a certain criteria. These cases require using a _dynamic allocation_ of variable shape. Dynamic allocation punts the reservation of memory for a variable until we specifically choose to allocate it and it also provides us the ability to free (or deallocate) that memory once we are done with the variable.
+
+In Fortran, dynamic allocation is defined with the `ALLOCATABLE` keyword (similar to specifying `PARAMETER`) and using colons to specify the number of dimensions of a variable. The shape is defined using the `ALLOCATE` statement and the variable memory can be discarded using the `DEALLOCATE` statement. If you are working with a large amount of data that is read in and then manipulated or transferred into a few other variables, it may be necessary to use dynamic allocation if for nothing else than to ensure your program is able to run with your machine's memory.
+
+Here we will define an allocatable variable of three dimensions as well as three variables that we will later use to allocate the lengths of each dimension:
+
+~~~ f90
+PROGRAM arrays
+! by Bucky Badger
+! This program will work with some arrays in Fortran
+IMPLICIT NONE
+
+REAL :: test(3,2)
+CHARACTER :: words(5)
+CHARACTER(34) :: newwords
+
+REAL, ALLOCATABLE :: modeldata(:,:,:)
+INTEGER :: nlon, nlat, ntime
+
+nlon = 360
+nlat = 180
+ntime = 24 * 365
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+ALLOCATE(modeldata(nlon, nlat, ntime))
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+DEALLOCATE(modeldata)
+
+test = 0.0
+words = ''
+newwords = ''
+
+PRINT *,"Test: ", test(1:2,:)
+PRINT *, words, " and ", newwords, " are words and new words."
+
+END PROGRAM
+~~~
+
+~~~ bash
+$ gfortran arrays.f90 -o arrays
+$ ./arrays
+ F
+           0           0           0
+ T
+         360         180        8760
+ Test:    0.0000000       0.0000000       0.0000000       0.0000000
+       and                                    are words and new words.
+~~~
+
+
+
 ## Writing Data
 
 Writing works in a similar way to reading, except now we want our file action to be write and we want to use write instead of read. Write statements are very similar to the print statements that we worked on earlier.
@@ -168,6 +225,23 @@ IMPLICIT NONE
 REAL :: test(3,2)
 CHARACTER :: words(5)
 CHARACTER(34) :: newwords
+
+REAL, ALLOCATABLE :: modeldata(:,:,:)
+INTEGER :: nlon, nlat, ntime
+
+nlon = 360
+nlat = 180
+ntime = 24 * 365
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+ALLOCATE(modeldata(nlon, nlat, ntime))
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+DEALLOCATE(modeldata)
 
 test(:,1) = (/ 100.0, 95.0, 97.0 /)
 test(:,2) = (/ 74.0, 2.0, 103.0 /)
@@ -210,6 +284,23 @@ REAL :: test(3,2)
 CHARACTER :: words(5)
 CHARACTER(34) :: newwords
 
+REAL, ALLOCATABLE :: modeldata(:,:,:)
+INTEGER :: nlon, nlat, ntime
+
+nlon = 360
+nlat = 180
+ntime = 24 * 365
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+ALLOCATE(modeldata(nlon, nlat, ntime))
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+DEALLOCATE(modeldata)
+
 test(:,1) = (/ 100.0, 95.0, 97.0 /)
 test(:,2) = (/ 74.0, 2.0, 103.0 /)
 words = (/ 'bucky', 'u', 'c', 'k', 'y' /)
@@ -251,6 +342,23 @@ REAL :: test(3,2)
 CHARACTER :: words(5)
 CHARACTER(34) :: newwords
 
+REAL, ALLOCATABLE :: modeldata(:,:,:)
+INTEGER :: nlon, nlat, ntime
+
+nlon = 360
+nlat = 180
+ntime = 24 * 365
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+ALLOCATE(modeldata(nlon, nlat, ntime))
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+DEALLOCATE(modeldata)
+
 test(:,1) = (/ 100.0, 95.0, 97.0 /)
 test(:,2) = (/ 74.0, 2.0, 103.0 /)
 words = (/ 'b', 'u', 'c', 'k', 'y' /)
@@ -274,6 +382,10 @@ END PROGRAM
 ~~~ bash
 $ gfortran arrays.f90 -o arrays
 $ ./arrays
+ F
+           0           0           0
+ T
+         360         180        8760
  Test:    100.00000       95.000000       74.000000       2.0000000
  bucky and                                    are words and new words.
 $ cat test_out.txt
@@ -292,6 +404,10 @@ If we just run our program again, we will see what happens to the output file ag
 ~~~ bash
 $ gfortran arrays.f90 -o arrays
 $ ./arrays
+ F
+           0           0           0
+ T
+         360         180        8760
  Test:    100.00000       95.000000       74.000000       2.0000000
  bucky and                                    are words and new words.
 $ cat test_out.txt
@@ -314,6 +430,23 @@ IMPLICIT NONE
 REAL :: test(3,2)
 CHARACTER :: words(5)
 CHARACTER(34) :: newwords
+
+REAL, ALLOCATABLE :: modeldata(:,:,:)
+INTEGER :: nlon, nlat, ntime
+
+nlon = 360
+nlat = 180
+ntime = 24 * 365
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+ALLOCATE(modeldata(nlon, nlat, ntime))
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+DEALLOCATE(modeldata)
 
 test(:,1) = (/ 100.0, 95.0, 97.0 /)
 test(:,2) = (/ 74.0, 2.0, 103.0 /)
@@ -338,6 +471,10 @@ END PROGRAM
 ~~~ bash
 $ gfortran arrays.f90 -o arrays
 $ ./arrays
+ F
+           0           0           0
+ T
+         360         180        8760
  Test:    100.00000       95.000000       74.000000       2.0000000
  bucky and                                    are words and new words.
 $ cat test_out.txt
@@ -370,6 +507,23 @@ CHARACTER :: words(5)
 CHARACTER(34) :: newwords
 LOGICAL :: passing(3,2)
 
+REAL, ALLOCATABLE :: modeldata(:,:,:)
+INTEGER :: nlon, nlat, ntime
+
+nlon = 360
+nlat = 180
+ntime = 24 * 365
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+ALLOCATE(modeldata(nlon, nlat, ntime))
+
+PRINT *, ALLOCATED(modeldata)
+PRINT *, SHAPE(modeldata)
+
+DEALLOCATE(modeldata)
+
 test(:,1) = (/ 100.0, 95.0, 97.0 /)
 test(:,2) = (/ 74.0, 2.0, 103.0 /)
 words = (/ 'b', 'u', 'c', 'k', 'y' /)
@@ -397,6 +551,10 @@ END PROGRAM
 ~~~ bash
 $ gfortran arrays.f90 -o arrays
 $ ./arrays
+ F
+           0           0           0
+ T
+         360         180        8760
  Test:    100.00000       95.000000       74.000000       2.0000000
  bucky and                                    are words and new words.
  Were scores passing? :
@@ -409,7 +567,7 @@ This mask can come in handy when calling certain [intrinsic functions](https://g
 
 One other concept you will need to know about is `if` statements in Fortran. They are defined like this type of segment:
 
-~~ f90
+~~~ f90
 IF (variable > something) THEN
   dosomething
 ELSE IF (variable < somethingelse) THEN
@@ -417,11 +575,11 @@ ELSE IF (variable < somethingelse) THEN
 ELSE
   dosomethingotherwise
 END IF
-~~
+~~~
 
-Note that either the `else if` or the `else` statements are optional when creating an if block.
+Note that either the `else if` or the `else` statements are optional when creating an if block. If you have no else statement and none of the conditions are met, then the code will just continue on.
 
 
 # Lab Assignment
 
-[Follow this link to our assignment](/assignments/3-fortran-arrays-write.html).
+[Follow this link to our assignment](/assignments/3-fortran-arrays-io.html).
