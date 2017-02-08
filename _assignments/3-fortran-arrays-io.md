@@ -2,6 +2,7 @@
 layout: assignment
 title: Multi-dimensional Fortran and More I/O
 published: true
+due: 02/13/17 13:00
 ---
 
 Today we will continue to use our code from last week and retrofit it for this week. Make sure to copy the script into this week's folder and rename it to ensure we do not get confused.

@@ -2,6 +2,7 @@
 layout: assignment
 title: Introduction to Fortran
 published: true
+due: 02/03/17 17:00
 ---
 
 Our ultimate goal in the assignments for this week and next week is to test the hypothesis that when the zonal wind is positive, or westerly, the relative humidity will be lower compared to when the zonal wind is negative, or easterly. One could make the conjecture winds predominantly coming off of Lake Michigan will be more humid than those coming from the continent.
