@@ -1,24 +1,20 @@
 ---
 layout: lecture
-published: false
-title: Fortran Modules, CLI, and Timestepping
+published: true
+title: Fortran CLI, Modules, and Libraries
 ---
 
 # Prelude
 
-We have seen in the past how to implement subprograms into Fortran, so today we will be expanding on that concept through _modules_. We will also see how you can interact with the user while a Fortran program is running to alter what happens at runtime. Finally, the concept of timestepping and numerical methods will be touched on in preparation for next week's Fortran lesson.
+Today we will see how you can interact with the user while a Fortran program is running to alter the runtime behavior. In the past, we have seen in the past how to implement subprograms into Fortran, so we also will be expanding on that concept through _modules_.
 
-First, we need to clone the repository for this week.
+But first, we need to clone the repository for this week.
 
 ~~~ bash
 $ git clone https://github.com/aos573/fortran-week-three
 
 $ cd fortran-week-three
 ~~~
-
-## Modules
-
-A _module_ in Fortran is essentially a collection of subprograms that share a common theme or purpose--such as reading a file type or performing certain calculations--that have their own variables and routines. 
 
 ## Command Line Interface
 
@@ -236,7 +232,7 @@ $ ./speaker
 
 When there are more variables requested than have been specified on the command line, Fortran will fill those character variables with spaces. In this case, because `dialoguenumber` has a size of 1, a single space is given. To make it easier on the user to know that something is awry, we can use a function to check that the number of arguments provided is the correct number--and if it is not correct, we can tell the user what to do.
 
-~~ f90
+~~~ f90
 PROGRAM speaker
 ! PROGRAM speaker
 ! by Buckingham U. Badger
@@ -290,5 +286,32 @@ ELSE
 END IF
 
 END PROGRAM
-~~
+~~~
 
+## Modules
+
+A _module_ in Fortran is essentially a collection of subprograms that share a common theme or purpose--such as performing certain calculations--that have their own set of variables and routines. In addition, they can be useful for defining parameters as variables that should be shared throughout code. Their function can be considered redundant or not completely purposeful, but they help to keep code tidy and separated logically. Let's create a new file that will be a special module called `arithmetic` in `arithmetic.f90`.
+
+~~~ bash
+$ nano arithmetic.f90
+~~~
+
+The syntax for defining a module is similar to the other program and subprogram definitions:
+
+~~~ f90
+MODULE arithmetic
+
+END MODULE arithmetic
+~~~
+
+## Libaries
+
+Libraries are similar to modules but are specified at compilation time. No variables from libraries are accessible. Instead, only their functions or subroutines are. These crop up more in the cases
+
+## While 
+
+
+
+# Lab Assignment
+
+[Follow this link to our assignment](/assignments/4-fortran-modules-timestep.html).
