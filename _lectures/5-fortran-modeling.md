@@ -17,7 +17,11 @@ $ cd fortran-week-four
 
 # Numerical Modeling
 
-By definition from the American Meteorological Society (AMS), numerical modeling is the "numerical construction of approximate solutions to the governing equations", or in more details, the process when "solutions are obtained by assigning discrete values to temporal and spatial derivatives in order to convert the governing differential equations into algebraic equations that can be solved by using computational methods." This basically sums up what climate and weather models do. Today we will try to numerically model a simple dynamic system with only temporal derivatives, or in other words, ordinary differential equations.
+By definition from the American Meteorological Society (AMS), numerical modeling is the "numerical construction of approximate solutions to the governing equations", or in more details, the process when "solutions are obtained by assigning discrete values to temporal and spatial derivatives in order to convert the governing differential equations into algebraic equations that can be solved by using computational methods." This basically sums up what climate and weather models do. Today we will try to numerically model a simple dynamic system with only temporal derivatives, or in other words, ordinary differential equations (ODEs).
+
+A common dynamic model consisting of ODEs looks like this:
+
+$$dx_1/dt=f_1(x_1,x_2,...,x_n)$$
 
 ## The Lorenz-63 model
 
@@ -27,7 +31,7 @@ The dynamic system we will model today is widely known as the Lorenz-63 model. I
 
 The default parameter values are σ=10, β=8/3 and ρ=28. This paper and the Lorenz-63 model marked the origin of the chaos theory. It's also the origin of the "butterfly effect" and the 2-week upper limit for possible weather forecast.
 
-![alt text](https://commons.wikimedia.org/wiki/File:Lorenz_system_r28_s10_b2-6666.png#/media/File:Lorenz_system_r28_s10_b2-6666.png "Lorenz-63 Butterfly")
+![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Lorenz_system_r28_s10_b2-6666.png/1920px-Lorenz_system_r28_s10_b2-6666.png "Lorenz-63 Butterfly")
 
 ## Integration Schemes
 
