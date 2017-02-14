@@ -21,11 +21,11 @@ By definition from the American Meteorological Society (AMS), numerical modeling
 
 A common dynamic model consisting of ODEs looks like this:
 
-$$dx_1/dt=f_1(x_1,x_2,...,x_n)$$
+![alt text](/lectures/week5/Picture1.png "ODEs")
 
 ## The Lorenz-63 model
 
-The dynamic system we will model today is widely known as the Lorenz-63 model. It came from the groundbreaking 1963 paper "Deterministic Nonperiodic Flow" [Link](http://dx.doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2) by Edward Norton Lorenz [Wiki](https://en.wikipedia.org/wiki/Edward_Norton_Lorenz). The system consists of 3 equations and 3 variables:
+The dynamic system we will model today is widely known as the Lorenz-63 model. It came from the groundbreaking 1963 paper ["Deterministic Nonperiodic Flow"](http://dx.doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2) by [Edward Norton Lorenz](https://en.wikipedia.org/wiki/Edward_Norton_Lorenz). The system consists of 3 equations and 3 variables:
 
 ![alt text](https://wikimedia.org/api/rest_v1/media/math/render/svg/5f993e17e16f1c3ea4ad7031353c61164a226bb8 "Lorenz-63 Equations")
 
@@ -35,13 +35,32 @@ The default parameter values are σ=10, β=8/3 and ρ=28. This paper and the Lor
 
 ## Integration Schemes
 
+In order to solve ODEs, we need to solve how the model state (x, y, z) moves with time using time integration schemes. These schemes are methods to assign discrete values to temporal derivatives so that we can approximate the movement of the model state in time. Some popular schemes include the Forward Euler scheme, the leapfrog scheme and the Runge-Kutta schemes.
 
+Forward Euler scheme:
+
+![alt text](/lectures/week5/Picture2.png "forward")
+
+Fortran expression:
+```f90
+FUNCTION forward(x, dt)
+    IMPLICIT NONE
+    REAL, INTENT(in) :: x
+    REAL :: forward
+    forward = x + dt * F(x)
+```
+
+Leapfrog scheme:
+![alt text](/lectures/week5/Picture3.png "lf")
+
+Runge-Kutta scheme (order 4):
+![alt text](/lectures/week5/Picture4.png "RK4")
 
 # Let's code!
 
 ## Model Equations
 
-The coding of the model equations are fairly straightforward. There are two options to treat the three equations. You can either write all three in one subroutine or each one in a separate function. I prefer to use function for simple calculations because it's easier to integrate into the code and harder to mess up the input variables. We will put all the functions and subroutines we need today in a module. I'll call it integrations.
+The coding of the model equations are fairly straightforward. There are two options to treat the three equations. You can either write all three in one subroutine or each one in a separate function. I prefer to use function for simple calculations because it's easier to integrate into the code and harder to mess up the input variables. You can certainly use either function or subroutine for the model equations. We will put all the functions and subroutines we need today in a module. Let's call it integrations.
 
 ```f90
 MODULE integrations
@@ -117,9 +136,9 @@ PROGRAM Lorezn63
     INTEGER :: i       !For loop
     INTEGER :: N       !Number of cycles
     REAL :: dt         !Integration step length
-    REAL :: x0, y0, z0, x1, y1, z1
+    REAL :: x0, y0, z0, x1, y1, z1  !current and next model state
 
-    !Set the parameters
+    !Set the initial conditions and parameters
     x0 = 0
     y0 = 0
     z0 = 0
@@ -127,7 +146,7 @@ PROGRAM Lorezn63
     N = 10000
 
     !Open a file to write the output of the model
-    OPEN ( Unit = 8, File = 'forward.txt', Status = 'REPLACE', Action = 'WRITE')
+    OPEN ( Unit = 8, File = 'Lorenz63.txt', Action = 'WRITE')
     WRITE ( 8, * ) x0, y0, z0
 
     DO i = 1, N
