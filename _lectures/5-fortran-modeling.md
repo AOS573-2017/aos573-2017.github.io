@@ -21,7 +21,7 @@ By definition from the American Meteorological Society (AMS), numerical modeling
 
 A common dynamic model consisting of ODEs looks like this:
 
-![alt text](/lectures/week5/Picture1.png "ODEs")
+![alt text](https://github.com/AOS573/aos573.github.io/blob/master/_lectures/week5/Picture1.png "ODEs")
 
 ## The Lorenz-63 model
 
@@ -39,22 +39,25 @@ In order to solve ODEs, we need to solve how the model state (x, y, z) moves wit
 
 Forward Euler scheme:
 
-![alt text](/lectures/week5/Picture2.png "forward")
+![alt text](https://github.com/AOS573/aos573.github.io/blob/master/_lectures/week5/Picture2.png "forward")
 
 Fortran expression:
 ```f90
 FUNCTION forward(x, dt)
     IMPLICIT NONE
-    REAL, INTENT(in) :: x
+    REAL, INTENT(in) :: x, dt
     REAL :: forward
     forward = x + dt * F(x)
+END FUNCTION
 ```
 
 Leapfrog scheme:
-![alt text](/lectures/week5/Picture3.png "lf")
+
+![alt text](https://github.com/AOS573/aos573.github.io/blob/master/_lectures/week5/Picture3.png "lf")
 
 Runge-Kutta scheme (order 4):
-![alt text](/lectures/week5/Picture4.png "RK4")
+
+![alt text](https://github.com/AOS573/aos573.github.io/blob/master/_lectures/week5/Picture4.png "RK4")
 
 # Let's code!
 
@@ -160,7 +163,9 @@ PROGRAM Lorezn63
 END PROGRAM Lorezn63
 ```
 
-For now, the output of the model is only in text format. We definitely want to see the results and admire the genius of the chaos theory. In the repository we cloned for this week, there is a piece of code that can be used to plot the output.
+For now, the output of the model is only in text format. We definitely want to see the results and admire the genius of the chaos theory. In the repository we cloned for this week, there is a piece of matlab code called `plot_lorenz.m` that can be used to plot the output. We will not get into the details of the code today, as you will learn about it in the next few weeks. 
+
+Copy `plot_lorenz.m` into the folder where the Lorenz-63 model and output are.
 
 Sometimes we want to change the initial conditions, the timestep length and the number of integrations. If these parameters are "hardcoded" into the program, I have to recompile the program every time I want to change the parameters. There are two ways to avoid recompilation. The first is to input the parameters via the command line as we learned last week. The second and better way is to write the desired parameters in a file and read them in the program.
 
