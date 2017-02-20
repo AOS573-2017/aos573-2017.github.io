@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: false
+published: true
 title: Numerical Modeling
 ---
 
@@ -22,6 +22,8 @@ By definition from the American Meteorological Society (AMS), numerical modeling
 A common dynamic model consisting of ODEs looks like this:
 
 ![alt text](https://github.com/AOS573/aos573.github.io/blob/master/_lectures/week5/Picture1.png "ODEs")
+
+Some ODEs can be solved analytically, namely their solutions can be described by some exact formula. A simple example is `dx/dt=2x`, the solution to which is `x=x^2+C`, where `C` is a given constant. However, most ODEs we encounter will be impossibly hard to solve analytically. With the powerful computers today, we non-mathematicians usually rely on the numerical methods.
 
 ## The Lorenz-63 model
 
@@ -163,9 +165,9 @@ PROGRAM Lorezn63
 END PROGRAM Lorezn63
 ```
 
-For now, the output of the model is only in text format. We definitely want to see the results and admire the genius of the chaos theory. In the repository we cloned for this week, there is a piece of matlab code called `plot_lorenz.m` that can be used to plot the output. We will not get into the details of the code today, as you will learn about it in the next few weeks. 
+For now, the output of the model is only in text format. We definitely want to see the results and admire the genius of the chaos theory. In the repository we cloned for this week, there is a piece of matlab code called `plot_lorenz.m` that can be used to plot the output. We will not get into the details of the code today, as you will learn about it in the next few weeks.
 
-Copy `plot_lorenz.m` into the folder where the Lorenz-63 model and output are.
+Copy `plot_lorenz.m` into the folder where the Lorenz-63 model and output are. Open Matlab and navigate to the that directory. Then you can either run `plot_lorenz.m` from the Matlab command line, or open the file and run it from the editor. The code will generate two figures, one with the timeseries of the three variables and the other with a 3D visualization.
 
 Sometimes we want to change the initial conditions, the timestep length and the number of integrations. If these parameters are "hardcoded" into the program, I have to recompile the program every time I want to change the parameters. There are two ways to avoid recompilation. The first is to input the parameters via the command line as we learned last week. The second and better way is to write the desired parameters in a file and read them in the program.
 
