@@ -2,6 +2,7 @@
 layout: assignment
 published: true
 title: Fortran modeling
+due: 02/27/17 13:00
 ---
 
 1. Add the ability to input initial conditions and timestep length via command line or input file.
