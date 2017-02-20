@@ -21,7 +21,7 @@ By definition from the American Meteorological Society (AMS), numerical modeling
 
 A common dynamic model consisting of ODEs looks like this:
 
-![alt text](https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture1.png | width=200)
+<img src="https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture1.png" height="400">
 
 Some ODEs can be solved analytically, namely their solutions can be described by some exact formula. A simple example is `dx/dt=2x`, the solution to which is `x=x^2+C`, where `C` is a given constant. However, most ODEs we encounter will be impossibly hard to solve analytically. With the powerful computers today, we non-mathematicians usually rely on the numerical methods.
 
@@ -33,9 +33,7 @@ The dynamic system we will model today is widely known as the Lorenz-63 model. I
 
 The default parameter values are σ=10, β=8/3 and ρ=28. This paper and the Lorenz-63 model marked the origin of the chaos theory. It's also the origin of the "butterfly effect" and the 2-week upper limit for possible weather forecast.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Lorenz_system_r28_s10_b2-6666.png/1920px-Lorenz_system_r28_s10_b2-6666.png" width="300">
-
-<!-- ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Lorenz_system_r28_s10_b2-6666.png/1920px-Lorenz_system_r28_s10_b2-6666.png "Lorenz-63 Butterfly") -->
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Lorenz_system_r28_s10_b2-6666.png/1920px-Lorenz_system_r28_s10_b2-6666.png" width="500">
 
 ## Integration Schemes
 
@@ -43,7 +41,7 @@ In order to solve ODEs, we need to solve how the model state (x, y, z) moves wit
 
 Forward Euler scheme:
 
-![alt text](https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture2.png)
+<img src="https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture2.png" height="100">
 
 Fortran expression:
 ```f90
@@ -57,11 +55,11 @@ END FUNCTION
 
 Leapfrog scheme:
 
-![alt text](https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture3.png)
+<img src="https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture3.png" height="100">
 
 Runge-Kutta scheme (order 4):
 
-![alt text](https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture4.png)
+<img src="https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture4.png" height="500">
 
 # Let's code!
 
