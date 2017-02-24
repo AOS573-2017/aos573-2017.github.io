@@ -10,5 +10,5 @@ permalink: /schedule/
 <tr><td>2</td><td>Programs, printing, reading, loops, subprograms</td><td>Fortran</td><td><a href="/lectures/2-fortran-intro.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/2-fortran-intro.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
 <tr><td>3</td><td>Multidimensional arrays and more I/O</td><td>Fortran</td><td><a href="/lectures/3-fortran-arrays-io.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/3-fortran-arrays-io.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
 <tr><td>4</td><td>Fortran CLI and Modules</td><td>Fortran</td><td><a href="/lectures/4-fortran-cli-modules-lib.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/4-fortran-cli-modules-lib.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
-
+<tr><td>5</td><td>Fortran Modeling</td><td>Fortran</td><td><a href="/lectures/5-fortran-modeling.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/5-fortran-modeling.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
 </table>
