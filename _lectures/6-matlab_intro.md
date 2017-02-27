@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: false
+published: true
 title: Introduction to Matlab
 ---
 
@@ -150,3 +150,27 @@ scatter(var2,var3) % plots var2 on the x axis and var3 on the y axis
 title('var2 vs var3')
 
 ~~~
+
+Line plots can be made with the `plot` command, but in general, you want either a monotonic x axis, from your variable, or a monotonic y axis from your variable. We can also plot multiple lines at once using the `hold on` command.
+
+~~~ matlab
+x = 1:length(var1);
+
+figure(4)
+plot(x,var1) % plots the index of var1 vs its value
+
+hold on
+
+plot(x,var2) % same as above except with var2
+
+plot(x,var3) 
+
+~~~
+Nice! we see three different lines based on their index values. It would be nice if we could see which line is which though
+
+~~~ matlab
+legend('var1','var2','var3')
+~~~
+
+# Lab Assignment
+[Follow this link to our assignment](/assignments/6-matlab1.html).
