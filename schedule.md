@@ -11,6 +11,6 @@ permalink: /schedule/
 <tr><td>3</td><td>Multidimensional arrays and more I/O</td><td>Ethan</td><td>Fortran</td><td><a href="/lectures/3-fortran-arrays-io.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/3-fortran-arrays-io.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
 <tr><td>4</td><td>Fortran CLI and Modules</td><td>Ethan</td><td>Fortran</td><td><a href="/lectures/4-fortran-cli-modules-lib.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/4-fortran-cli-modules-lib.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
 <tr><td>5</td><td>Fortran Modeling</td><td>Feiyu</td><td>Fortran</td><td><a href="/lectures/5-fortran-modeling.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/5-fortran-modeling.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
-<tr><td>6</td><td>Introduction to Matlab</td><td>Zach</td><td>Matlab</td><td><a href="/lectures/6-matlab_intro.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/6-matlab_intro.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
+<tr><td>6</td><td>Introduction to Matlab</td><td>Zach</td><td>Matlab</td><td><a href="/lectures/6-matlab_intro.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/6-matlab1.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
 
 </table>
