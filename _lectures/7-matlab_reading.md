@@ -4,6 +4,14 @@ published: false
 title: Reading data, functions, and making figures in Matlab
 ---
 
+
+~~~ bash
+$ git clone https://github.com/AOS573/matlab-week7.git
+
+$ cd matlab-week6
+~~~
+
+
 # Reading data in Matlab
 
 Matlab can be both easier and more difficult to read in data compared to Fortran and Python. Simply jumping through lines to read in a text file in Fortran or Python only takes a couple of lines of code at most, however, in Matlab, this can be seen as a semi-impossible task to do by hand. Luckily, Matlab has many built in applications that can make reading in data fairly easy. The most important thing to learn about it the `generate script`, or `generate function` command. Both of these are not really commands you call in a script or command line, but are options that you can click to, and both can give you a template for reading in many sorts of data. To find these commands, you can right-click on a text file, or csv file, click on import data, which should bring up a new interface. This new interface should have a large button saying import data, but below that, it should give you the option to generate a script or a function. In general, you will have to do this for every file type you want to read, but the relative amount of work is actually fairly low, and if you have to do it frequently enough, you will become experienced enough to build yourself a template for that. The nice thing about the scripts that matlab auto-generates is that they are actually very well commented. The example below reads in a sounding file:
