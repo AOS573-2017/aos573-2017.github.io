@@ -1,7 +1,7 @@
 ---
 layout: lecture
 published: false
-title: Reading data, and making figures in Matlab
+title: Reading data, functions, and making figures in Matlab
 ---
 
 # Reading data in Matlab
@@ -102,3 +102,15 @@ THTV = cell2mat(raw(:, 11));
 %% Clear temporary variables
 clearvars filename startRow formatSpec fileID dataArray ans raw col numericData rawData row regexstr result numbers invalidThousandsSeparator thousandsRegExp me R;
 ~~~
+
+The previous script read in a .txt file, but the same methodology can be applied for reading in an excel file, .dat file, as well as a few other file types. There are also some well organized and documented file types such as HDF and netCDF that recent versions of Matlab have built-in functions for reading in, but even older versions can read with the appropriate extension.
+
+# Functions
+
+Notice that the previous script was custiomized to load in a specific sounding .txt file. If we wanted to generalize this script to load in various sounding files, you would turn this script into a function. Functions in Matlab encompass both of what functions and subroutines were in Fortran. You create a function file in the same way you write a script in matlab, except that you provide some specifications at the beginning of the script:
+
+~~~ matlab
+function [variables] = function_name(inputs)
+~~~
+
+Note that this is the top of the script, you're telling matlab that this script is a function, it has outputs that in this case are `variables`, has a function name called `function_name`, and has inputs with the name `inputs`.
