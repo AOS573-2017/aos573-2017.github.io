@@ -232,6 +232,7 @@ THTE = cell2mat(raw(:, 10));
 THTV = cell2mat(raw(:, 11));
 
 ~~~
+
 If you write something similar to this in the Matlab editor, you will notice that Matlab treats functions in a way that is similar to a loop. However, generated functions in matlab do not have an `end` at the end. Matlab is fairly gentle in this aspect, and you can end your functions however you like.
 
 # Combining reading in data, functions, statistics, and figure making
@@ -260,6 +261,9 @@ int = 0.5; % our horizontal resolution
 nlat = (-37+int/2):int:(37-int/2); % new latitudes
 nlon = (-180+int/2):int:(180-int/2); % new longitudes
 
-sfc_rain_new = interp2(sfc_lon,sfc_lat,SFC_RAIN,nlon,nlat');
+sfc_rain_new = interp2(sfc_lon,sfc_lat,SFC_RAIN,nlon,nlat'); % note that the "'" re-oirients that variable
+
+~~~
+
 
 
