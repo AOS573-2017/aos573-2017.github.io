@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: false
+published: true
 title: Reading data, functions, and making figures in Matlab
 ---
 
@@ -8,7 +8,7 @@ title: Reading data, functions, and making figures in Matlab
 ~~~ bash
 $ git clone https://github.com/AOS573/matlab-week7.git
 
-$ cd matlab-week6
+$ cd matlab-week7
 ~~~
 
 
