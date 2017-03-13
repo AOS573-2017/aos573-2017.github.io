@@ -14,7 +14,7 @@ $ cd matlab-week8
 This week will be a fairly short lecture, followed by a group assignment, focusing on the application of statistics in Matlab. To highlight some of those applications, we will first load in our practice data and see what it looks like.
 
 ~~~ matlab
-% this is a script to practice statistica methods, by Zach Hansen
+% this is a script to practice statistical methods, by Zach Hansen
 
 clear all
 close all
