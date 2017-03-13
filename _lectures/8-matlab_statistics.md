@@ -6,9 +6,9 @@ title: More statistics in Matlab
 ---
 
 ~~~ bash
-$ git clone https://github.com/AOS573/matlab-week8.git
+$ git clone https://github.com/AOS573/matlab_week8.git
 
-$ cd matlab-week8
+$ cd matlab_week8
 ~~~
 
 This week will be a fairly short lecture, followed by a group assignment, focusing on the application of statistics in Matlab. To highlight some of those applications, we will first load in our practice data and see what it looks like.
