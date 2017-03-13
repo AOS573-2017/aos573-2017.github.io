@@ -1,7 +1,7 @@
 
 ---
 layout: lecture
-published: true
+published: false
 title: More statistics in Matlab
 ---
 
