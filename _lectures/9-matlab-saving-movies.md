@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: false
+published: true
 title: Saving and Movies
 ---
 
