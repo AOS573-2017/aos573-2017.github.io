@@ -102,3 +102,5 @@ end
 mov = close(mov);
 ~~~
 
+# Lab Assignment
+[Follow this link to our assignment](/assignments/9-matlab4.html).
