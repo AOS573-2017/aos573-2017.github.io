@@ -16,8 +16,11 @@ This data contains pressure, height, precipitating water (QP) (g/kg), and temper
 1b Define some x and y coordinates for our plotting.
 
 2a Make a filled contour plot of QP at the 10th vertical level. 
-2b Decide upon a good range of values to make these contours
+
+2b Decide upon a good range of values to make these contours.
+
 2c Turn off the contour lines of the previous figure.
+
 2d Label your axes and give a title!
 
 3 In script, save the QP contour plots of vertical levels 11-20. Break it down into steps for more Zach points.
