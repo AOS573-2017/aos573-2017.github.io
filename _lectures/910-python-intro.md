@@ -40,13 +40,13 @@ The first step to laying out your code is to not type anything at all.  Think ab
 
 
 There are three types of numbers you will use when programming in python:
-	int: Integers ex: 3
-	float: Similar to REALS in Fortran or double in MatLab ex: 3.5
-	complex: Any number with an imaginary portion ex: 3.5 + 3j
+	* int: Integers ex: 3
+	* float: Similar to REALS in Fortran or double in MatLab ex: 3.5
+	* complex: Any number with an imaginary portion ex: 3.5 + 3j
 
 There are characters and strings in python.
-	'p' = character
-	'python' = string
+	* 'p' = character
+	* 'python' = string
 	
 Types of data structures:
 
@@ -134,7 +134,7 @@ Common mistakes in creating and utilizing functions include...
 
 ~~~ python
 c, d = example_function(1, 2)
-TypeError: (Int, float) object is not iterable
+TypeError: (int, float) object is not iterable
 ~~~
 
 The example function only returns a single float or int, trying to allocate this single float/int to both c and d is not possible.
@@ -206,10 +206,15 @@ will install the numpy module to your computer.
 
 The same format can be used for most python modules.
 Please install the following modules now using pip:
-* pathfind
+* pathlib
 * netCDF4
 * savReaderWriter
 
 Some modules do not implement pip installation and must be built by source.  To do this you must find the documentation and download link for the module, run the command python setup.py install inside the first level of the directory installed, and test the installation by trying to import the module in python.  It is important when you run into problems installing a module to check the source code for any dependencies the module may have.  Some modules rely on the user having other, specific modules installed.  The source code for almost any python module can be found using Google.
+
+## Exercise
+
+Let's see if you successfully installed pathlib successfully and learn about checking for paths.  You can check if a path, such as /home/adouglas2/homework/project.py, exists by using the pathlib or os modules.  With most things in coding, there are multiple ways to accomplish the same task that are all technically correct.
+
 
 
