@@ -1,8 +1,8 @@
 ---
 layout: assignment
-published: true
-title: Matlab statistics and reading in data
-due: 03/13/17 13:00
+published: false
+title: Fizzbuzz
+due: 
 ---
 
 # Assignment
