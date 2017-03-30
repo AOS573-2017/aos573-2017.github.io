@@ -13,7 +13,7 @@ You can also, at any time, just open python by typing python into the command li
 Now to make our Helloworld.py script, we'll open it from command line using my favorite editor gedit.  Feel free to use any editor you like, in this case the means will not change the end product.
 
 ~~~ bash
-gedit Helloworld.py
+ $ gedit Helloworld.py
 ~~~
 
 
@@ -64,8 +64,8 @@ this_is_a_complex = 1.5 + 1j
 this_is_a_list = [1, 2, 3.5]
 this_is_a_tuple = (1, 2, 3.5)
 
-this_is_a_dictionary = {'this_is_a_list': this_is_a_list}
-print this_is_a_dictionary['this_is_a_list']
+this_is_a_dictionary = {'this_is_a_key_to_a_list': this_is_a_list}
+print this_is_a_dictionary['this_is_a_key_to_a_list']
 ~~~
 
 
@@ -75,22 +75,25 @@ print this_is_a_dictionary['this_is_a_list']
 ~~~
 
 You do not need to declare types for variables in python.
+~~~ gfortran
 In Fortran...
 REAL :: x, y
 
 X = 3.5
 Y = 4.5
+~~~
 
 becomes in python
+~~~ python
 x = 3.5
 y = 4.5
-
+~~~
 
 To create a string, just put "" or '' around it.
 
 ~~~ python
 hello = 'Hello, world!'
-~~~'
+~~~
 
 To create a boolean, or logical, variable you only need to declare it as True or False.
 
