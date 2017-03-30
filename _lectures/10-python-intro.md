@@ -80,7 +80,7 @@ To create a string, just put "" or '' around it.
 hello = 'Hello, world!'
 ~~
 To create a boolean, or logical, variable you only need to declare it as True or False.
-~~python
+~~ bash
 python_is_cool = True
 ~~
 Variables can be reassigned at any time as a different type.  To change the type of the variable, you can reassign it by casting it as another type.
@@ -132,7 +132,7 @@ def function_1(a, b):
 	return (a+b) * (a-b)
 ~~
 This will throw a syntax error.  You must define the function 1 before function 2 if function 1 will be used in function 2.  This is one reason it is useful and worthwhile to think of the layout of your code ahead of time before starting any new scripts.
-~~python
+~~ bash
 ran = 4
 def random_function(a):
 	return (a + ran ) / (a - ran ) 
