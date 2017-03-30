@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: false
+published: true
 title: Introduction to Python
 ---
 
@@ -78,6 +78,7 @@ You do not need to declare types for variables in python.
 
 In Fortran...
 ~~~ gfortran
+IMPLICIT NONE
 REAL :: x, y
 
 X = 3.5
