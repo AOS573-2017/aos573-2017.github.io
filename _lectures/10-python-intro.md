@@ -48,11 +48,11 @@ There are characters and strings in python.
 	
 Types of data structures:
 
-[Arrays in python are called lists and can be created using [].  Lists and items in the list can be altered.]
+* Arrays in python are called lists and can be created using [].  Lists and items in the list can be altered.
 
-(Tuples in python are created using () and cannot be altered once created.)
+* Tuples are like arrays however they are created using () and cannot be altered once created.
 
-{Dictionaries are a useful type of data structure.  They can assign a key to an object, and when you reference a key to a dictionary it returns the item it references.}
+* Dictionaries are a useful type of data structure.  They can assign a key to an object, and when you reference a key to a dictionary it returns the item it references.
 	
 	
 ~~~ example.py
