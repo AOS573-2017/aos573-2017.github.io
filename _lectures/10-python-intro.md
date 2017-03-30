@@ -14,6 +14,12 @@ You can also, at any time, just open python by typing python into the command li
 python
 ~~~
 
+Now to make our Helloworld.py script, we'll open it from command line using my favorite editor gedit.  Feel free to use any editor you like, in this case the means will not change the end product.
+
+~~~ bash
+gedit Helloworld.py
+~~
+
 Using this Helloworld.py, we will do the first thing all programmers do when starting a new language.  Inside of the script start including #/usr/bin/env python at the top of the script.  Then on a new line, print out Hello, world!
 
 ~~~ bash
