@@ -26,7 +26,9 @@ The #usr/env/bin python signifies in the script that the language being used is 
 
 ##Code Layout
 
-People like python because it is a readable programming language.  Unlike Fortran, where you have commands like OPEN(UNIT=10, 'FILENAME.TXT', mode='read'), or MatLab, where you manipulate arrays to the point of no return, python is incredibly easy to understanding when laid out and executed correctly.  Having readable code allows you to easily debug, pass on, or alter your code.  You can leave less comments about how things work because you intuitively understand just by looking at the code what is happening.  The first step to laying out your code is to not type anything at all.  Think about what you want your program to do.  Do you need to only plot some data?  Do you need to filter and plot data?  What functions should you make?  What variables will you need?  Having an idea of all the steps you do makes it easier to then sequentially fill in and execute code.  The proper way to layout your code is to have all variables needed in one place, and the steps, in order of necessity, after.
+People like python because it is a readable programming language.  Unlike Fortran, where you have commands like OPEN(UNIT=10, 'FILENAME.TXT', mode='read'), or MatLab, where you manipulate arrays to the point of no return, python is incredibly easy to understanding when laid out and executed correctly.  Having readable code allows you to easily debug, pass on, or alter your code.  You can leave less comments about how things work because you intuitively understand just by looking at the code what is happening.  
+
+The first step to laying out your code is to not type anything at all.  Think about what you want your program to do.  Do you need to only plot some data?  Do you need to filter and plot data?  What functions should you make?  What variables will you need?  Having an idea of all the steps you do makes it easier to then sequentially fill in and execute code.  The proper way to layout your code is to have all variables needed in one place, and the steps, in order of necessity, after.
 
 ##The Basics
 
@@ -41,10 +43,15 @@ There are characters and strings in python.
 	'python' = string
 	
 Types of data structures:
+
 	Arrays in python are called lists and can be created using [].  Lists and items in the list can be altered.
+	
 	Tuples in python are created using () and cannot be altered once created.
+	
 	Dictionaries are a useful type of data structure.  They can assign a key to an object, and when you reference a key to a dictionary it returns the item it references.
-~~ python
+	
+	
+~~ bash
 #example.py
 
 this_is_a_int = 1
@@ -76,20 +83,27 @@ y = 4.5
 
 
 To create a string, just put "" or '' around it.
-~~ python
+
+~~ bash
 hello = 'Hello, world!'
-~~
+~~'
+
 To create a boolean, or logical, variable you only need to declare it as True or False.
+
 ~~ bash
 python_is_cool = True
 ~~
+
 Variables can be reassigned at any time as a different type.  To change the type of the variable, you can reassign it by casting it as another type.
+
 ~~ bash
 x = '3.5'
 x = float(x)
 print x
 ~~
+
 To find the current type of a variable, use the type() operator.
+
 ~~ bash
 x = 3.5
 print type(x)
@@ -98,18 +112,24 @@ print type(x)
 
 
 Functions in python should are created using a def function_name(function_variables): format.
+
 ~~ bash
 def example_function(a, b):
 	return (a+b)/2
 ~~
+
 All functions must have a return argument and return through all logical paths.  You do not need to state the type of variable a function reads in, or the type of variable it will return.  
 Common mistakes in creating and utilizing functions include...
+
 ~~ bash
 c, d = example_function(1, 2)
 TypeError: (Int, float) object is not iterable
 ~~
+
 The example function only returns a single float or int, trying to allocate this single float/int to both c and d is not possible.
+
 Furthermore, there are rules of how adding and multiplying floats and ints works in python. There are many easy references online to understand the rules of int and float math.  Adding two ints and dividing by two may return the wrong answer because the value will be rounded to an int.  This mistake does not throw an error but is something to watch out for when coding.
+
 ~~ bash
 def new_example(a, b, split):
 	if split:
@@ -123,7 +143,9 @@ def new_example(a, b, split):
 	if a < 0:
 		return b -1
 ~~
+
 This function is not guaranteed to return.  Having logic within one function in order for to maximize the utility of one function is okay and can be appropriate, however you should always double check the function is always returning.  This function does not throw an error although it may not always return.
+
 ~~ bash
 def function_2(c, d):
 	exponent = function_1(1.0, 2.0)
@@ -131,13 +153,17 @@ def function_2(c, d):
 def function_1(a, b):
 	return (a+b) * (a-b)
 ~~
+
 This will throw a syntax error.  You must define the function 1 before function 2 if function 1 will be used in function 2.  This is one reason it is useful and worthwhile to think of the layout of your code ahead of time before starting any new scripts.
+
 ~~ bash
 ran = 4
 def random_function(a):
 	return (a + ran ) / (a - ran ) 
 ~~
+
 It is best practice in python to only use the variable passed to the function or created in the function.  Functions should be able to be copy and pasted to a module at any time without breaking, using a variable (ran) not defined within the function and not passed to the function can lead to future errors if the function is ever moved to a different script.
+
 The scope of variables is slightly different than in MatLab.  In MatLab, it is inherent that variables loaded in the main script are global variables and accessible to all functions within the script.  In python, this is not the case. You can define global variables within a function as so:
 ~~ bash
 def random_function(a):
