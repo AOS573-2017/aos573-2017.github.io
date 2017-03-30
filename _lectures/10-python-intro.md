@@ -75,8 +75,9 @@ print this_is_a_dictionary['this_is_a_key_to_a_list']
 ~~~
 
 You do not need to declare types for variables in python.
-~~~ gfortran
+
 In Fortran...
+~~~ gfortran
 REAL :: x, y
 
 X = 3.5
