@@ -175,15 +175,7 @@ def random_function(a):
 
 It is best practice in python to only use the variable passed to the function or created in the function.  Functions should be able to be copy and pasted to a module at any time without breaking, using a variable (ran) not defined within the function and not passed to the function can lead to future errors if the function is ever moved to a different script.
 
-The scope of variables is slightly different than in MatLab.  In MatLab, it is inherent that variables loaded in the main script are global variables and accessible to all functions within the script.  In python, this is not the case. You can define global variables within a function as so:
-
-~~~ python
-def random_function(a):
-	global RAN
-	return (a + ran ) / (a - ran )
-~~~
-
-This function becomes a bit high maintenance with using a global variable because you must guarantee RAN (global variables should be in all caps) exists and is a number.  Try to structure scripts with no global variables within functions, future changes will be easier to create and debug without global variables to worry about.
+The scope of variables is slightly different than in MatLab.  In MatLab, it is inherent that variables loaded in the main script are global variables and accessible to all functions within the script.  In python, this is not the case.  Never put variables in your main script within functions.  This can lead to headaches down the road if the functions change or the variables within a script change.
 
 ## Exercise
 
