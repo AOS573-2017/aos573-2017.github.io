@@ -4,7 +4,7 @@ published: false
 title: Introduction to Python
 ---
 
-##Python
+## Python
 
 Welcome to the first day of the rest of your (programming) life!  The last unit of the class will be the language Python.
 To create a Python script, start by opening a file in the editor and naming it anything you want making sure to include .py at the end of the filename.
@@ -24,13 +24,13 @@ print Hello, world!
 
 The #usr/env/bin python signifies in the script that the language being used is python.  You can alter the file parameters from command line in linus using the command 'chmod 777 Helloworld.py' to run the script from the command line without python in the beginning of the name.  In general, it is useful to alter scripts that will not be used as modules as executable.  The print command prints out to terminal. 
 
-##Code Layout
+## Code Layout
 
 People like python because it is a readable programming language.  Unlike Fortran, where you have commands like OPEN(UNIT=10, 'FILENAME.TXT', mode='read'), or MatLab, where you manipulate arrays to the point of no return, python is incredibly easy to understanding when laid out and executed correctly.  Having readable code allows you to easily debug, pass on, or alter your code.  You can leave less comments about how things work because you intuitively understand just by looking at the code what is happening.  
 
 The first step to laying out your code is to not type anything at all.  Think about what you want your program to do.  Do you need to only plot some data?  Do you need to filter and plot data?  What functions should you make?  What variables will you need?  Having an idea of all the steps you do makes it easier to then sequentially fill in and execute code.  The proper way to layout your code is to have all variables needed in one place, and the steps, in order of necessity, after.
 
-##The Basics
+## The Basics
 
 
 There are three types of numbers you will use when programming in python:
