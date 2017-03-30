@@ -185,8 +185,31 @@ def random_function(a):
 
 This function becomes a bit high maintenance with using a global variable because you must guarantee RAN (global variables should be in all caps) exists and is a number.  Try to structure scripts with no global variables within functions, future changes will be easier to create and debug without global variables to worry about.
 
+## Exercise
+
 It is very useful to think of the structure of all programs before you make them.  As an exmaple, please try the FizzBuzz exercise.  Fizzbuss is an interesting exercise because it tests your ability to think logically and creatively.  There are many ways to do the FizzBuzz exercise, try to think of 3 different ones, and we will go around class and have you talk about the worst way you thought of implementing FizzBuzz and the best way of implementing FizzBuzz.  
 
+## Modules
 
+Modules in python make the language robust, powerful, and extremely clever.  To use a module that comes with the normal python installation, open a python script or open python from the command line and try:
+
+~~~ python
+import this
+~~~
+
+To install a module in python, most modules have implemented a tool called pip you can easily use from command line to install and update many python modules.  One of the most widely used mathematic modules used in python is called numpy.  
+
+~~~ bash
+ $ pip install numpy
+~~~
+will install the numpy module to your computer.  
+
+The same format can be used for most python modules.
+Please install the following modules now using pip:
+* pathfind
+* netCDF4
+* savReaderWriter
+
+Some modules do not implement pip installation and must be built by source.  To do this you must find the documentation and download link for the module, run the command python setup.py install inside the first level of the directory installed, and test the installation by trying to import the module in python.  It is important when you run into problems installing a module to check the source code for any dependencies the module may have.  Some modules rely on the user having other, specific modules installed.  The source code for almost any python module can be found using Google.
 
 
