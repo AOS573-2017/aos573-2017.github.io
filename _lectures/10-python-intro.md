@@ -32,7 +32,7 @@ The first step to laying out your code is to not type anything at all.  Think ab
 
 ##The Basics
 
-~~
+
 There are three types of numbers you will use when programming in python:
 	int: Integers ex: 3
 	float: Similar to REALS in Fortran or double in MatLab ex: 3.5
