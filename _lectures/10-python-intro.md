@@ -44,11 +44,11 @@ There are characters and strings in python.
 	
 Types of data structures:
 
-	Arrays in python are called lists and can be created using [].  Lists and items in the list can be altered.
-	
-	Tuples in python are created using () and cannot be altered once created.
-	
-	Dictionaries are a useful type of data structure.  They can assign a key to an object, and when you reference a key to a dictionary it returns the item it references.
+[Arrays in python are called lists and can be created using [].  Lists and items in the list can be altered.]
+
+(Tuples in python are created using () and cannot be altered once created.)
+
+{Dictionaries are a useful type of data structure.  They can assign a key to an object, and when you reference a key to a dictionary it returns the item it references.}
 	
 	
 ~~ bash
@@ -64,6 +64,7 @@ this_is_a_tuple = (1, 2, 3.5)
 this_is_a_dictionary = {'this_is_a_list': this_is_a_list}
 print this_is_a_dictionary['this_is_a_list']
 ~~
+
 
 ~~ bash
  $ python example.py
@@ -165,11 +166,13 @@ def random_function(a):
 It is best practice in python to only use the variable passed to the function or created in the function.  Functions should be able to be copy and pasted to a module at any time without breaking, using a variable (ran) not defined within the function and not passed to the function can lead to future errors if the function is ever moved to a different script.
 
 The scope of variables is slightly different than in MatLab.  In MatLab, it is inherent that variables loaded in the main script are global variables and accessible to all functions within the script.  In python, this is not the case. You can define global variables within a function as so:
+
 ~~ bash
 def random_function(a):
 	global RAN
 	return (a + ran ) / (a - ran )
 ~~
+
 This function becomes a bit high maintenance with using a global variable because you must guarantee RAN (global variables should be in all caps) exists and is a number.  Try to structure scripts with no global variables within functions, future changes will be easier to create and debug without global variables to worry about.
 
 It is very useful to think of the structure of all programs before you make them.  As an exmaple, please try the FizzBuzz exercise.  Fizzbuss is an interesting exercise because it tests your ability to think logically and creatively.  There are many ways to do the FizzBuzz exercise, try to think of 3 different ones, and we will go around class and have you talk about the worst way you thought of implementing FizzBuzz and the best way of implementing FizzBuzz.  
