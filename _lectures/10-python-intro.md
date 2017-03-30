@@ -3,7 +3,7 @@ layout: lecture
 published: false
 title: Introduction to Python, the Best Language Ever (Seriously so much better than Fortran, you'll see)
 ---
-#Python
+##Python
 
 Welcome to the first day of the rest of your (programming) life!  The last unit of the class will be teaching you the language Python.
 To create a Python script, start by opening a file in the editor and naming it anything you want, including .py at the end of the filename.
@@ -12,7 +12,9 @@ You can also, at any time, just open python by typing python into the command li
 ~~ bash
 python
 ~~
+
 Using this Helloworld.py, we will do the first thing all programmers do when starting a new language.  Inside of the script start including #/usr/bin/env python at the top of the script.  Then on a new line, print out Hello, world!
+
 ~~ bash
 #usr/env/bin python
 
