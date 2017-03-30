@@ -23,8 +23,10 @@ Using this Helloworld.py, we will do the first thing all programmers do when sta
 ~~~ python
 #usr/env/bin python
 
-print Hello, world!
+print 'Hello, world!
 ~~~
+
+Note: you can use '' or "" to create a string or character.  Python is not a picky language.
 
 The #usr/env/bin python signifies in the script that the language being used is python.  You can alter the file parameters from command line in linus using the command 'chmod 777 Helloworld.py' to run the script from the command line without python in the beginning of the name.  In general, it is useful to alter scripts that will not be used as modules as executable.  The print command prints out to terminal. 
 

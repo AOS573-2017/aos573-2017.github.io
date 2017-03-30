@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: true
+published: false
 title: Introduction to Python
 ---
 
