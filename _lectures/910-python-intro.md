@@ -17,7 +17,7 @@ Now to make our Helloworld.py script, we'll open it from command line using my f
 ~~~
 
 
-Using this Helloworld.py, we will do the first thing all programmers do when starting a new language.  Inside of the script start including #/usr/bin/env python at the top of the script.  Then on a new line, print out Hello, world!
+Using this Helloworld.py, we will do the first thing all programmers do when starting a new language.  Inside of the script start by including `#/usr/bin/env` python at the beginning of the script.  Then on a new line, print out `Hello, world!`
 
 
 ~~~ python
