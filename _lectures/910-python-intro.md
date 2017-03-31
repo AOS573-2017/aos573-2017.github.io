@@ -130,7 +130,7 @@ $ float
 
 ## Functions
 
-Functions in Python should are created using a def function_name(function_variables): format.
+Functions in Python should are created using a `def function_name(function_variables):` format.
 
 ~~~ Python
 def example_function(a, b):
@@ -216,7 +216,7 @@ It is important when you run into problems installing a module to check the sour
 
 ## Exercise
 
-Let's see if you successfully installed pathlib successfully and learn about checking for paths.  You can check if a path, such as /home/adouglas2/homework/project.py, exists by using the pathlib or os modules.  With most things in coding, there are multiple ways to accomplish the same task that are all technically correct.
+Let's see if you successfully installed pathlib successfully and learn about checking for paths.  You can check if a path like /home/adouglas2/homework/project.py` exists by using the `pathlib` or `os` modules.  With most things in coding, there are multiple ways to accomplish the same task that are all technically correct.
 
 
 
