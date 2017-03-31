@@ -36,7 +36,7 @@ People like Python because it is a readable programming language.  Unlike Fortra
 
 The first step to laying out your code is to not type anything at all.  Think about what you want your program to do.  Do you need to only plot some data?  Do you need to filter and plot data?  What functions should you make?  What variables will you need?  Having an idea of all the steps you do makes it easier to then sequentially fill in and execute code.  The proper way to layout your code is to have all variables needed in one place, and the steps, in order of necessity, after.
 
-## The Basics
+## Types
 
 
 There are three types of numbers you will use when programming in Python:
@@ -123,11 +123,12 @@ x = float(x)
 print type(x)
 ~~~
 
-It instead will return float.
+It instead will print float.
 ~~~ bash
 $ float
 ~~~
 
+## Functions
 
 Functions in Python should are created using a def function_name(function_variables): format.
 
@@ -186,7 +187,7 @@ The scope of variables is slightly different than in MatLab.  In MatLab, it is i
 
 ## Exercise
 
-It is very useful to think of the structure of all programs before you make them.  As an exmaple, please try the FizzBuzz exercise.  Fizzbuss is an interesting exercise because it tests your ability to think logically and creatively.  There are many ways to do the FizzBuzz exercise, try to think of 3 different ones, and we will go around class and have you talk about the worst way you thought of implementing FizzBuzz and the best way of implementing FizzBuzz.  
+It is very useful to think of the structure of all programs before you make them.  As an exmaple, please try the FizzBuzz exercise.  Fizzbuzz is an interesting exercise because it tests your ability to think logically and creatively.  There are many ways to do the FizzBuzz exercise, try to think of 3 different ones, and we will go around class and have you talk about the worst way you thought of implementing FizzBuzz and the best way of implementing FizzBuzz.  
 
 ## Modules
 
@@ -196,12 +197,12 @@ Modules in Python make the language robust, powerful, and extremely clever.  To 
 import this
 ~~~
 
-To install a module in Python, most modules have implemented a tool called pip you can easily use from command line to install and update many Python modules.  One of the most widely used mathematic modules used in Python is called numpy.  
+To install a module in Python, most modules have implemented a tool called pip that allows you to easily install and update many Python modules.  One of the most widely used mathematic modules used in Python is called numpy, let's try installing it with pip.
 
 ~~~ bash
  $ pip install numpy
 ~~~
-will install the numpy module to your computer.  
+.  
 
 The same format can be used for most Python modules.
 Please install the following modules now using pip:
@@ -209,7 +210,9 @@ Please install the following modules now using pip:
 * netCDF4
 * savReaderWriter
 
-Some modules do not implement pip installation and must be built by source.  To do this you must find the documentation and download link for the module, run the command Python setup.py install inside the first level of the directory installed, and test the installation by trying to import the module in Python.  It is important when you run into problems installing a module to check the source code for any dependencies the module may have.  Some modules rely on the user having other, specific modules installed.  The source code for almost any Python module can be found using Google.
+Some modules do not implement pip installation and must be built by source.  To do this you must download and install the module manually.
+
+It is important when you run into problems installing a module to check the source code for any dependencies the module may have.  Some modules rely on the user having other, specific modules pre-installed.  The documentation for almost any Python module can be found using Google.
 
 ## Exercise
 
