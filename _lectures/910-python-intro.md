@@ -189,6 +189,8 @@ The scope of variables is slightly different than in MatLab.  In MatLab, it is i
 
 It is very useful to think of the structure of all programs before you make them.  As an exmaple, please try the FizzBuzz exercise.  Fizzbuzz is an interesting exercise because it tests your ability to think logically and creatively.  There are many ways to do the FizzBuzz exercise, try to think of 3 different ones, and we will go around class and have you talk about the worst way you thought of implementing FizzBuzz and the best way of implementing FizzBuzz.  
 
+https://aos573.github.io/assignments/10-python.html
+
 ## Modules
 
 Modules in Python make the language robust, powerful, and extremely clever.  To use a module that comes with the normal Python installation, open a Python script or open Python from the command line and try:
@@ -218,5 +220,5 @@ It is important when you run into problems installing a module to check the sour
 
 Let's see if you successfully installed pathlib successfully and learn about checking for paths.  You can check if a path like `/home/adouglas2/homework/project.py` exists by using the `pathlib` or `os` modules.  With most things in coding, there are multiple ways to accomplish the same task that are all technically correct.
 
-
+https://aos573.github.io/assignments/10-1-python.html
 
