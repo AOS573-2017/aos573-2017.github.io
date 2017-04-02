@@ -1,7 +1,7 @@
 ---
 layout: assignment
-published: false
-title: SOrting homework
+published: true
+title: Sorting homework
 due: 04/10/17
 ---
 
