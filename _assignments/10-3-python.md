@@ -6,7 +6,7 @@ due:
 ---
 
 # Assignment
-Sorting procedures are incredibly important when doing scientific programming, however, the way you sort through data depends on the size of the dataset.  Implement three different ways of sorting through a 1-dimensional list.  For each case, write out the pseudo-code the prodedure, explaining your methodology. 
+Sorting procedures are incredibly important when doing scientific programming, however, the way you sort through data depends on the size of the dataset.  Implement three different ways of sorting through a 1-dimensional list.  For each case, write out the pseudo-code the prodedure, explaining your methodology. You can choose if you want to sort from low to high, by increments, bin the data, etc.  This homework is to test the creativity of your logical thinking.  
 
 
 ## Help

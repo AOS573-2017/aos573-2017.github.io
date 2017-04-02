@@ -1,6 +1,6 @@
 ---
 layout: assignment
-published: false
+published: true
 title: Fizzbuzz
 due: 
 ---

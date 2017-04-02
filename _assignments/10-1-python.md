@@ -1,6 +1,6 @@
 ---
 layout: assignment
-published: false
+published: true
 title: Path finding
 due: 
 ---
