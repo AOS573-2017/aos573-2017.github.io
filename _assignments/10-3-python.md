@@ -1,8 +1,8 @@
 ---
 layout: assignment
 published: false
-title: Path finding
-due: 
+title: SOrting homework
+due: 04/10/17
 ---
 
 # Assignment
