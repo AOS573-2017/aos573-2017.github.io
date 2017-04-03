@@ -31,4 +31,4 @@ nested_list = [ [] for n in range(10) ]
 will create 0-9 (Python is an exclusive language) lists within the list `nested_list.`  
 
 
-As a hint, in the MatLab sections, Zach had you implement sorting of the arrays.  This can be recreated in Python as one of your three ways.
+As a hint, in the MatLab sections, Zach had you implement sorting and binning of the arrays.  This can be recreated in Python as one of your three ways.
