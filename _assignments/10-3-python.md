@@ -15,6 +15,13 @@ list_to_sort_bin = random.sample(xrange(100), 100)
 ~~~
 will create a list from 0 - 99 of 100 samples.  The first argument xrange(100) is the list of numbers used to populate a sample.  The second argument is the length of the list.  You can choose to increase or decrease the range or sample size however you like to test your sorting methods.
 
+You can alternatively use:
+~~~ python
+import random
+list_to_sort_bin = [random.random for i in range(100]
+~~~
+however, these numbers will only range from 0. to 1.0. You can choose to multiply by some number N to increase this range.
+
 
 ## Help
 For this assignment, the numpy module will be extremely helpful.  The functions you may use include:
