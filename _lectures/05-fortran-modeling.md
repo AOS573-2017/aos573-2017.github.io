@@ -173,4 +173,4 @@ Sometimes we want to change the initial conditions, the timestep length and the 
 
 # Lab Assignment
 
-[Follow this link to our assignment](/assignments/5-fortran-modeling.html).
+[Follow this link to our assignment](/assignments/05-fortran-modeling.html).

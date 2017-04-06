@@ -178,4 +178,4 @@ legend('var1','var2','var3')
 ~~~
 
 # Lab Assignment
-[Follow this link to our assignment](/assignments/6-matlab1.html).
+[Follow this link to our assignment](/assignments/06-matlab1.html).

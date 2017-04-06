@@ -148,4 +148,4 @@ RMSE_q = sqrt(mean((qv_299-q_y).^2));
 Thus we see that in this case, we get a better linear fit than quadratic fit, though the differences are fairly small.
 
 # Lab Assignment
-[Follow this link to our assignment](/assignments/8-matlab8.html).
+[Follow this link to our assignment](/assignments/08-matlab8.html).

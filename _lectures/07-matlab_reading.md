@@ -332,4 +332,4 @@ set(gca,'yscale','log')
 Now, if we subtract any of these values from 1, we can see what percentile they are associated with. i.e. 10^-3 is the 99.9% value of extremity. Another way to find a single percentile is to use the `prctile` command. In general, with the above techniques, you should be able to load in many file types, and then display their data, and quantify their distributions of data.
 
 # Lab Assignment
-[Follow this link to our assignment](/assignments/7-matlab2.html).
+[Follow this link to our assignment](/assignments/07-matlab2.html).

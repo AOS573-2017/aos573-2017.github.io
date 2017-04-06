@@ -718,4 +718,4 @@ END SUBROUTINE ktstomph
 
 # Lab Assignment
 
-[Follow this link to our assignment](/assignments/2-fortran-intro.html).
+[Follow this link to our assignment](/assignments/02-fortran-intro.html).

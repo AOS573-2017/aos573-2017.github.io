@@ -112,4 +112,4 @@ The other way to download the code is to manually visit the GitHub repository li
 
 # Lab Assignment
 
-[Follow this link to our first assignment](/assignments/1-intro.html).
+[Follow this link to our first assignment](/assignments/01-intro.html).

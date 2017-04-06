@@ -582,4 +582,4 @@ Note that either the `else if` or the `else` statements are optional when creati
 
 # Lab Assignment
 
-[Follow this link to our assignment](/assignments/3-fortran-arrays-io.html).
+[Follow this link to our assignment](/assignments/03-fortran-arrays-io.html).
