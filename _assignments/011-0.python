@@ -5,9 +5,14 @@ title: Building pyHDF from Source
 due: 
 ---
 
-## Building pyHDF from Source
+## Interpolation Exercise
 
-The source of pyHDF can be found here: https://support.hdfgroup.org/release4/obtain.html.  Use the documentation from the website and lecture to install pyHDF.  After installing, try inporting pyHDF into a python script to double check it works.  If you can successfully import pyHDF, clone python-week-2 from https://github.com/AOS573/python-week-two.git and try to follow the documentation provided from pyHDF's website to open the HDF file.
+Interpolation is incredibly important when gridding and plotting datasets.  Sometimes, you may want to match a dataset at 2.5 x 2.5 degrees to a dataset at 5 x 5 degrees.  There are functions built into different modules of Python to interpolate for you, however you should have an understanding of how the ‘black box’ interpolation functions work before using them.  
 
+For your assignment, build your own interpolation functions.  Start with a simple case of making first a function that takes in two points, a step, and returns a filled in list between the two points.
 
-As a tip, remember the unzipping command was for linux operating systems only.  Other operating systems may have a different way of unzipping files.  
+Test your function using your netCDF dataset.  First, by hand figure out what your function will return.  Then pass in the parameters to your interpolate function and see if you were right.  
+
+A useful function to understand would be the range function in Python.  You can read about it, and other build in functions, here: https://docs.python.org/2/library/functions.html#range.
+
+## Expanding on your Interpolation Function
