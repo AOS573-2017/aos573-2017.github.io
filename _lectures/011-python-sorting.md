@@ -70,6 +70,10 @@ print example_dataset['lon']
 longitdues = example_dataset['lon'][:]
 ~~~
 
+## Exercise
+
+Now that you can read in a netCDF file, learn how you can easily interpolate between the vast atmospheric datasets available for your use.
+
 ## Storing data in Python
 
 A very simple and easy to use module for storing data is the JSON module.  JSON allows you to make a txt object that hols the data in the original format.  JSON is extremely similar to the Pickle module built into Python, however some languages can read in Python JSON objects and vice-versa.  Creating and reading in JSON files is simple.
@@ -95,5 +99,10 @@ Whatever was dumped to the file will be loaded into the loaded variable.
 You can dump lists, dictionaries, tuples, etc. into JSON objects.  
 
 A very common error when creating JSON objects is the ValueError.  JSON does not allow ``numpy`` types to be dumped to a JSON object.  When interacting with arrays using numpy, the type changes from a float to np.float32.  To dump a numpy array using JSON, first you must cast every number in the array as a float.
+
+## Exercise
+
+Use your knowledge of JSOn and the two JSON objects in the ``python-week-two`` repository to test your binning skills.
+
 
 

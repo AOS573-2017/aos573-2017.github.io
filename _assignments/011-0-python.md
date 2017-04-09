@@ -1,6 +1,6 @@
 ---
 layout: assignment
-published: false
+published: true
 title: Interpolation
 due: 
 ---
@@ -25,4 +25,5 @@ A useful function to understand would be the range function in Python.  You can 
 Now that you have a function that interpolates between two numbers, how would you use this function to interpolate a dataset?  Try creating an expanded function that takes in a grid spacing of the incoming dataset, the new grid spacing you want, and the dataset you need to interpolate to a different grid spacing.  Unlike most datasets, you can assume the incoming dataset is a single list.  
 
 Remember in Python, if you use function_1 in function_2, function_1 msut come before function_2 in your script.
+
 
