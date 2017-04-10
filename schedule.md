@@ -15,6 +15,6 @@ permalink: /schedule/
 <tr><td>7</td><td>Matlab Data I/O and Functions</td><td>Zach</td><td>Matlab</td><td><a href="/lectures/07-matlab_reading.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/07-matlab2.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
 <tr><td>8</td><td>Statistics</td><td>Zach</td><td>Matlab</td><td><a href="/lectures/08-matlab_statistics.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/08-matlab3.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
 <tr><td>9</td><td>Animations and Movies</td><td>Zach</td><td>Matlab</td><td><a href="/lectures/09-matlab-saving-movies.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/09-matlab4.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
-<tr><td>10</td><td>Introduction to Python</td><td>Alyson</td><td>Python</td><td><a href="/lectures/910-python-intro.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/10-3-python.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
+<tr><td>10</td><td>Introduction to Python</td><td>Alyson</td><td>Python</td><td><a href="/lectures/10-python-intro.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/10-3-python.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
 
 </table>
