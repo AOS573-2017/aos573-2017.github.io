@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: false
+published: true
 title: Tools of the Trade
 ---
 
