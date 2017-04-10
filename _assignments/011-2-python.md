@@ -1,7 +1,7 @@
 ---
 layout: assignment
 published: true
-title: Week 2 Homework
+title: Multiple files
 due: 04/17/17
 ---
 
@@ -15,6 +15,8 @@ Alter your code so you can take in user input to change what variable is being b
 user_input = raw_input('What variable would you like to plot?')
 # Whatever the user enters in the command line gets assigned to user_input
 ~~~
+
+After binning three different variables, export the lists as part of a dictionary object using JSON.  The dictionary object should contain the name of the variables binned, binned lists. and your name.
 
 For extra credit, create a function that verifies the input vased on the list of variables available from the netCDF files.  Recall, to get a list of variables from a netCDF dataset, use  ``dataset_name.variables``.
 
