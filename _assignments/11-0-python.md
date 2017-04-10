@@ -16,7 +16,7 @@ def interpolate(point_1, point_2, step):
 	return interpolated_list
 ~~~
 
-Test your function using your netCDF dataset.  First, by hand figure out what your function will return.  Then pass in the parameters to your interpolate function and see if you were right.  
+Test your function using the 'exercise_one_data.nc' netCDF dataset choosing either 'lat_var' or 'lon_var'.  First, by hand figure out what your function will return.  Then pass in the parameters to your interpolate function and see if you were right.  
 
 A useful function to understand would be the range function in Python.  You can read about it, and other build in functions, here: https://docs.python.org/2/library/functions.html#range.
 
