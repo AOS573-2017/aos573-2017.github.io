@@ -5,7 +5,8 @@ title: Multiple files
 due: 04/17/17
 ---
 
-# Using the folder 'homework_files' in the python-week-two repo, go through all nectCDF files and bin the variable 'testlwp' by 10% limits.  
+
+Using the folder 'homework_files' in the python-week-two repo, go through all nectCDF files and bin the variable 'testlwp' by 10% limits.  
 
 To go through a list of files in Python, use the glob module (https://docs.python.org/2/library/glob.html)
 
