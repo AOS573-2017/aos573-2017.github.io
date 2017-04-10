@@ -20,7 +20,7 @@ After binning three different variables, export the lists as part of a dictionar
 
 For extra credit, create a function that verifies the input vased on the list of variables available from the netCDF files.  Recall, to get a list of variables from a netCDF dataset, use  ``dataset_name.variables``.
 
- Note: this is satellite data so there will be a fill value of None.  Be sure to filter out any values of None.
+Note: this is satellite data so there will be a fill value of None.  Be sure to filter out any values of None.
 
-
+Upload your single JSON file and your script to the python-week-two dropbox on Learn@Uw by classtime next week.
 
