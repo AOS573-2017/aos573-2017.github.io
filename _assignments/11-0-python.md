@@ -16,7 +16,17 @@ def interpolate(point_1, point_2, step):
 	return interpolated_list
 ~~~
 
-Test your function using the 'exercise_one_data.nc' netCDF dataset choosing either 'lat_var' or 'lon_var'.  First, by hand figure out what your function will return.  Then pass in the parameters to your interpolate function and see if you were right.  
+Test your function by creating a linearly increasing list:
+~~~ python
+import numpy as np
+test_list = np.linspace(0,50,6)
+print test_list
+~~~
+[  0.  10.  20.  30.  40.  50.]
+
+This is equivilant to a 10 degree resolution spacing of latitudes or longitudes.
+
+First, by hand figure out what your function will return.  Then pass in the parameters to your interpolate function and see if you were right.  
 
 A useful function to understand would be the range function in Python.  You can read about it, and other build in functions, here: https://docs.python.org/2/library/functions.html#range.
 
