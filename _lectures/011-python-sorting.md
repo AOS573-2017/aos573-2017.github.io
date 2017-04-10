@@ -4,6 +4,11 @@ published: false
 title: Tools of the Trade
 ---
 
+To start today's exercise, download/clone the python-week-two from the AOS 573 github.
+~~~ bash
+git clone https://github.com/AOS573/python-week-two.git
+~~~
+
 ## Downloading Modules from Source
 
 
@@ -12,19 +17,19 @@ To start building a module from source, you must download the source code from t
 If the source file is a .tar.gz zipped file, unzip the file using command line (in linux) by using the tar -xvzf command.
 
 ~~~ bash
- $ tar -xvzf module_source.tar.gz
+ tar -xvzf module_source.tar.gz
  ~~~
  
 Once unzipped enter the first level of the directory of the source code.
 
 ~~~ bash
- $ cd module_source
+cd module_source
 ~~~
 
 Unless otherwise specified in the modules documentation, the command python setup.py build is the standard command to install any modules into your python library.  
 
 ~~~ bash
- $ python setup.py build
+python setup.py build
 ~~~
 
 setup.py will be a script in the first level of the source code that installs the module.  After installing any modules, it is always useful to run a quick check in python to verify the installation was successful.
@@ -36,13 +41,48 @@ import example_module
 If the module wasn't successfully installed, python will throw an ImportError at the import example_module line.  If python throws any other error related to the module, double check the module doesn't have any dependencies you may not have installed.  If you have all dependencies installed or the module claims to have no dependencies, double check you didn't accidentally install a 'bleeding edge' version which may have bugs.
 
 
+## Opening a Text File in Python
+
+Opening text files in Python requires no extra module.  Simply open the file in with the syntax ``filename, 'r'`` in the open statement.
+
+~~~ python
+with open('example.txt', 'r') as f:
+	#Inside of this indent the file is open
+	#To open one line use f.readline()
+	f.readline()
+	#To loop through the rest of the lines, use f.readlines()
+	for line in f.readlines():
+		print line
+~~~
+
+Try doing this with the ``example.txt`` file in the python-week-two repo.  What does it print?
+
+To write a text file, you can use the same open statement with ``filename, 'w'`` instead of 'r'.  
+
+~~~ python
+with open('write_on_own.txt', 'w') as d:
+	d.write('Hello world')
+	
+~~~
+
+A quick way to format a string is to use the ``'{}'.format() `` function on a string.
+
+~~~ python
+example_string = '{}, {}'.format('Hello', 'world')
+print example_string
+Hello, world
+~~~
+
+For mor information on strings and formating, see the documentation here: https://docs.python.org/2/library/string.html.  Text files should never be your first choice in storing data.  Towards the end of class, we will go over JSON files. 
+
 ## Opening netCDF Files in Python
 
-Many atmospheric datasets come in the netCDF format.  Opening, editing, and creating netCDF files in Python is extremely easy.  To start, we will open a simple netCDF dataset that contains the latitude, longitude, and sensible heat.  To start today's exercise, download/clone the python-week-two from the AOS 573 github.
-
+If you were unable to use pip, or chose to skip the pip exercise last week, you should now go and install netCDF before trying to use the module.
 ~~~ bash
-git clone https://github.com/AOS573/python-week-two.git
+pip install netCDF4
 ~~~
+
+Many atmospheric datasets come in the netCDF format.  Opening, editing, and creating netCDF files in Python is extremely easy.  To start, we will open a simple netCDF dataset that contains the latitude, longitude, and sensible heat.  The filename of our example netCDF file is ``example.nc``.  NetCDF files end in ``.nc``.
 
 Inside of the repo there is a file named ``example.nc``.  To open a netCDF file in Python, you must import Dataset from the netCDF4 module.  
 
@@ -104,5 +144,36 @@ A very common error when creating JSON objects is the ValueError.  JSON does not
 
 Use your knowledge of JSOn and the two JSON objects in the ``python-week-two`` repository to test your binning skills.
 
+#Dictionaries
 
+Dictionary objects in Python are extremely useful.  A dictionary is a quasi-class like structure that allows you to store variables within a single variable.  Information is saved to a dictionary object using a ``key``.  Querying the dictionary with a key returns the object saved.
+
+~~~ python
+this_is_a_dict = {}
+this_is_a_dict['example key'] = 'hello world'
+print this_is_a_dict['example key']
+'hello world'
+
+this_is_a_dict['example list'] = [1., 2., 3., 4.]
+print this_is_a_dict['example list']
+[1., 2., 3., 4.]
+~~~
+
+Reading in datasets is very similar to interacting with dictionary objects and their keys.  When reading in HDFs, .sav, and netCDF, you can think of the datasets as dictionaries within Python, and the variables they contain as their keys.  
+
+## Reading in .sav Files
+
+If you commonly go between IDL and Python, using .sav files may be an easy way to transfer data.  To do this, install the scipy module.
+
+~~~ bash
+pip install scipy
+~~~
+
+THe scipy.io readsav function allows you to easily read in a .sav file as a dictionary object.  Scipy will insert the .sav file information to a dictionary object in Python.  You can query the dictionary object with the keys to retrieve the data. 
+
+~~~ python
+from scipy.io import readsav
+
+dictionary_object = readsav('sav_filename.sav')
+~~~
 
