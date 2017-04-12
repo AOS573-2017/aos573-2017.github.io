@@ -179,9 +179,21 @@ with open('one_hundred_thousand_points.txt', 'r') as f:
 #Easier to understand and change in the future
 
 lwp_bins = np.percentile(lwps, np.linspace(0,100,11))
+
+#The list to store the lwps in after sorting into bins 
+bins = [ [] for bin in lwp_bins[:-1]]
+
+#The slowest, but easiest to read option
+for lwp in lwps:
+	for i, (lower_lwp_bin_limit, upper_lwp_bin_limit) in enumerate(zip(lwp_bins[:-1], lwp_bins[1:])):
+		if lwp > lower_lwp_bin_limit and lwp < upper_lwp_bin_limit:
+			bins[i].append(lwp)
+
+##Faster than the previous option
 for lwp in lwps:
 	lwp_bin = next((i for i,x in enumerate(lwp_bins) if x > lwp), -1)-1
-
+	bins[lwp_bin].append(lwp)
+	
 #Not readable, fast
 #Constrained by the limits of the function
 #Would have to repeat if binning multiple by one statistic
