@@ -114,6 +114,28 @@ longitdues = example_dataset['lon'][:]
 
 Now that you can read in a netCDF file, learn how you can easily interpolate between the vast atmospheric datasets available for your use.
 
+~~~ python
+import numpy as np
+
+#Takes two points and returns a list with X steps between the points
+def interpolate(point_1, point_2, steps):
+	dp = (point_2 - point_1)/(steps)
+	interpolate = [point_1 + (step * dp) for step in range(steps)]
+	return interpolate
+
+#Takes in a one dimensional dataset and returns the interpolated list
+#Limited to only evenly spaced interpolation
+#Interpolate could be modified to handle edge cases of unevenly spaced interpolation using booleans to flag if the spacing should be even or odd
+def fit_dataset(beg_res, end_res, data):
+	steps = beg_res/end_res
+	interpolated = []
+	
+	for lower_point, higher_point in zip(data[:-1], data[1:]):
+		interpolated.extend( interpolate(lower_point, higher_point, steps) )
+	interpolated.append(data[-1])
+	return interpolated
+~~~
+
 ## Storing data in Python
 
 A very simple and easy to use module for storing data is the JSON module.  JSON allows you to make a txt object that hols the data in the original format.  JSON is extremely similar to the Pickle module built into Python, however some languages can read in Python JSON objects and vice-versa.  Creating and reading in JSON files is simple.
@@ -143,6 +165,30 @@ A very common error when creating JSON objects is the ValueError.  JSON does not
 ## Exercise
 
 Use your knowledge of JSOn and the two JSON objects in the ``python-week-two`` repository to test your binning skills.
+
+~~~ python
+import json
+from scipy.stats import binned_statistic
+import numpy as np
+
+
+with open('one_hundred_thousand_points.txt', 'r') as f:
+	lwps = json.load(f)
+	
+#Readable, slow
+#Easier to understand and change in the future
+
+lwp_bins = np.percentile(lwps, np.linspace(0,100,11))
+for lwp in lwps:
+	lwp_bin = next((i for i,x in enumerate(lwp_bins) if x > lwp), -1)-1
+
+#Not readable, fast
+#Constrained by the limits of the function
+#Would have to repeat if binning multiple by one statistic
+bin_means = binned_statistic(lwps, lwps, bins = lwp_bins)[0]
+
+#Both have flexible binning options.
+~~~
 
 #Dictionaries
 
