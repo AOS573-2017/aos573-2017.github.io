@@ -194,7 +194,7 @@ blue_red_colormap = {???}
 ~~~
 
 ~~~ python
-import my_colormap.py
+import my_colormap
 colormap = my_colormap.blue_red_colormap
 plt.register_cmap(name = 'BlueRed', data = simple_colormap)
 cmap = plt.get_cmap('BlueRed')
@@ -206,7 +206,7 @@ Try creating your own colormap that goes from blue to red smoothly.
 
 NOTE: THE EXAMPLE COLORMAP DOES NOT DO THIS; COPYING AND PASTING WILL NOT CREATE A BLUE->RED MAP.
 
-#Multiple Plots in One Figure
+# Multiple Plots in One Figure
 
 To add multiple plots to one figure, instead of creating a plt instance, you will use ``ax`` from MatPlotLib.  First, create a figure.
 
