@@ -154,14 +154,14 @@ For example:
 
 ~~~
 simple_colormap = {'red': ((0.0, 1.0, 1.0),
-					(.5, .5, 0.0)
-					(1., 0., .5));
-					'blue': ((0.0, 0.0, 0.0),
-					(.5, 0.0, .5),
-					(1.0, .5, 1.0))
-					'green': ((0.0, 0.0, 0.0),
-					(.5, 0.0, 1.0),
-					(1.0, 1.0, 1.0))
+		(.5, .5, 0.0)
+		(1., 0., .5));
+		'blue': ((0.0, 0.0, 0.0),
+		(.5, 0.0, .5),
+		(1.0, .5, 1.0))
+		'green': ((0.0, 0.0, 0.0),
+		(.5, 0.0, 1.0),
+		(1.0, 1.0, 1.0))
 					}
 ~~~
 the first number defines your starting point from 0-1.  The middle number represents how much red will be at the beginning of your starting point (0.0).  The last number represents how much red will be at your end point, the first number of the next tuple.  This is a continuous use of red example.
