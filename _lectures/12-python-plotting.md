@@ -36,7 +36,7 @@ The ``plt.hist(histogram_list)`` function creates your histogram.  The ``plt.sho
 
 The ``.hist()`` function takes in a list, like ``histogram_list``, assumes 10 bins (or another number if the rcParams['hist.bins'] has been changed for some reason) which you can alter in the function call, bin ranges, a boolean ``'normed'``, and a number of other parameters.
 
-To change the number of bins in your histogram, just pass in a new int like ``'bins' = new_number_of_bins``.
+To change the number of bins in your histogram, just pass in a new int like ``bins = new_number_of_bins``.
 
 ~~~ python
 import matplotlib.pyplot as plt
@@ -44,11 +44,11 @@ import random
 
 histogram_list = [random.random() for i in range(100)]
 new_number_of_bins = 20
-plt.hist(histogram_list, 'bins' = 20)
+plt.hist(histogram_list, bins = 20)
 plt.show()
 ~~~
 
-To create a PDF, set the ``'normed'`` boolean as True in the function call.
+To create a PDF, set the ``normed`` boolean as True in the function call.
 
 ~~~ python
 import matplotlib.pyplot as plt
@@ -56,7 +56,7 @@ import random
 
 histogram_list = [random.random() for i in range(100)]
 
-plt.hist(histogram_list, 'normed' = True)
+plt.hist(histogram_list, normed = True)
 plt.show()
 ~~~
 
@@ -70,11 +70,11 @@ histogram_list = [random.random() for i in range(100)]
 
 bin_ranges = np.linspace(0, 1., 16)
 
-plt.hist(histogram_list, 'bins' = bin_ranges)
+plt.hist(histogram_list, bins = bin_ranges)
 plt.show()
 ~~~
 
-On your own, practice using either ``'normed'`` or ``'bins'`` and another alternative argument found from the histogram documentation.
+On your own, practice using either ``'normed'`` or ``bins`` and another alternative argument found from the histogram documentation.
 
 # Scatterplots
 
@@ -155,10 +155,10 @@ For example:
 ~~~
 simple_colormap = {'red': ((0.0, 1.0, 1.0),
 		(.5, .5, 0.0)
-		(1., 0., .5));
+		(1., 0., .5)),
 		'blue': ((0.0, 0.0, 0.0),
 		(.5, 0.0, .5),
-		(1.0, .5, 1.0))
+		(1.0, .5, 1.0)),
 		'green': ((0.0, 0.0, 0.0),
 		(.5, 0.0, 1.0),
 		(1.0, 1.0, 1.0))
