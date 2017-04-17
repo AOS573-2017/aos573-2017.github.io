@@ -136,7 +136,7 @@ Now that you have a third dimension set, select a colormap from MatPlotLib you w
 To have the colormap 'fitted' to your points, pass in a ``vmin = min(zs), vmax = max(zs)`` to tell the plot what the range of points will be.
 
 ~~~ python
-plt.scatter(cs, ys, c = zs, cmap = 'jet', vmin = min(zs), vmax = max(zs)0
+plt.scatter(cs, ys, c = zs, cmap = 'jet', vmin = min(zs), vmax = max(zs))
 plt.show()
 ~~~
 
@@ -144,7 +144,7 @@ Try repeating this with three different types of colormaps.  See what changes.  
 
 Take your binned values from homework, read in the lists, and create a scatter plot using one list as the xs, one list as the ys, and one list as the color dimension.
 
-#Making your own colormap
+# Making your own colormap
 
 Colormaps can be used in many different types of plots using MatPlotLib.  To make your own colormap, we're going to have you make your own module that has its own instance of a colormap.  To start, open a new script. 
 
