@@ -202,7 +202,58 @@ cmap = plt.get_cmap('BlueRed')
 
 Traditionally, using the first choice is better coding.  Referencing a variable from a module is not the best practices, however both do work. Notice that when referencing a variable from another module, you do not use the ().  () are for function calls only.  If ever debugging your own Python code, missing or having an extra () is a ``Syntax Error``.
 
-Try creating your own colormap that goes from blue to red smoothly.  NOTE: THE EXAMPLE COLORMAP DOES NOT DO THIS; COPYING AND PASTING WILL NOT CREATE A BLUE->RED MAP.
+Try creating your own colormap that goes from blue to red smoothly. 
+
+NOTE: THE EXAMPLE COLORMAP DOES NOT DO THIS; COPYING AND PASTING WILL NOT CREATE A BLUE->RED MAP.
+
+#Multiple Plots in One Figure
+
+To add multiple plots to one figure, instead of creating a plt instance, you will use ``ax`` from MatPlotLib.  First, create a figure.
+
+~~~ python
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+~~~
+
+The command to make plots using an axes instead of a ``plt.`` is extremely similar.  To see the axes documentation, look here https://matplotlib.org/api/axes_api.html#basic.
+
+~~~ python
+ax.scatter(xs, ys)
+~~~
+creates a scatter plot.
+
+~~~ python
+ax.plot(xs, ys)
+~~~
+creates a line plot.
+
+~~~ python
+ax.hist(xs)
+~~~
+creates a histogram plot.
+
+To create multiple plots in one image, you must change your ``fig, ax = plt.subplots()`` function call.  Ax will become a list of plots that you have to index to plot onto.  ```.subplots()`` takes the arguments ``nrows, ncolumns.``
+
+~~~ python
+fig, ax = plt.subplots(1, 2)
+~~~
+will create one row and two columns, or two plots right next to eachother.
+
+~~~ python
+fig, ax = plt.subplots(2, 2)
+~~~
+will create two rows and two columns.
+
+To plot to the first columns, first rows plot, you must index the [0][0] subplot of ax.
+
+~~~ python
+ax[0][0].scatter(xs, ys)
+~~~
+
+Try to create a three panel plot of 3 columns of the three variabiles from homeworks PDFs.
+
 
 
 
