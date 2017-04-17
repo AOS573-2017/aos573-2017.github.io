@@ -252,5 +252,5 @@ To plot to the first columns, first rows plot, you must index the [0][0] subplot
 ax[0][0].scatter(xs, ys)
 ~~~
 
-Try to create a three panel plot of 3 columns of the three variabiles from homeworks PDFs.
+Try to create a three panel plot of 3 columns of the three variabiles from homeworks PDFs.  After that, play around with other modules and the plots to create 3 different types of plots.  One must be a multi-panel plot, one must use a custom colormap with at least 3 changes in color, and one must utilize statistical functions from either Numpy or Scipy.
 
