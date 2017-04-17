@@ -200,7 +200,7 @@ plt.register_cmap(name = 'BlueRed', data = simple_colormap)
 cmap = plt.get_cmap('BlueRed')
 ~~~
 
-Traditionally, using the first choice is better coding.  Referencing a variable from a module is not the best practices, however both do work. Notice that when referencing a variable from another module, you do not use the ().  () are for function calls only.  If ever debugging your own Python code, missing or having an extra () is a ``Syntax Error``.
+Traditionally, using the first choice is better coding.  Referencing a variable from a module is not the best practices, however both do work. Notice that when referencing a variable from another module, you do not use the ().  () are for function calls only.  If ever debugging your own Python code, missing or having an extra () is a ``Type Error``.
 
 Try creating your own colormap that goes from blue to red smoothly. 
 
