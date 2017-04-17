@@ -1,6 +1,6 @@
 ---
 layout: lecture
-published: false
+published: true
 title: Plotting in Python
 ---
 
@@ -234,7 +234,7 @@ ax.hist(xs)
 ~~~
 creates a histogram plot.
 
-To create multiple plots in one image, you must change your ``fig, ax = plt.subplots()`` function call.  Ax will become a list of plots that you have to index to plot onto.  ```.subplots()`` takes the arguments ``nrows, ncolumns.``
+To create multiple plots in one image, you must change your ``fig, ax = plt.subplots()`` function call.  Ax will become a list of plots that you have to index to plot onto.  ``.subplots()`` takes the arguments ``nrows, ncolumns.``
 
 ~~~ python
 fig, ax = plt.subplots(1, 2)
@@ -253,10 +253,4 @@ ax[0][0].scatter(xs, ys)
 ~~~
 
 Try to create a three panel plot of 3 columns of the three variabiles from homeworks PDFs.
-
-
-
-
-
-
 
