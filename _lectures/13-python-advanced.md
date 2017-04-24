@@ -141,3 +141,7 @@ If ever you have to run even other types of scripts, like IDL or MatLab, within 
 
 Create a fully automated script that takes in a lower and upper x limit and a lower and upper y limit, plots the histogram and mean binned y values with standard deviation bars on a 2 panel plot, and prints out the average standard deviation of the ys.  Save the figure from the script using ``plt.savefig()`` then use ``subprocess.call()`` to open the figure.
 
+# Post Survey
+
+https://uwmadison.co1.qualtrics.com/jfe/form/SV_bECm7oJLLJAHg7b
+
