@@ -81,4 +81,18 @@ plt.plot(xs, ys, 'k-', linewidth = 3.)
 plt.show()
 ~~~
 
+The alpha argument, which you can use in many other types of plots, changes the transparency.  If alpha wasn't set to .5, then it would be 100% opaque and harder to understand.  
+
+The arguments x, y1, and y2 of fill between are referred to as 'keyword arguments', compared to the color, alpha, and linewidth arguments which are 'non-keyword'/optional.  All 'keyword' arguments must come before optional arguments otherwise you will receive an error ``SyntaxError: non-keyword arg after keyword arg``.  
+
+# Exercise
+Find the errors in the code.
+
+# Interpolating a 2d Array in Python
+
+Interpolating a 2D array in Python can be complicated if you want to do it correctly.  The method I am showing uses the scipy ``Inter2D`` function.  This creates a function within your script that allows you to pass in a new set of points that it will then interpolate your dataset to.  
+
+Follow along in class to understand how to use this function.  Code from class with comments will be posted after class.  This may be helpful for your second project.
+
+
 
