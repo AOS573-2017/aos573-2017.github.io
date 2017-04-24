@@ -88,6 +88,10 @@ The arguments x, y1, and y2 of fill between are referred to as 'keyword argument
 # Exercise
 Find the errors in the code.
 
+https://github.com/AOS573/python-week-four.git
+
+Clone python-week-four and debug the find_the_errors.  This may include adding lines of code as well as changing the overall structure of find_the_errors.
+
 # Interpolating a 2d Array in Python
 
 Interpolating a 2D array in Python can be complicated if you want to do it correctly.  The method I am showing uses the scipy ``Interp2D`` function.  This creates a function within your script that allows you to pass in a new set of points that it will then interpolate your dataset to.  
