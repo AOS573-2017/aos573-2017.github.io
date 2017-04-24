@@ -1,7 +1,7 @@
 ---
 layout: lecture
 published: true
-title: Plotting in Python
+title: Advanced Python
 ---
 
 # Errorbars in Plots
@@ -90,9 +90,54 @@ Find the errors in the code.
 
 # Interpolating a 2d Array in Python
 
-Interpolating a 2D array in Python can be complicated if you want to do it correctly.  The method I am showing uses the scipy ``Inter2D`` function.  This creates a function within your script that allows you to pass in a new set of points that it will then interpolate your dataset to.  
+Interpolating a 2D array in Python can be complicated if you want to do it correctly.  The method I am showing uses the scipy ``Interp2D`` function.  This creates a function within your script that allows you to pass in a new set of points that it will then interpolate your dataset to.  
 
 Follow along in class to understand how to use this function.  Code from class with comments will be posted after class.  This may be helpful for your second project.
 
+# Wrapping Interp2D into a Function
 
+Using ``Interp2D`` would be easier if you were to wrap it into a function call that would automatically go through the steps of resizing a dataset.  The function would have to take in the dataset, starting lats, starting lons, end size lats, and end size lons.  It would return the dataset at a different resolution.
+
+~~~ python
+from scipy import interpolate
+import numpy as np
+
+def interp(data, start_lat, start_lon, end_lat, end_lon):
+	function = interpolate.interp2d(start_lon, start_lat, data, kind = 'linear')
+	new_data = function(end_lon, end_lat)
+	return new_data
+~~~
+
+Now, instead of having to call and create different interp2d functions every time you resize an array, just call your own made interp function.  
+
+# Using a Python Script as a Bash Script
+
+Python has a very useful module called subprocess.  Subprocess allows you to create a script in Python and use it as a Bash script.  Unlike Bash scripts though, Python is simple, readable, and easy to change.  
+https://docs.python.org/2/library/subprocess.html
+
+To call a basic process, like a previously made Python script, use 	``subprocess.call(string_command_line_args.split())`` with a string of the command line argument you would usually use.
+
+~~~ python
+import subprocess
+
+call_name = 'eog ' + figure_path + ' &'
+
+subprocess.call(call_name.split())
+~~~
+
+would open a figure in eog using the figure path provided in a new window.
+
+~~~ python
+import subprocess
+
+command_arg = 'python find_the_errors.py'
+
+subprocess.call(command_arg.split())
+~~~
+
+If ever you have to run even other types of scripts, like IDL or MatLab, within a Bash script, try using instead Python's subprocess.  
+
+# Exercise
+
+Create a fully automated script that takes in a lower and upper x limit and a lower and upper y limit, plots the histogram and mean binned y values with standard deviation bars on a 2 panel plot, and prints out the average standard deviation of the ys.  Save the figure from the script using ``plt.savefig()`` then use ``subprocess.call()`` to open the figure.
 
