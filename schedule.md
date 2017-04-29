@@ -19,5 +19,5 @@ permalink: /schedule/
 <tr><td>11</td><td>Input and Output, Binning</td><td>Alyson</td><td>Python</td><td><a href="/lectures/11-python-sorting.html"><i class="fa fa-sticky-note"></i></a></td><td><a href="/assignments/11-2-python.html"><i class="fa fa-pencil-square-o"></i></a></td></tr>
 <tr><td>12</td><td>Plotting Routines and Graphics</td><td>Alyson</td><td>Python</td><td><a href="/lectures/12-python-plotting.html"><i class="fa fa-sticky-note"></i></a></td><td><i class="fa fa-pencil-square-o"></i></td></tr>
 <tr><td>13</td><td>Advanced Plotting</td><td>Alyson</td><td>Python</td><td><a href="/lectures/13-python-advanced.html"><i class="fa fa-sticky-note"></i></a></td><td><i class="fa fa-pencil-square-o"></i></td></tr>
-
+<tr><td>14</td><td>Releasing You Into the Wild</td><td>Ethan</td><td>Python and More</td><td><a href=""><i class="fa fa-sticky-note"></i></a></td><td><a href=""><i class="fa fa-pencil-square-o"></i></a></td></tr>
 </table>
