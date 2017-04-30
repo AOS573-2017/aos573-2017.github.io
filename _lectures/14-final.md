@@ -1,7 +1,7 @@
 ---
 layout: lecture
 published: true
-title: The Secrets of the (Programming) Universe
+title: Releasing You into the Wild
 ---
 
 # Prelude
