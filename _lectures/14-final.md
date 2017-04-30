@@ -20,7 +20,7 @@ $ cd aos573-final-week
 
 # Recap of Class Concepts
 
-You may recall from the start of the class when we discussed the purpose of this class, why we were going through three languages, and why the class would be split into an interactive lecture and guided homework session. Our learning goals were focused on learning about the methods and techniques of programming while applying them to three different languages. To help elucidate this point, consider the case of [Paul McCartney](https://en.wikipedia.org/wiki/Paul_McCartney), a world-renowned musician and multi-instrumentalist:
+You may recall from the start of the class when we discussed the purpose of this class, why we were going through three languages, and why the class would be split into an interactive lecture and guided homework session. Our learning goals were focused on learning about the methods and techniques of programming while applying them to three different languages. To help elucidate this point, consider the case of [Paul McCartney](https://en.wikipedia.org/wiki/Paul_McCartney), a world-renowned musician, composer, and multi-instrumentalist:
 
 ### Acoustic Guitar and Whistle:
 
