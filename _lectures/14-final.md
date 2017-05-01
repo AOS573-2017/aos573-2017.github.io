@@ -11,10 +11,10 @@ Make sure to clone today's repository from Github:
 ~~~
 $ git clone https://github.com/aos573/aos573-final-week.git
 Cloning into 'aos573-final-week'...
-remote: Counting objects: , done.
-remote: Compressing objects: 100% (), done.
-remote: Total (delta 0), reused (delta 0), pack-reused 0
-Unpacking objects: 100% (), done.
+remote: Counting objects: 10, done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 10 (delta 0), reused 10 (delta 0), pack-reused 0
+Unpacking objects: 100% (10/10), done.
 $ cd aos573-final-week
 ~~~
 
