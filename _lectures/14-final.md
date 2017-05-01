@@ -124,8 +124,15 @@ Let's practice focusing development around tests in the context of a simplified 
 
 ## Exercise: Taking the Difference of Gridded Values
 
-> Consider the case of two two-dimensional matrices with unknown dimensions. You are asked to take the difference of these two datasets and report the end result. Sketch out in pseudo-code how you would accomplish this task. Once that is done, open `test-exercise.py` and write two tests calling a function `diff_grid` with 1) two 2x2 matrices and 2) two 3x5 matrices. Finally, compose the function `diff_grid`!
+> Consider the case of two two-dimensional matrices with unknown dimensions. You are asked to take the difference of these two datasets by looping over each grid point, then returning the end result. Sketch out in pseudo-code how you would accomplish this task. Once that is done, open `test-exercise.py` and write two tests calling a function `diff_grid` with 1) two 2x2 matrices and 2) two 3x5 matrices. Finally, compose the function `diff_grid`!
 
+## Creating Your Own Exceptions
+
+One key thing mentioned in this exercise is that we are instructed to loop over each grid point individually. That means we cannot simply subtract the two matrices (e.g. `return a - b`) but instead must loop over every element of the matrix. What happens if the matrices are not the same size? Did you test for this? If not, then you could run into a problem when one matrix is 2x2 and another is 3x5.
+
+## Exercise Continued
+
+> Add a check at the start of your program that ensures the sizes of the matrices in the input are the, and if not, throw an exception that informs the user not only that an issue occurred but why (i.e. the sizes of the different matrices).
 
 # The Shell Revisited
 
