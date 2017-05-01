@@ -44,7 +44,7 @@ You may recall from the start of the class when we discussed the purpose of this
 
 ### Harmonica...
 
-<center><iframe width="700" height="500" src="https://www.youtube.com/embed/_jY-KCC4jHc?start=2" frameborder="0" allowfullscreen></iframe></center>
+<center><iframe width="700" height="500" src="https://www.youtube.com/embed/_jY-KCC4jHc?start=12" frameborder="0" allowfullscreen></iframe></center>
 
 Paul's mastery of music comes not from knowing how to play a single song on a single instrument, but rather understanding the intricacies of musical structure, theory, and thematics then composing a song and applying it with an instrument that fits the situation well. You probably won't hear him playing electric guitar on a sad acoustic song, nor will he be whistling on an upbeat rock song. Paul writes a song for and chooses the right instrumennt to communicate a message, elicit an emotion, or achieve some goal.
 
@@ -154,9 +154,10 @@ Let's practice focusing development around tests in the context of a simplified 
 
 ## Exercise: Taking the Difference of Gridded Values
 
-> Consider the case of two two-dimensional matrices with unknown dimensions. You are asked to take the difference of these two datasets and report the end result. Sketch out in pseudo-code how you would accomplish this task. Once that is done, open `test-exercise.py` and write two tests calling a function `sum_grid` with 1) two 2x2 matrices and 2) two 3x5 matrices. Finally, compose the function `sum_grid`!
+> Consider the case of two two-dimensional matrices with unknown dimensions. You are asked to take the difference of these two datasets and report the end result. Sketch out in pseudo-code how you would accomplish this task. Once that is done, open `test-exercise.py` and write two tests calling a function `diff_grid` with 1) two 2x2 matrices and 2) two 3x5 matrices. Finally, compose the function `diff_grid`!
 
-# Shell Scripts Revisited
+
+# The Shell Revisited
 
 Back in the very first class we got a basic introduction to some command line programs, such as `cd`, `ls`, and `pwd`. Later, in the Fortran section, we created a bash script to compile and run our program. Now we are going to expand our bash repertoire a bit further.
 
@@ -339,7 +340,7 @@ $ cat filenumber.txt
      30
 ~~~
 
-## `grep`ing and Finding
+## `grep`ing
 
 Now our boss wants to know which files have snow in them. Yet another tool that is useful in the command line is one called `grep`, which involves global search and print. grep is one of the more powerful Swiss army knives as far as shells go, so keep in mind that we are only grazing the surface of grep's power. Grep provides the functionality to search for a string in files or standard in and return files that contain that string or inversely files that do not contain that string. The form of the command is `grep "string to search" files`. Try that for snow with our data files:
 
@@ -421,6 +422,30 @@ $ grep -l -v "snow" *.dat
 ~~~
 
 ## Loops
+
+We have seen loops in Fortran, Matlab, and Python, so it is worthwhile to see how they are used in bash as well. For loops take the form of (noting the separate lines):
+
+~~~ bash
+for x in something
+do
+some action here
+done
+~~~
+
+In this case, `x` is the loop object, `something` is an array of things (strings, filenames, etc.), and `some action here` can be anything. The array to loop over could be a list of files, either manually typed out or alternatively specified by wildcard notation. Then, to reference the loop object within the loop, we use bash notation of `${variablename}`.
+
+~~~ bash
+$ for x in 1910-03-01.dat 1910-03-02.dat 1910-03-03.dat
+> do
+> cat ${x}
+> done
+snow
+rain
+clear
+~~~
+
+### Exercise: Printing File and its Name
+> We can weave in as many commands as we want within the loop. Try writing a for loop that `echo`es the file name to the standard out, `cat`s the file contents to the standard out, and then finally appends the file contents to a file named `observations.txt`.
 
 ## Bash Wrap-up
 
