@@ -18,37 +18,7 @@ Unpacking objects: 100% (10/10), done.
 $ cd aos573-final-week
 ~~~
 
-# Recap of Class Concepts
-
-You may recall from the start of the class when we discussed the purpose of this class, why we were going through three languages, and why the class would be split into an interactive lecture and guided homework session. Our learning goals were focused on learning about the methods and techniques of programming while applying them to three different languages. To help elucidate this point, consider the case of [Paul McCartney](https://en.wikipedia.org/wiki/Paul_McCartney), a world-renowned musician, composer, and multi-instrumentalist:
-
-### Acoustic Guitar and Whistle:
-
-<center><iframe width="700" height="500" src="https://www.youtube.com/embed/xFBKXQILeqI?start=103&end=114" frameborder="0" allowfullscreen></iframe></center>
-
-### Keyboard and Vocals:
-
-<center><iframe width="700" height="500" src="https://www.youtube.com/embed/7QlwzmbiKx8?start=145&end=189" frameborder="0" allowfullscreen></iframe></center>
-
-### Drum Kit
-
-<center><iframe width="700" height="500" src="https://www.youtube.com/embed/_4jeMWI6pP8?end=18" frameborder="0" allowfullscreen></iframe></center>
-
-### Mandolin and Vocals:
-
-<center><iframe width="700" height="500" src="https://www.youtube.com/embed/U16IU7HwhDY?start=259" frameborder="0" allowfullscreen></iframe></center>
-
-### Upright Base and Vocals:
-
-<center><iframe width="700" height="500" src="https://www.youtube.com/embed/q-f4JZfNx1Y?start=85&end=106" frameborder="0" allowfullscreen></iframe></center>
-
-### Harmonica...
-
-<center><iframe width="700" height="500" src="https://www.youtube.com/embed/_jY-KCC4jHc?start=12" frameborder="0" allowfullscreen></iframe></center>
-
-Paul's mastery of music comes not from knowing how to play a single song on a single instrument, but rather understanding the intricacies of musical structure, theory, and thematics then composing a song and applying it with an instrument that fits the situation well. You probably won't hear him playing electric guitar on a sad acoustic song, nor will he be whistling on an upbeat rock song. Paul writes a song for and chooses the right instrumennt to communicate a message, elicit an emotion, or achieve some goal.
-
-In a similar manner, we can treat the skills that we have acquired in this class as our mastery of solving complex problems with the assistance of computers. Skills like planning out our code conceptually, modularizing into reusable functions, reading and searching for documentation online, and as a whole wrangling and presenting data. Our last project ties together these concepts in a nice and tidy scientific analysis. So, for today, we are going to learn a few additional skills to help in the future.
+Today, we are going to learn a few additional skills to help 1) when it comes to checking the behavior of code and 2) for automating actions on the command line.
 
 # Test-Driven Development Cycle
 
@@ -451,7 +421,37 @@ clear
 
 The shell is a powerful tool, especially for analysis when it comes to dealing with human-readable files. There is a deep legacy in the shell system so any problem you need to tackle has likely been accomplished before. As with Unix, there are different variants of shell available; we have only dealt with bash. Some shells provide more flexibility while others offer more utility. Just be aware that not all shells may not have every function you need.
 
-# Parting Thoughts
+# Parting Thoughts and Recap
+
+You may recall from the start of the class when we discussed the purpose of this class, why we were going through three languages, and why the class would be split into an interactive lecture and guided homework session. Our learning goals were focused on learning about the methods and techniques of programming while applying them to three different languages. To help elucidate this point, consider the case of [Paul McCartney](https://en.wikipedia.org/wiki/Paul_McCartney), a world-renowned musician, composer, and multi-instrumentalist:
+
+### Acoustic Guitar and Whistle:
+
+<center><iframe width="700" height="500" src="https://www.youtube.com/embed/xFBKXQILeqI?start=103&end=114" frameborder="0" allowfullscreen></iframe></center>
+
+### Keyboard and Vocals:
+
+<center><iframe width="700" height="500" src="https://www.youtube.com/embed/7QlwzmbiKx8?start=145&end=189" frameborder="0" allowfullscreen></iframe></center>
+
+### Drum Kit
+
+<center><iframe width="700" height="500" src="https://www.youtube.com/embed/_4jeMWI6pP8?end=18" frameborder="0" allowfullscreen></iframe></center>
+
+### Mandolin and Vocals:
+
+<center><iframe width="700" height="500" src="https://www.youtube.com/embed/U16IU7HwhDY?start=259" frameborder="0" allowfullscreen></iframe></center>
+
+### Upright Base and Vocals:
+
+<center><iframe width="700" height="500" src="https://www.youtube.com/embed/q-f4JZfNx1Y?start=85&end=106" frameborder="0" allowfullscreen></iframe></center>
+
+### Harmonica...
+
+<center><iframe width="700" height="500" src="https://www.youtube.com/embed/_jY-KCC4jHc?start=12" frameborder="0" allowfullscreen></iframe></center>
+
+Paul's mastery of music comes not from knowing how to play a single song on a single instrument, but rather understanding the intricacies of musical structure, theory, and thematics then composing a song and applying it with an instrument that fits the situation well. You probably won't hear him playing electric guitar on a sad acoustic song, nor will he be whistling on an upbeat rock song. Paul writes a song for and chooses the right instrument to communicate a message, elicit an emotion, or achieve some goal.
+
+In a similar manner, we can treat the skills that we have acquired in this class as our mastery of solving complex problems with the assistance of computers. Skills like planning out our code conceptually, modularizing into reusable functions, reading and searching for documentation online, and as a whole wrangling and presenting data. Our last project ties together these concepts in a nice and tidy scientific analysis. 
 
 Remember, we are musicians of programming. We use the instrument best suited for the situation, tying together the theoretical and practical concepts we have learned. Rules that are useful for programming:
 
