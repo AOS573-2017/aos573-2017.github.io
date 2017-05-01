@@ -54,7 +54,7 @@ In a similar manner, we can treat the skills that we have acquired in this class
 
 Previously we played around with the idea of pseudo-code--planning and drawing out the structure and flow of an analysis program. Once the pseudo-code is generated and the plan decided, you generally move to plugging that in to your editor. This aspect of the process is rarely error-proof. When you run or compile your code for the first time, you will likely come across errors. These errors appear in things like typos, misspellings, bad keywords, or incorrect function calls. It could be the case, however, that you have a bigger picture error not caught by the compiler or at run time: perhaps you made a wrong assumption, the operator you used is incorrect, or something else is wrong but is not visible on the surface. One way to add a additional check for these sorts of errors is to follow the practice of writing _tests_.
 
-A test in programming is somewhat similar to a test in university. Your code checks the output of some function or computation; if it is as expected, the test passes; if it is unexpected, the test fails. Tests by no means absolutely verify that code is without any bugs, but they provide a mechanical check to see how things are going. As an example, let's say you had a function that multipled two values together. Create a new file and add that function:
+A test in programming is somewhat similar to a test in university. Your code checks the output of some function or computation; if it is as expected, the test passes; if it is unexpected, the test fails. Tests by no means absolutely verify that code is without any bugs, but they provide a mechanical check to see how things are going. As an example, let's say you had a function that multiplied two values together. Create a new file and add that function:
 
 ~~~ bash
 $ nano testing_tests.py
@@ -163,7 +163,7 @@ Back in the very first class we got a basic introduction to some command line pr
 
 ## Pipes and Redirects
 
-Our exposure to the command line shell in Fortran automated processes for us, but the actions we accomplished were separate individual pieces. First we compiled submodules. Then we compiled the main program. Then we ran the main program. Each of these commands commands took in or possibly provided some file or executable. In a shell, it is actually possible to stitch together commands through a process known as piping. Additionally, we can redirect the output text of a command from the command line to a file using the redirect command.
+Our exposure to the command line shell in Fortran automated processes for us, but the actions we accomplished were separate individual pieces. First we compiled modules. Then we compiled the main program. Then we ran the main program. Each of these commands commands took in or possibly provided some file or executable. In a shell, it is actually possible to stitch together commands through a process known as piping. Additionally, we can redirect the output text of a command from the command line to a file using the redirect command.
 
 Let's try these two features out with our repository for the day as well as some of the commands from the first class. Navigate into the `data/` directory and see all the files in there:
 
@@ -182,7 +182,7 @@ snow
 
 We see there are two months of precipitation reports for ''badgerland''--wherever that is...
 
-Nevertheless, our boss has asked us to provide him with a listing of and the quantity of data files that exist in this directory. One way to accomplish this would be to manually record the filename and count the number of files, but it turns out we will soon be receiving more directories with thousands of files and that manual method is not scalable to those quanitities. This is where our redirection and piping can come in handy!
+Nevertheless, our boss has asked us to provide him with a listing of and the quantity of data files that exist in this directory. One way to accomplish this would be to manually record the file name and count the number of files, but it turns out we will soon be receiving more directories with thousands of files and that manual method is not scalable to those quantities. This is where our redirection and piping can come in handy!
 
 The first task to tackle is creating a file that lists all the files, each on a single line. We have seen before that `ls` displays a directory listing. When we supply the flag `-1` (that's dash one) to ls, i.e. `ls -1`, the command prints each file in a separate line.
 
@@ -311,7 +311,7 @@ $ wc -l filenames.txt
       30 filenames.txt
 ~~~
 
-We get back that there are 30 lines in the file. Word count can also read from the command line input (called standard in) when there is no filename given. Try that out by issuing the command, typing three Wisconsin cities (separating each one by the Enter key), then pressing Ctrl+d to issue the ''End of File'' command:
+We get back that there are 30 lines in the file. Word count can also read from the command line input (called standard in) when there is no file name given. Try that out by issuing the command, typing three Wisconsin cities (separating each one by the Enter key), then pressing Ctrl+d to issue the ''End of File'' command:
 
 ~~~ bash
 $ wc -l
