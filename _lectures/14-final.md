@@ -162,9 +162,190 @@ Back in the very first class we got a basic introduction to some command line pr
 
 ## Pipes and Redirects
 
+Our exposure to the command line shell in Fortran automated processes for us, but the actions we accomplished were separate individual pieces. First we compiled submodules. Then we compiled the main program. Then we ran the main program. Each of these commands commands took in or possibly provided some file or executable. In a shell, it is actually possible to stitch together commands through a process known as piping. Additionally, we can redirect the output text of a command from the command line to a file using the redirect command.
+
+Let's try these two features out with our repository for the day as well as some of the commands from the first class. Navigate into the `data/` directory and see all the files in there:
+
+~~~ bash
+$ cd data/
+$ ls
+1910-03-01.dat  1910-03-05.dat  1910-03-09.dat  1910-03-13.dat  1910-03-18.dat  1910-03-22.dat  1910-03-26.dat  1910-03-30.dat
+1910-03-02.dat  1910-03-06.dat  1910-03-10.dat  1910-03-15.dat  1910-03-19.dat  1910-03-23.dat  1910-03-27.dat  1910-03-31.dat
+1910-03-03.dat  1910-03-07.dat  1910-03-11.dat  1910-03-16.dat  1910-03-20.dat  1910-03-24.dat  1910-03-28.dat  info.txt
+1910-03-04.dat  1910-03-08.dat  1910-03-12.dat  1910-03-17.dat  1910-03-21.dat  1910-03-25.dat  1910-03-29.dat
+$ cat info.txt
+Precipitation reports for Badgerland.
+$ cat 1910-03-01.dat
+snow
+~~~
+
+We see there are two months of precipitation reports for ''badgerland''--wherever that is...
+
+Nevertheless, our boss has asked us to provide him with a listing of and the quantity of data files that exist in this directory. One way to accomplish this would be to manually record the filename and count the number of files, but it turns out we will soon be receiving more directories with thousands of files and that manual method is not scalable to those quanitities. This is where our redirection and piping can come in handy!
+
+The first task to tackle is creating a file that lists all the files, each on a single line. We have seen before that `ls` displays a directory listing. When we supply the flag `-1` (that's dash one) to ls, i.e. `ls -1`, the command prints each file in a separate line.
+
+~~~ bash
+$ ls -1
+1910-03-01.dat
+1910-03-02.dat
+1910-03-03.dat
+1910-03-04.dat
+1910-03-05.dat
+1910-03-06.dat
+1910-03-07.dat
+1910-03-08.dat
+1910-03-09.dat
+1910-03-10.dat
+1910-03-11.dat
+1910-03-12.dat
+1910-03-13.dat
+1910-03-15.dat
+1910-03-16.dat
+1910-03-17.dat
+1910-03-18.dat
+1910-03-19.dat
+1910-03-20.dat
+1910-03-21.dat
+1910-03-22.dat
+1910-03-23.dat
+1910-03-24.dat
+1910-03-25.dat
+1910-03-26.dat
+1910-03-27.dat
+1910-03-28.dat
+1910-03-29.dat
+1910-03-30.dat
+1910-03-31.dat
+info.txt
+~~~
+
+Our boss specifically asked about the _data_ files though and not our metadata file. So we restrict our command to only files that end in `.dat`:
+
+~~~ bash
+$ ls -1 *.dat
+1910-03-01.dat
+1910-03-02.dat
+1910-03-03.dat
+1910-03-04.dat
+1910-03-05.dat
+1910-03-06.dat
+1910-03-07.dat
+1910-03-08.dat
+1910-03-09.dat
+1910-03-10.dat
+1910-03-11.dat
+1910-03-12.dat
+1910-03-13.dat
+1910-03-15.dat
+1910-03-16.dat
+1910-03-17.dat
+1910-03-18.dat
+1910-03-19.dat
+1910-03-20.dat
+1910-03-21.dat
+1910-03-22.dat
+1910-03-23.dat
+1910-03-24.dat
+1910-03-25.dat
+1910-03-26.dat
+1910-03-27.dat
+1910-03-28.dat
+1910-03-29.dat
+1910-03-30.dat
+1910-03-31.dat
+~~~
+
+Halfway there! Now, this looks like a prime opportunity to redirect to a file. Redirect uses the greater than sign `>` and then is followed by the file name to redirect the output to. Do note that if the file already exists, it will be overwritten.
+
+~~~ bash
+$ ls -1 *.dat > filenames.txt
+$
+~~~
+
+Take a look at the `filenames.txt` file and see what's in there.
+
+~~~ bash
+$ cat filenames.txt
+1910-03-01.dat
+1910-03-02.dat
+1910-03-03.dat
+1910-03-04.dat
+1910-03-05.dat
+1910-03-06.dat
+1910-03-07.dat
+1910-03-08.dat
+1910-03-09.dat
+1910-03-10.dat
+1910-03-11.dat
+1910-03-12.dat
+1910-03-13.dat
+1910-03-15.dat
+1910-03-16.dat
+1910-03-17.dat
+1910-03-18.dat
+1910-03-19.dat
+1910-03-20.dat
+1910-03-21.dat
+1910-03-22.dat
+1910-03-23.dat
+1910-03-24.dat
+1910-03-25.dat
+1910-03-26.dat
+1910-03-27.dat
+1910-03-28.dat
+1910-03-29.dat
+1910-03-30.dat
+1910-03-31.dat
+~~~
+
+As you can see, what _would_ have printed in the terminal (called standard out) was instead printed into the file. This is the beauty of redirection. Alternatively, if you wanted to use redirection to _append_ to a file as opposed to overwriting, you can use two greater than signs `>>` followed by the file name.
+
+We are halfway done. The next step is to get the number of files that are present. Recalling that `ls -1` prints each file name on a separate file, we can leverage the word count program `wc`. As the name suggests, word count is able to count the number of words that are fed into it, but using a flag `-l` (dash the letter l), it can count the number of lines supplied to it.
+
+First let's look at the behavior of `wc -l` by supplying it a file.
+
+~~~ bash
+$ wc -l filenames.txt
+      30 filenames.txt
+~~~
+
+We get back that there are 30 lines in the file. Word count can also read from the command line input (called standard in) when there is no filename given. Try that out by issuing the command, typing three Wisconsin cities (separating each one by the Enter key), then pressing Ctrl+d to issue the ''End of File'' command:
+
+~~~ bash
+$ wc -l
+Milwaukee
+Fond du Lac
+Monroe
+       3
+~~~
+
+Just as expected, we supplied three lines of text and word count returned that there were indeed three lines of text. 
+
+Now to revisit piping. As mentioned before, piping stitches together different commands in Unix. This happens by connecting the standard out from one program to the standard in of another. Piping is implemented by the `|` operator, with the command to the left of it the first command run and also the command whose standard out is connected to the standard in of the command to the right of the pipe operator. Check it out:
+
+~~~ bash
+$ ls -1 *.dat | wc -l
+     30
+~~~
+
+Prett neat! You can actually implement many different pipes together, though that will be left to you to play with outside of class.
+
+The final step is to redirect the output of this piping command to a file that says how many files exist so our boss will be happy:
+
+~~~ bash
+$ ls -1 *.dat | wc -l > filenumber.txt
+$ cat filenumber.txt
+     30
+~~~
+
 ## `grep`ing and Finding
 
+
+
 ## Loops
+
+
 
 # Parting Thoughts
 
