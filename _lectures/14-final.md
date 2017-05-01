@@ -341,15 +341,94 @@ $ cat filenumber.txt
 
 ## `grep`ing and Finding
 
+Now our boss wants to know which files have snow in them. Yet another tool that is useful in the command line is one called `grep`, which involves global search and print. grep is one of the more powerful Swiss army knives as far as shells go, so keep in mind that we are only grazing the surface of grep's power. Grep provides the functionality to search for a string in files or standard in and return files that contain that string or inversely files that do not contain that string. The form of the command is `grep "string to search" files`. Try that for snow with our data files:
 
+~~~ bash
+$ grep "snow" *.dat
+1910-03-01.dat:snow
+1910-03-08.dat:snow
+1910-03-12.dat:snow
+1910-03-13.dat:snow
+1910-03-15.dat:snow
+1910-03-16.dat:snow
+1910-03-19.dat:snow
+1910-03-20.dat:snow
+1910-03-21.dat:snow
+1910-03-22.dat:snow
+1910-03-24.dat:snow
+1910-03-25.dat:snow
+~~~
+
+The files that contain our string are printed as are line context around the match. Because the files are only a single word, this behavior takes the form of printing the string again. We can suppress the strings to retain only a list of files by using the `-l` (dash letter l) flag in calling our command. Do take note that flags must be supplied _before_ the files or standard in.
+
+~~~ bash
+$ grep -l "snow" *.dat
+1910-03-01.dat
+1910-03-08.dat
+1910-03-12.dat
+1910-03-13.dat
+1910-03-15.dat
+1910-03-16.dat
+1910-03-19.dat
+1910-03-20.dat
+1910-03-21.dat
+1910-03-22.dat
+1910-03-24.dat
+1910-03-25.dat
+~~~
+
+This can be redirected to a file to summarize snowing days.
+
+~~~ bash
+$ grep -l "snow" *.dat > snowdays.txt
+$ cat snowdays.txt
+1910-03-01.dat
+1910-03-08.dat
+1910-03-12.dat
+1910-03-13.dat
+1910-03-15.dat
+1910-03-16.dat
+1910-03-19.dat
+1910-03-20.dat
+1910-03-21.dat
+1910-03-22.dat
+1910-03-24.dat
+1910-03-25.dat
+~~~
+
+Grep can also print the inverse case--files that do _not_ match the supplied string. This is accomplished by supplying the `-v` (dash letter v) flag:
+
+~~~ bash
+$ grep -l -v "snow" *.dat
+1910-03-02.dat
+1910-03-03.dat
+1910-03-04.dat
+1910-03-05.dat
+1910-03-06.dat
+1910-03-07.dat
+1910-03-09.dat
+1910-03-10.dat
+1910-03-11.dat
+1910-03-17.dat
+1910-03-18.dat
+1910-03-23.dat
+1910-03-26.dat
+1910-03-27.dat
+1910-03-28.dat
+1910-03-29.dat
+1910-03-30.dat
+1910-03-31.dat
+~~~
 
 ## Loops
 
+## Bash Wrap-up
 
+The shell is a powerful tool, especially for analysis when it comes to dealing with human-readable files. There is a deep legacy in the shell system so any problem you need to tackle has likely been accomplished before. As with Unix, there are different variants of shell available; we have only dealt with bash. Some shells provide more flexibility while others offer more utility. Just be aware that not all shells may not have every function you need.
 
 # Parting Thoughts
 
-Remember, we are musicians of programming. We use the instrument best suited for the situation, tying together the theoretical and practical concepts we have learned. Golden rules that are useful for programming:
+Remember, we are musicians of programming. We use the instrument best suited for the situation, tying together the theoretical and practical concepts we have learned. Rules that are useful for programming:
 
 * Don't be afraid to search online
 * Don't be afraid to ask for help
