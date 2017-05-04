@@ -5,7 +5,7 @@ title: Project 2
 due: 05/10/2017
 ---
 
-#Project 2 Guidelines
+# Project 2 Guidelines
 
 For project 2, you will take monthly GPCP, OAFlux, and ERA-interim data and map monthly and yearly estimates of the water budget using Precipitation – Evaporation as a crude estimate.  The datasets will be provided.   GPCP and OAFlux are observation based datasets which will be compared against the (reanalysis) ERA-interim dataset.
 
