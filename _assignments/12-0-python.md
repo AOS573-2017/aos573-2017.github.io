@@ -2,7 +2,7 @@
 layout: assignment
 published: true
 title: Project 2
-due: 05/10/2017
+due: 05/10/2017 at Noon Wisconsin Time
 ---
 
 # Project 2 Guidelines
