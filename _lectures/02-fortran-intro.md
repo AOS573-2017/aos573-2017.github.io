@@ -103,7 +103,7 @@ REAL :: uwind, vwind
 END PROGRAM calculator
 ~~~
 
-Another variable we will need in a moment is pi (&#960;). In Fortran, you can define a variable to specifically be a parameter, meaning its value is given initially and cannot be changed. While this may seem ancillary, it will be important later on. Parameter values are defined at the same time the type is defined.
+Another variable we will need in a moment is pi. In Fortran, you can define a variable to specifically be a parameter, meaning its value is given initially and cannot be changed. While this may seem ancillary, it will be important later on. Parameter values are defined at the same time the type is defined.
 
 ~~~ f90
 PROGRAM calculator

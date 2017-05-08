@@ -29,9 +29,9 @@ Some ODEs can be solved analytically, namely their solutions can be described by
 
 The dynamic system we will model today is widely known as the Lorenz-63 model. It came from the groundbreaking 1963 paper ["Deterministic Nonperiodic Flow"](http://dx.doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2) by [Edward Norton Lorenz](https://en.wikipedia.org/wiki/Edward_Norton_Lorenz). The system consists of 3 equations and 3 variables:
 
-![alt text](https://wikimedia.org/api/rest_v1/media/math/render/svg/5f993e17e16f1c3ea4ad7031353c61164a226bb8 "Lorenz-63 Equations")
+![alt text](https://wikimedia.org/api/rest_v1/media/math/render/png/5f993e17e16f1c3ea4ad7031353c61164a226bb8 "Lorenz-63 Equations")
 
-The default parameter values are σ=10, β=8/3 and ρ=28. This paper and the Lorenz-63 model marked the origin of the chaos theory. It's also the origin of the "butterfly effect" and the 2-week upper limit for possible weather forecast.
+The default parameter values are sigma=10, beta=8/3 and rho=28. This paper and the Lorenz-63 model marked the origin of the chaos theory. It's also the origin of the "butterfly effect" and the 2-week upper limit for possible weather forecast.
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Lorenz_system_r28_s10_b2-6666.png/1920px-Lorenz_system_r28_s10_b2-6666.png" width="500">
 
