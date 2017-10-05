@@ -11,7 +11,7 @@ Last week we saw a general introduction to the structure and syntax of Fortran p
 Today for class we will be working on a new set of code and data to demonstrate multidimensional arrays. Go ahead and clone this week's repository into your home directory.
 
 ~~~ bash
-$ git clone https://github.com/AOS573/fortran-week-two.git
+$ git clone https://github.com/AOS573-2017/fortran-week-two.git
 
 $ cd fortran-week-two
 ~~~

@@ -5,7 +5,7 @@ title: Saving and Movies
 ---
 
 ~~~ bash
-$ git clone https://github.com/AOS573/matlab_week9.git
+$ git clone https://github.com/AOS573-2017/matlab_week9.git
 
 $ cd matlab_week9
 

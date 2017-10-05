@@ -5,7 +5,7 @@ title: More statistics in Matlab
 ---
 
 ~~~ bash
-$ git clone https://github.com/AOS573/matlab_week8.git
+$ git clone https://github.com/AOS573-2017/matlab_week8.git
 
 $ cd matlab_week8
 ~~~

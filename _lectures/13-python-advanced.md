@@ -88,7 +88,7 @@ The arguments x, y1, and y2 of fill between are referred to as 'keyword argument
 # Exercise
 Find the errors in the code.
 
-https://github.com/AOS573/python-week-four.git
+https://github.com/AOS573-2017/python-week-four.git
 
 Clone python-week-four and debug the find_the_errors.  This may include adding lines of code as well as changing the overall structure of find_the_errors.
 

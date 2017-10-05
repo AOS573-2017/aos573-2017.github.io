@@ -5,7 +5,7 @@ title: Introduction to Matlab
 ---
 
 ~~~ bash
-$ git clone https://github.com/AOS573/matlab-week6.git
+$ git clone https://github.com/AOS573-2017/matlab-week6.git
 
 $ cd matlab-week6
 ~~~

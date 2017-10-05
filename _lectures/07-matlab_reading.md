@@ -6,7 +6,7 @@ title: Reading data, functions, and making figures in Matlab
 
 
 ~~~ bash
-$ git clone https://github.com/AOS573/matlab-week7.git
+$ git clone https://github.com/AOS573-2017/matlab-week7.git
 
 $ cd matlab-week7
 ~~~

@@ -6,7 +6,7 @@ title: Tools of the Trade
 
 To start today's exercise, download/clone the python-week-two from the AOS 573 github.
 ~~~ bash
-git clone https://github.com/AOS573/python-week-two.git
+git clone https://github.com/AOS573-2017/python-week-two.git
 ~~~
 
 ## Downloading Modules from Source
