@@ -21,7 +21,7 @@ By definition from the American Meteorological Society (AMS), numerical modeling
 
 A common dynamic model consisting of ODEs looks like this:
 
-<img src="https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture1.png" height="400">
+<img src="https://raw.githubusercontent.com/AOS573/aos573-2017.github.io/master/_lectures/week5/Picture1.png" height="400">
 
 Some ODEs can be solved analytically, namely their solutions can be described by some exact formula. A simple example is `dx/dt=2x`, the solution to which is `x=x^2+C`, where `C` is a given constant. However, most ODEs we encounter will be impossibly hard to solve analytically. With the powerful computers today, we non-mathematicians usually rely on the numerical methods.
 
@@ -41,7 +41,7 @@ In order to solve ODEs, we need to solve how the model state (x, y, z) moves wit
 
 Forward Euler scheme:
 
-<img src="https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture2.png" height="100">
+<img src="https://raw.githubusercontent.com/AOS573/aos573-2017.github.io/master/_lectures/week5/Picture2.png" height="100">
 
 Fortran expression:
 ```f90
@@ -55,11 +55,11 @@ END FUNCTION
 
 Leapfrog scheme:
 
-<img src="https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture3.png" height="100">
+<img src="https://raw.githubusercontent.com/AOS573/aos573-2017.github.io/master/_lectures/week5/Picture3.png" height="100">
 
 Runge-Kutta scheme (order 4):
 
-<img src="https://raw.githubusercontent.com/AOS573/aos573.github.io/master/_lectures/week5/Picture4.png" height="500">
+<img src="https://raw.githubusercontent.com/AOS573/aos573-2017.github.io/master/_lectures/week5/Picture4.png" height="500">
 
 # Let's code!
 
